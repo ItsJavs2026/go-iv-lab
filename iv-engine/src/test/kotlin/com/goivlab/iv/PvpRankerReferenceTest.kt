@@ -23,4 +23,19 @@ class PvpRankerReferenceTest {
         assertEquals(50.0, lowAttack.level)
         assertTrue(ranks.zipWithNext().all { (a, b) -> a.rank + 1 == b.rank })
     }
+    // https://db.pokemongohub.net/tools/pvp-iv-checker?id=2
+    // Independent test of a species that reaches its CP cap before level 50.
+    @Test fun ivysaurGreatLeagueCappedGoldenRanks() {
+        val ranks = PvpRanker.rank(
+            BaseStats(151, 143, 155), 1500, PvpokeCpm.levels(50.0)
+        )
+        assertEquals(4096, ranks.size)
+        assertEquals(IvSpread(0, 13, 14), ranks.first().iv)
+        assertEquals(38.5, ranks.first().level)
+        assertEquals(1498, ranks.first().cp)
+        val spread = ranks.single { it.iv == IvSpread(0, 15, 15) }
+        assertEquals(39, spread.rank)
+        assertEquals(37.5, spread.level)
+        assertEquals(1490, spread.cp)
+    }
 }
