@@ -71,6 +71,9 @@ class MainActivity : Activity() {
     private lateinit var hpBar: SeekBar
     private lateinit var calculateButton: Button
     private lateinit var copyButton: Button
+    private lateinit var showPopupButton: Button
+    private lateinit var presetSpinner: Spinner
+    private lateinit var presetStore: NicknamePresets
     private lateinit var templateInput: EditText
     private lateinit var statusText: TextView
     private lateinit var resultText: TextView
@@ -86,6 +89,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefs = getSharedPreferences("offline_go_iv_lab_v02", MODE_PRIVATE)
+        presetStore = NicknamePresets(prefs)
         window.navigationBarColor = bg
         window.statusBarColor = bg
 
@@ -175,6 +179,12 @@ class MainActivity : Activity() {
         spacer(resultCard, 10)
         resultText = text("Select a Pokémon and calculate to see its IV rank.", 16f, false, ink)
         resultCard.addView(resultText)
+        showPopupButton = Button(this).apply {
+            text = "SHOW RANK POPUP"
+            isEnabled = false
+            setOnClickListener { showRankPopup() }
+        }
+        resultCard.addView(showPopupButton, fullRow())
 
         spacer(column, 12)
         val nicknameCard = card(column)
@@ -200,6 +210,40 @@ class MainActivity : Activity() {
             setOnClickListener { copyNickname() }
         }
         nicknameCard.addView(copyButton, fullRow())
+        spacer(nicknameCard, 9)
+        nicknameCard.addView(text("Saved nickname templates (local only)", 13f, true, ink))
+        presetSpinner = spinner(presetStore.all(), 0)
+        nicknameCard.addView(presetSpinner, fullRow())
+        Button(this).apply {
+            text = "USE SELECTED PRESET"
+            setOnClickListener {
+                val selected = presetSpinner.selectedItem?.toString() ?: return@setOnClickListener
+                templateInput.setText(selected)
+                templateInput.setSelection(templateInput.text.length)
+            }
+        }.also { nicknameCard.addView(it, fullRow()) }
+        val presetButtons = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        val savePreset = Button(this).apply {
+            text = "SAVE TEMPLATE"
+            setOnClickListener {
+                if (presetStore.save(templateInput.text.toString())) {
+                    refreshPresets()
+                    statusText.text = "Nickname preset saved on this device."
+                } else statusText.text = "Template must contain 1–120 characters."
+            }
+        }
+        val deletePreset = Button(this).apply {
+            text = "DELETE PRESET"
+            setOnClickListener {
+                val selected = presetSpinner.selectedItem?.toString() ?: return@setOnClickListener
+                presetStore.remove(selected)
+                refreshPresets()
+                statusText.text = "Selected nickname preset removed."
+            }
+        }
+        presetButtons.addView(savePreset, LinearLayout.LayoutParams(0, 48.dp(), 1f))
+        presetButtons.addView(deletePreset, LinearLayout.LayoutParams(0, 48.dp(), 1f))
+        nicknameCard.addView(presetButtons, fullRow())
 
         spacer(column, 14)
         column.addView(text(
@@ -274,6 +318,7 @@ class MainActivity : Activity() {
         calculateButton.isEnabled = false
         statusText.text = "Calculating 4,096 IV combinations offline…"
         lastCalculation = null
+        showPopupButton.isEnabled = false
         renderNickname()
         worker.execute {
             try {
@@ -281,6 +326,7 @@ class MainActivity : Activity() {
                 runOnUiThread {
                     if (isDestroyed || generation.get() != request) return@runOnUiThread
                     lastCalculation = Calculation(result, league, ivs, maxLevel)
+                    showPopupButton.isEnabled = true
                     calculateButton.isEnabled = true
                     statusText.text = "Calculated locally · no network requests"
                     resultText.text = buildString {
@@ -334,6 +380,20 @@ class MainActivity : Activity() {
         copyButton.isEnabled = nickname.fits && nickname.value.isNotBlank()
     }
 
+    private fun refreshPresets() {
+        presetSpinner.adapter = ArrayAdapter(
+            this, android.R.layout.simple_spinner_dropdown_item, presetStore.all()
+        )
+    }
+
+    private fun showRankPopup() {
+        val current = lastCalculation ?: return
+        val nickname = lastNickname?.takeIf { it.fits && it.value.isNotBlank() }?.value
+        RankPopup.show(
+            this, current.result, current.league.label, current.maxLevel, nickname
+        ) { copyNickname() }
+    }
+
     private fun copyNickname() {
         val current = lastNickname ?: return
         if (!current.fits || current.value.isBlank()) return
@@ -345,6 +405,7 @@ class MainActivity : Activity() {
     private fun invalidateResult(message: String) {
         generation.incrementAndGet()
         lastCalculation = null
+        if (::showPopupButton.isInitialized) showPopupButton.isEnabled = false
         if (::calculateButton.isInitialized) calculateButton.isEnabled = lookup != null
         if (::statusText.isInitialized) statusText.text = message
         if (::resultText.isInitialized) resultText.text = "Tap Calculate to refresh the rank."
