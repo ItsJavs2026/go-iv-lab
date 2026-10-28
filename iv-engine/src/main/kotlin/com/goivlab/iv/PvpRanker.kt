@@ -70,7 +70,7 @@ object PvpRanker {
                 .thenByDescending { it.iv.stamina }
         )
         return sorted.mapIndexed { index, item ->
-            RankedSpread(item.iv, index + 1, item.level, item.stats.cp, item.stats.statProduct)
+            RankedSpread(item.iv, index + 1, item.level, item.stats.cp, item.exactScore.toDouble())
         }
     }
 }
