@@ -1,9 +1,5 @@
 pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
+    repositories { gradlePluginPortal(); google(); mavenCentral() }
 }
 rootProject.name = "go-iv-lab"
-include(":nickname-core")
+include(":nickname-core", ":iv-engine")
