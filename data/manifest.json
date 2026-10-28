@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "PvPoke",
+  "sourceUrl": "https://github.com/pvpoke/pvpoke",
+  "sourceCommit": "d98f52174e01f8f67414bc6973599788d098c10e",
+  "gameMasterTimestamp": "2026-10-26 22:08:07",
+  "sourceGameMasterGitBlobSha1": "f5a1c50c9162fac0f0c34bb7a662f995c6506b74",
+  "sourceLicense": "MIT; third_party/PVPoke-LICENSE.txt",
+  "count": 1689,
+  "includesSomeUnreleasedEntries": true,
+  "rankingReferenceParityCertified": false
+}

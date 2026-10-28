@@ -1,0 +1,15 @@
+name: Repository validation
+on:
+  push:
+    branches: [main, 'development/**']
+  pull_request:
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check foundation files
+        run: |
+          test -s README.md
+          test -s docs/ROADMAP.md
+          test -s docs/ARCHITECTURE.md

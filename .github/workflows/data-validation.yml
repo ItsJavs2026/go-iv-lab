@@ -1,0 +1,30 @@
+name: Pinned Pokemon data verification
+on:
+  push:
+    branches: [main, 'development/**']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit test importer (offline fixtures)
+        run: python -m unittest discover -s tools -p test_import_pvpoke.py -v
+      - name: Validate checked-in offline species data
+        run: python tools/verify_dataset.py
+      - name: Download and verify pinned source blobs
+        run: python tools/import_pvpoke.py build/imported-pvpoke
+      - name: Verify checked-in data matches regenerated pinned source
+        run: cmp data/pokemon-stats.json build/imported-pvpoke/pokemon.json
+      - name: Store provenance and generated data (not an APK)
+        uses: actions/upload-artifact@v4
+        with:
+          name: pinned-pvpoke-data
+          path: build/imported-pvpoke/
+          retention-days: 14
