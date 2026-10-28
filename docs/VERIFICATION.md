@@ -3,7 +3,7 @@
 ## Status
 - Nickname core: source committed; CI result not yet confirmed.
 - IV arithmetic: source committed; CI result not yet confirmed.
-- PvP IV rank: NOT IMPLEMENTED / NOT VERIFIED.
+- PvP IV rank: enumeration algorithm committed; NOT YET VERIFIED against game data or independent golden vectors.
 - Pokémon base-stat and CP multiplier datasets: NOT INCLUDED pending provenance review.
 - Screenshot recognition, overlay, Android APK: NOT IMPLEMENTED.
 
