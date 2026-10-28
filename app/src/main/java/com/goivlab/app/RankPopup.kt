@@ -5,8 +5,6 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
-import android.view.Gravity
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
@@ -43,7 +41,7 @@ internal object RankPopup {
                 setPadding(0, dp(3), 0, dp(3))
             }.also { content.addView(it) }
         }
-        line(result.species.name, 21f, ink, true)
+        line(result.species.name + " · " + result.species.speciesId, 19f, ink, true)
         line("$league · Level cap ${maxLevel.toInt()}", 13f, muted)
         line("RANK #${result.rank}", 32f, primary, true)
         line("of ${result.eligibleSpreads} IV combinations", 13f, muted)
