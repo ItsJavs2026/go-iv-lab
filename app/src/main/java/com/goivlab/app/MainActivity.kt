@@ -332,7 +332,7 @@ class MainActivity : Activity() {
 
     private fun calculate() {
         val raw = pokemonInput.text.toString().trim()
-        val id = selectedId ?: labelToId[raw] ?: catalog?.find(raw)?.speciesId
+        val id = labelToId[raw] ?: catalog?.find(raw)?.speciesId
         if (id == null) {
             statusText.text = "Choose a Pokémon or exact form from the suggestions."
             return
