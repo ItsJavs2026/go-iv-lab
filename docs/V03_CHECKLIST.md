@@ -4,6 +4,8 @@ Source branch: candidate/v0.3-popup-presets. Based on user-tested v0.2; main and
 
 ## Implemented in source
 - Native in-app AlertDialog displaying species/form, IV spread rank, CP, level, stat product, and optional nickname copy.
+- Auto-open popup after a completed calculation (enabled by default, saved toggle); manual popup button still available.
+- Compact spacing to reduce scrolling; v0.3 label shown in UI.
 - Results popup disabled whenever a stale calculation is invalidated.
 - Locally saved nickname template presets (up to 12), selection, save, deletion.
 - Same offline engine and user-tested clipboard pathway.
@@ -17,7 +19,7 @@ Source branch: candidate/v0.3-popup-presets. Based on user-tested v0.2; main and
 - Evolution comparison and screenshot recognition, intentionally deferred.
 
 ## Device regression plan
-1. Bulbasaur 0/15/15 GL level 50 → rank 770, CP 1118; open popup and close.
+1. Bulbasaur 0/15/15 GL level 50 → rank 770, CP 1118; confirm popup auto-opens and closes. Disable auto-open, calculate again, then use manual popup button.
 2. Alolan Diglett 13/14/11 GL level 50 → compare app result to v0.2 (#125, CP 735), external rank parity still pending.
 3. Change IV while popup result exists: popup must disable until recalculated.
 4. Save `{league}{rank}` and `{name}` presets; switch between them; restart app and confirm persistence.
