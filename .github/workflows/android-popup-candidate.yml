@@ -31,6 +31,17 @@ jobs:
         run: |
           test -s app/build/outputs/apk/debug/app-debug.apk
           unzip -Z1 app/build/outputs/apk/debug/app-debug.apk | grep -Fx 'assets/pokemon-stats.json'
+      - name: Reject unexpected permissions and verify v0.3 version
+        run: |
+          MANIFEST=app/src/main/AndroidManifest.xml
+          if grep -E 'android.permission.INTERNET|android.permission.SYSTEM_ALERT_WINDOW|android.permission.BIND_ACCESSIBILITY_SERVICE|android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION' "$MANIFEST"; then
+            echo "Unexpected permission declared" >&2
+            exit 1
+          fi
+          grep -F 'versionName = "0.3.0-candidate"' app/build.gradle.kts
+          grep -F 'class MainActivity' app/src/main/java/com/goivlab/app/MainActivity.kt
+          grep -F 'object RankPopup' app/src/main/java/com/goivlab/app/RankPopup.kt
+          grep -F 'class NicknamePresets' app/src/main/java/com/goivlab/app/NicknamePresets.kt
       - uses: actions/upload-artifact@v4
         with:
           name: GO-IV-Lab-v0.3-popup-candidate
