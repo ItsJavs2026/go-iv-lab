@@ -111,12 +111,12 @@ class MainActivity : Activity() {
         setContentView(scroll)
 
         column.addView(text("GO IV LAB", 28f, true, ink))
-        column.addView(text("Offline PvP IV checker · v0.2 candidate", 13f, false, muted))
-        spacer(column, 16)
+        column.addView(text("Offline PvP IV checker · v0.3 candidate", 13f, false, muted))
+        spacer(column, 9)
 
         val searchCard = card(column)
         searchCard.addView(text("1 · Select a Pokémon or form", 17f, true, ink))
-        spacer(searchCard, 8)
+        spacer(searchCard, 4)
         pokemonInput = AutoCompleteTextView(this).apply {
             hint = "Search species, Alolan, Shadow…"
             threshold = 1
@@ -138,19 +138,19 @@ class MainActivity : Activity() {
             invalidateResult("Form selected — tap Calculate.")
         }
 
-        spacer(column, 12)
+        spacer(column, 8)
         val ivCard = card(column)
         ivCard.addView(text("2 · Appraisal IVs", 17f, true, ink))
         ivCard.addView(text("Set each bar precisely from 0 to 15.", 12f, false, muted))
-        spacer(ivCard, 8)
+        spacer(ivCard, 4)
         attackBar = addIvControl(ivCard, "Attack", 0)
         defenseBar = addIvControl(ivCard, "Defense", 15)
         hpBar = addIvControl(ivCard, "HP", 15)
 
-        spacer(column, 12)
+        spacer(column, 8)
         val leagueCard = card(column)
         leagueCard.addView(text("3 · League and maximum level", 17f, true, ink))
-        spacer(leagueCard, 8)
+        spacer(leagueCard, 4)
         leagueSpinner = spinner(leagues.map { it.label }, 1)
         leagueCard.addView(leagueSpinner, fullRow())
         maxLevelSpinner = spinner(listOf("Level 50 (standard)", "Level 51 (Best Buddy active)"), 0)
@@ -165,7 +165,7 @@ class MainActivity : Activity() {
         leagueSpinner.onItemSelectedListener = selectionListener
         maxLevelSpinner.onItemSelectedListener = selectionListener
 
-        spacer(column, 12)
+        spacer(column, 8)
         val resultCard = card(column)
         calculateButton = Button(this).apply {
             text = "CALCULATE PVP IV RANK"
@@ -176,7 +176,7 @@ class MainActivity : Activity() {
         spacer(resultCard, 7)
         statusText = text("Loading offline Pokémon database…", 13f, false, muted)
         resultCard.addView(statusText)
-        spacer(resultCard, 10)
+        spacer(resultCard, 5)
         resultText = text("Select a Pokémon and calculate to see its IV rank.", 16f, false, ink)
         resultCard.addView(resultText)
         showPopupButton = Button(this).apply {
@@ -186,7 +186,7 @@ class MainActivity : Activity() {
         }
         resultCard.addView(showPopupButton, fullRow())
 
-        spacer(column, 12)
+        spacer(column, 8)
         val nicknameCard = card(column)
         nicknameCard.addView(text("4 · Nickname maker", 17f, true, ink))
         nicknameCard.addView(text("Tokens: {name} {league} {rank} {attack} {defense} {hp}", 12f, false, muted))
@@ -245,7 +245,7 @@ class MainActivity : Activity() {
         presetButtons.addView(deletePreset, LinearLayout.LayoutParams(0, 48.dp(), 1f))
         nicknameCard.addView(presetButtons, fullRow())
 
-        spacer(column, 14)
+        spacer(column, 9)
         column.addView(text(
             "IV rank ≠ battle/meta ranking. Base stats: PvPoke snapshot 26 Oct 2026. Calculations are offline; screenshot scanning and overlay will come later.",
             12f, false, muted
@@ -467,7 +467,7 @@ class MainActivity : Activity() {
     private fun card(parent: LinearLayout): LinearLayout {
         val view = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(14.dp(), 14.dp(), 14.dp(), 14.dp())
+            setPadding(12.dp(), 10.dp(), 12.dp(), 10.dp())
             background = GradientDrawable().apply {
                 setColor(Color.WHITE)
                 cornerRadius = 16.dp().toFloat()
