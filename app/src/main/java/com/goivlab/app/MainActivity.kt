@@ -131,8 +131,13 @@ class MainActivity : Activity() {
         searchCard.addView(text("Choose an exact entry from the suggestions. Forms are separate.", 12f, false, muted))
         pokemonInput.setOnClickListener { if (labelToId.isNotEmpty()) pokemonInput.showDropDown() }
         pokemonInput.onEdit {
-            selectedId = null
-            invalidateResult("Species changed — tap Calculate.")
+            // The selected entry is retained only when the visible text still
+            // exactly identifies that same species/form. No guessing on partial input.
+            val typed = pokemonInput.text.toString()
+            if (selectedId != null && labelToId[typed] != selectedId) {
+                selectedId = null
+            }
+            invalidateResult("Species changed — choose a form and tap Calculate.")
         }
         pokemonInput.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
             val entry = parent.getItemAtPosition(position)?.toString().orEmpty()
