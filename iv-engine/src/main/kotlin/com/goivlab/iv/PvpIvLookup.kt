@@ -13,8 +13,18 @@ data class PvpIvLookupResult(
 /**
  * Offline user-facing lookup. Rank means within-species stat product rank,
  * never overall Pokémon battle strength or a matchup rating.
+ *
+ * A small, synchronized in-memory cache makes subsequent IV changes for the
+ * same Pokémon/league fast without storing anything outside the device.
  */
 class PvpIvLookup(private val catalog: PokemonStatsCatalog) {
+    private data class Key(val speciesId: String, val cpCap: Int, val maxLevel: Double)
+    private val rankCache = object : LinkedHashMap<Key, List<RankedSpread>>(8, 0.75f, true) {
+        override fun removeEldestEntry(eldest: MutableMap.MutableEntry<Key, List<RankedSpread>>?): Boolean {
+            return size > 4
+        }
+    }
+
     fun check(
         speciesId: String,
         ivs: IvSpread,
@@ -22,7 +32,11 @@ class PvpIvLookup(private val catalog: PokemonStatsCatalog) {
         maxLevel: Double = 50.0
     ): PvpIvLookupResult {
         val species = catalog.requireSpecies(speciesId)
-        val ranks = PvpRanker.rank(species.baseStats, cpCap, PvpokeCpm.levels(maxLevel))
+        val key = Key(speciesId, cpCap, maxLevel)
+        val cached = synchronized(rankCache) { rankCache[key] }
+        val ranks = cached ?: PvpRanker.rank(species.baseStats, cpCap, PvpokeCpm.levels(maxLevel)).also {
+            synchronized(rankCache) { rankCache[key] = it }
+        }
         require(ranks.isNotEmpty()) { "No eligible IV spreads at this CP limit" }
         val match = ranks.firstOrNull { it.iv == ivs }
             ?: throw IllegalArgumentException("Requested spread is ineligible at this CP cap")
