@@ -12,11 +12,11 @@ import urllib.request
 from datetime import date
 from pathlib import Path
 
-COMMIT = "04ee0835e80f30c45376415725c0039cbdd12c5e"
+COMMIT = "d98f52174e01f8f67414bc6973599788d098c10e"
 BASE_URL = f"https://raw.githubusercontent.com/pvpoke/pvpoke/{COMMIT}/"
 EXPECTED_GIT_BLOBS = {
-    "src/data/gamemaster.json": "d5cefa162670e8c9ef85b30dfb3595edaf4d3697",
-    "src/js/pokemon/Pokemon.js": "a6a0bfbae03a81b6a0772252908ff1865e9ebdfc",
+    "src/data/gamemaster.json": "f5a1c50c9162fac0f0c34bb7a662f995c6506b74",
+    "src/js/pokemon/Pokemon.js": "27040b4e134b70703b1e6947355d27a57a8a0ff8",
     "LICENSE": "19295f2ae4280e78e4ac77cd70cbcb6089dd3f6e",
 }
 EXCLUDED_TAGS = {"mega", "supermega", "primal"}
