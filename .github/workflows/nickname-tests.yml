@@ -1,4 +1,4 @@
-name: Nickname engine tests
+name: Kotlin core tests
 on:
   push:
     branches: [main, 'development/**']
@@ -13,5 +13,5 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: gradle/actions/setup-gradle@v4
-      - name: Run nickname unit tests
-        run: gradle :nickname-core:test --no-daemon
+      - name: Run core unit tests
+        run: gradle :nickname-core:test :iv-engine:test --no-daemon
