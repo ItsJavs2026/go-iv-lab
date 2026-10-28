@@ -148,6 +148,18 @@ class MainActivity : Activity() {
         attackBar = addIvControl(ivCard, "Attack", 0)
         defenseBar = addIvControl(ivCard, "Defense", 15)
         hpBar = addIvControl(ivCard, "HP", 15)
+        val quickIvs = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        Button(this).apply {
+            text = "0/15/15"
+            contentDescription = "Set IVs to zero attack, fifteen defense and fifteen HP"
+            setOnClickListener { setIvs(0, 15, 15) }
+        }.also { quickIvs.addView(it, LinearLayout.LayoutParams(0, 44.dp(), 1f)) }
+        Button(this).apply {
+            text = "15/15/15"
+            contentDescription = "Set all three IVs to fifteen"
+            setOnClickListener { setIvs(15, 15, 15) }
+        }.also { quickIvs.addView(it, LinearLayout.LayoutParams(0, 44.dp(), 1f)) }
+        ivCard.addView(quickIvs, fullRow())
 
         spacer(column, 8)
         val leagueCard = card(column)
@@ -429,6 +441,13 @@ class MainActivity : Activity() {
         if (::statusText.isInitialized) statusText.text = message
         if (::resultText.isInitialized) resultText.text = "Tap Calculate to refresh the rank."
         renderNickname()
+    }
+
+    private fun setIvs(attack: Int, defense: Int, hp: Int) {
+        attackBar.progress = attack
+        defenseBar.progress = defense
+        hpBar.progress = hp
+        invalidateResult("IV preset applied — tap Calculate.")
     }
 
     private fun addIvControl(parent: LinearLayout, name: String, initial: Int): SeekBar {
