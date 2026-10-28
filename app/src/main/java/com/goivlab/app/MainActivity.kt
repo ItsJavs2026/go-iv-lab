@@ -20,6 +20,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -72,6 +73,7 @@ class MainActivity : Activity() {
     private lateinit var calculateButton: Button
     private lateinit var copyButton: Button
     private lateinit var showPopupButton: Button
+    private lateinit var autoPopupCheck: CheckBox
     private lateinit var presetSpinner: Spinner
     private lateinit var presetStore: NicknamePresets
     private lateinit var templateInput: EditText
@@ -185,6 +187,15 @@ class MainActivity : Activity() {
             setOnClickListener { showRankPopup() }
         }
         resultCard.addView(showPopupButton, fullRow())
+        autoPopupCheck = CheckBox(this).apply {
+            text = "Automatically show results popup after calculation"
+            setTextColor(ink)
+            isChecked = prefs.getBoolean("auto_popup_v03", true)
+            setOnCheckedChangeListener { _, checked ->
+                prefs.edit().putBoolean("auto_popup_v03", checked).apply()
+            }
+        }
+        resultCard.addView(autoPopupCheck, fullRow())
 
         spacer(column, 8)
         val nicknameCard = card(column)
@@ -338,6 +349,7 @@ class MainActivity : Activity() {
                         append("\n\nThis ranks this species' IV spreads, not its PvP battle performance.")
                     }
                     renderNickname()
+                    if (autoPopupCheck.isChecked) showRankPopup()
                 }
             } catch (exception: Exception) {
                 runOnUiThread {
