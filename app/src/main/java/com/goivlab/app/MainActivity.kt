@@ -391,7 +391,14 @@ class MainActivity : Activity() {
         val nickname = lastNickname?.takeIf { it.fits && it.value.isNotBlank() }?.value
         RankPopup.show(
             this, current.result, current.league.label, current.maxLevel, nickname
-        ) { copyNickname() }
+        ) {
+            // Copy the value shown in this dialog, never a later recalculation's value.
+            if (nickname != null) {
+                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                clipboard.setPrimaryClip(ClipData.newPlainText("GO IV Lab nickname", nickname))
+                statusText.text = "Popup nickname copied. Paste it manually into Pokémon GO."
+            }
+        }
     }
 
     private fun copyNickname() {
