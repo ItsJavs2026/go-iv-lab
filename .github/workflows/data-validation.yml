@@ -16,8 +16,12 @@ jobs:
           python-version: '3.12'
       - name: Unit test importer (offline fixtures)
         run: python -m unittest discover -s tools -p test_import_pvpoke.py -v
+      - name: Validate checked-in offline species data
+        run: python tools/verify_dataset.py
       - name: Download and verify pinned source blobs
         run: python tools/import_pvpoke.py build/imported-pvpoke
+      - name: Verify checked-in data matches regenerated pinned source
+        run: cmp data/pokemon-stats.json build/imported-pvpoke/pokemon.json
       - name: Store provenance and generated data (not an APK)
         uses: actions/upload-artifact@v4
         with:
