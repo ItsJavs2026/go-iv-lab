@@ -43,3 +43,11 @@ Source branch: candidate/v0.3-popup-presets. Based on user-tested v0.2; main and
 - v0.2: Alolan Diglett 13/14/11 GL L50 showed rank 125, CP 735 (user screenshot; external rank parity still unconfirmed).
 - v0.2: User confirmed nickname clipboard copy works.
 - v0.3: No on-device tests yet. Do not infer them from CI success.
+
+## Search correctness and IV quick actions
+- Species lookup at calculation time uses current visible search text, not a stale previously selected ID.
+- The popup shows the exact species/form ID alongside the display name.
+- Quick IV buttons set 0/15/15 and 15/15/15; calculation must still be explicitly requested.
+- Regression: select Alolan Diglett, edit search to another form without selecting a suggestion, then calculate; never show the old Diglett result.
+- Regression: choose the same form twice, edit IVs rapidly, and verify only the latest calculation may populate the popup.
+- Regression: verify all quick IV buttons update the visible sliders and invalidate any previous result.
