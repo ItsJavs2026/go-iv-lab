@@ -223,6 +223,22 @@ class MainActivity : Activity() {
                 statusText.text = "Overlay stopped."
             }
         }.also { resultCard.addView(it, fullRow()) }
+        Button(this).apply {
+            text = "OPEN POKÉMON GO"
+            contentDescription = "Open Pokémon GO after starting the floating result"
+            setOnClickListener {
+                val intent = packageManager.getLaunchIntentForPackage("com.nianticlabs.pokemongo")
+                if (intent == null) {
+                    statusText.text = "Pokémon GO is not available as a launchable installed app."
+                } else {
+                    try {
+                        startActivity(intent)
+                    } catch (exception: Exception) {
+                        statusText.text = "Could not open Pokémon GO: ${exception.javaClass.simpleName}"
+                    }
+                }
+            }
+        }.also { resultCard.addView(it, fullRow()) }
         autoPopupCheck = CheckBox(this).apply {
             text = "Automatically show results popup after calculation"
             setTextColor(ink)
