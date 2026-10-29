@@ -23,7 +23,7 @@
 1. Calculate Bulbasaur 0/15/15 Great League level 50; confirm v0.2 reference #770, CP 1118. Confirm in-app rank dialog and nickname copy unchanged.
 2. Tap FLOAT from the **in-app popup**. If permission is missing, visit Android Settings after tapping FLOAT, grant Draw over other apps, and return; only the one pending user-initiated request may resume automatically. Verify denial does not start anything.
 3. Verify foreground-service notification appears and its Stop action dismisses the card.
-4. Open Pokémon GO: overlay should remain visible in supported situations, while taps outside card reach the game; no extra screenshot or accessibility permission appears.
+4. Tap **OPEN POKÉMON GO** (a separate explicit user action): Pokémon GO should open if installed; overlay should remain visible in supported situations, while taps outside card reach the game. No extra screenshot or accessibility permission appears. If Pokémon GO is missing, show an error instead of opening an unrelated app.
 5. Drag card along edges, minimize, expand, close and reopen. Ensure no off-screen card, stuck window or duplicate overlays.
 5a. For valid nickname template, tap COPY NICKNAME inside the game overlay and paste it manually into a test text field. Invalid or >12-character nickname must not show a copy action. Collapsed card must hide the copy action.
 6. Reopen GO IV Lab, change IV, Pokémon/form, or league; obsolete floating results must be dismissed.
@@ -35,7 +35,7 @@
 
 ## Constraints and limitations
 - No screenshot scanning, OCR, auto detection or game automation in this experiment.
-- No automatic re-start from background, boot, network, or Pokémon GO app launch.
+- No automatic re-start from background, boot, network, or Pokémon GO app launch. A separate explicit OPEN POKÉMON GO button uses narrowly scoped package visibility only.
 - Android can suppress overlays on sensitive screens. Samsung-specific behavior must be physically verified.
 - A foreground service is user-visible and may require notification handling; user can stop at any time.
 - Clipboard action writes only a valid generated nickname; it does not read clipboard content.
@@ -46,3 +46,8 @@
 - First-use overlay permission resumes one pending user-initiated FLOAT request on returning to the app; cancellation must leave the overlay off.
 - Floating card is manual result-only. The long-term screenshot/recognition workflow is a separate future candidate.
 - No CI or emulator can prove that Pokémon GO actually shows the overlay on this specific Samsung firmware.
+
+## Findings from official Android documentation
+- Android 15+ restricts starting foreground services in the background even with overlay permission; this implementation starts one from the visible GO IV Lab activity, triggered by a user tap. See https://developer.android.com/about/versions/15/behavior-changes-15
+- Android 12+ can block touches through untrusted obscuring overlays; prefer a small window whose touch region excludes game controls. Do not disable Android security checks. See https://developer.android.com/about/versions/12/behavior-changes-all
+- Application overlay windows can be hidden or repositioned by Android; a successful APK build cannot guarantee Pokémon GO overlay visibility. See https://developer.android.com/reference/android/view/WindowManager.LayoutParams#TYPE_APPLICATION_OVERLAY
