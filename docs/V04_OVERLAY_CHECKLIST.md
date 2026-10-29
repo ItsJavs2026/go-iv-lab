@@ -6,7 +6,7 @@
 
 **In-app popup (v0.3):** Calculate a rank, open the in-app dialog, view exact form/league/rank/IVs/CP/level/stat product, copy a valid nickname, close. The new **FLOAT** dialog action passes its immutable, currently valid result to the overlay pathway.
 
-**Floating result (v0.4):** User starts from the visible GO IV Lab app, explicitly grants Draw over other apps, taps FLOAT again, and sees the result above other apps. Includes draggable header, collapse/expand, close, and a persistent overlay foreground-service notification with Stop action. The overlay never captures screens or interacts with Pokémon GO internals.
+**Floating result (v0.4):** User starts from the visible GO IV Lab app, explicitly grants Draw over other apps, taps FLOAT again, and sees the result above other apps. Includes draggable header, collapse/expand, close, optional in-overlay nickname copy, and a persistent overlay foreground-service notification with Stop action. The overlay never captures screens or interacts with Pokémon GO internals.
 
 ## Automated pre-install gates
 - [ ] Exact commit passes app:testDebugUnitTest, iv-engine tests, nickname-core tests, app:lintDebug, app:assembleDebug.
@@ -24,6 +24,7 @@
 3. Verify foreground-service notification appears and its Stop action dismisses the card.
 4. Open Pokémon GO: overlay should remain visible in supported situations, while taps outside card reach the game; no extra screenshot or accessibility permission appears.
 5. Drag card along edges, minimize, expand, close and reopen. Ensure no off-screen card, stuck window or duplicate overlays.
+5a. For valid nickname template, tap COPY NICKNAME inside the game overlay and paste it manually into a test text field. Invalid or >12-character nickname must not show a copy action. Collapsed card must hide the copy action.
 6. Reopen GO IV Lab, change IV, Pokémon/form, or league; obsolete floating results must be dismissed.
 7. Quickly repeat Start/Stop and calculate; check no crashes or old results returning.
 8. Rotate screen or change display size if practical; check visible position and close access.
@@ -36,6 +37,7 @@
 - No automatic re-start from background, boot, network, or Pokémon GO app launch.
 - Android can suppress overlays on sensitive screens. Samsung-specific behavior must be physically verified.
 - A foreground service is user-visible and may require notification handling; user can stop at any time.
+- Clipboard action writes only a valid generated nickname; it does not read clipboard content.
 - Debug signing certificate may differ from an earlier APK: **do not uninstall stable builds solely to force this experiment over them**.
 - This branch is not approved for public release until physical testing and policy review.
 
