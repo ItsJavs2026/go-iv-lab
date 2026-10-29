@@ -21,7 +21,7 @@
 ## Physical Samsung Galaxy S26 Ultra / Android 17 tests (not yet done)
 0. Confirm GO IV Lab Overlay Lab appears as a separate app alongside existing GO IV Lab and that stable data remains untouched.
 1. Calculate Bulbasaur 0/15/15 Great League level 50; confirm v0.2 reference #770, CP 1118. Confirm in-app rank dialog and nickname copy unchanged.
-2. Tap FLOAT from the **in-app popup**. If permission is missing, visit Android Settings after tapping FLOAT, grant Draw over other apps, and return; only the one pending user-initiated request may resume automatically. Verify denial does not start anything.
+2. Tap FLOAT from the **in-app popup**. Android 11+ opens the **general Draw over other apps app list**, not this app’s detail page. Select **GO IV Lab Overlay Lab**, allow the permission, then return. Only the one pending user-initiated request may resume automatically. Verify denial does not start anything.
 3. Verify foreground-service notification appears and its Stop action dismisses the card.
 4. Tap **OPEN POKÉMON GO** (a separate explicit user action): Pokémon GO should open if installed; overlay should remain visible in supported situations, while taps outside card reach the game. No extra screenshot or accessibility permission appears. If Pokémon GO is missing, show an error instead of opening an unrelated app.
 5. Drag card along edges, minimize, expand, close and reopen. Ensure no off-screen card, stuck window or duplicate overlays.
@@ -52,3 +52,6 @@
 - Android 15+ restricts starting foreground services in the background even with overlay permission; this implementation starts one from the visible GO IV Lab activity, triggered by a user tap. See https://developer.android.com/about/versions/15/behavior-changes-15
 - Android 12+ can block touches through untrusted obscuring overlays; prefer a small window whose touch region excludes game controls. Do not disable Android security checks. See https://developer.android.com/about/versions/12/behavior-changes-all
 - Application overlay windows can be hidden or repositioned by Android; a successful APK build cannot guarantee Pokémon GO overlay visibility. See https://developer.android.com/reference/android/view/WindowManager.LayoutParams#TYPE_APPLICATION_OVERLAY
+
+## Overlay permission settings — Android 11 and newer
+Android officially ignores package: URI targeting for `Settings.ACTION_MANAGE_OVERLAY_PERMISSION` starting with Android 11. On Samsung Android 17 the user must choose **GO IV Lab Overlay Lab** in the system’s list, then enable **Allow permission** (label may vary). The app must not assume permission was granted; it checks `Settings.canDrawOverlays()` on return. Reference: https://developer.android.com/about/versions/11/privacy/permissions#system-alert-window
