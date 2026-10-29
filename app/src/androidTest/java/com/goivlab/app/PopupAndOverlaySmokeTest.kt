@@ -55,9 +55,11 @@ class PopupAndOverlaySmokeTest {
             ))
             assertTrue("FLOAT action missing", device.hasObject(By.text("FLOAT")))
             device.findObject(By.text("COPY NICKNAME")).click()
-            assertTrue("Nickname copy callback not invoked", copied.get())
+            assertTrue("Nickname copy callback not invoked after click",
+                waitFor(5_000) { copied.get() })
             device.findObject(By.text("FLOAT")).click()
-            assertTrue("FLOAT callback not invoked", floated.get())
+            assertTrue("FLOAT callback not invoked after click",
+                waitFor(5_000) { floated.get() })
         }
     }
 
