@@ -2,9 +2,11 @@ name: Android v0.4 manual overlay experiment
 on:
   push:
     branches: ['experiment/overlay-manual-v0.4']
+  pull_request:
   workflow_dispatch:
 jobs:
   build:
+    if: github.event_name != 'pull_request' || github.head_ref == 'experiment/overlay-manual-v0.4'
     runs-on: ubuntu-latest
     permissions:
       contents: read
