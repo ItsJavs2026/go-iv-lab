@@ -47,4 +47,5 @@ repositories {
 dependencies {
     implementation(project(":iv-engine"))
     implementation(project(":nickname-core"))
+    testImplementation("junit:junit:4.13.2")
 }
