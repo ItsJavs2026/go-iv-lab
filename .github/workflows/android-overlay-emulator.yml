@@ -1,26 +1,52 @@
-name: Android v0.4 emulator popup and overlay smoke
+name: GO IV Lab emulator validation
 
+# Routine emulator smoke runs on nearly every Android code pull request and
+# main-branch code change. "milestone-test" label or manual dispatch selects
+# deeper end-to-end tests before a physical Samsung build is recommended.
 on:
   pull_request:
-    branches: ['candidate/v0.3-popup-presets']
+    types: [opened, synchronize, reopened, labeled, unlabeled]
     paths:
-      - 'app/src/main/**'
-      - 'app/src/androidTest/**'
-      - 'app/build.gradle.kts'
+      - 'app/**'
+      - 'iv-engine/**'
+      - 'nickname-core/**'
+      - 'data/**'
+      - 'build.gradle.kts'
+      - 'settings.gradle.kts'
+      - 'gradle.properties'
       - '.github/workflows/android-overlay-emulator.yml'
+      - '.github/scripts/run_emulator_tests.sh'
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'iv-engine/**'
+      - 'nickname-core/**'
+      - 'data/**'
+      - 'build.gradle.kts'
+      - 'settings.gradle.kts'
+      - 'gradle.properties'
   workflow_dispatch:
+    inputs:
+      tier:
+        description: 'Routine popup/overlay checks or milestone rank integration'
+        required: true
+        type: choice
+        default: routine
+        options: [routine, milestone]
 
 concurrency:
-  group: overlay-emulator-v04-${{ github.event.pull_request.head.ref || github.ref_name }}
+  group: goivlab-emulator-${{ github.event.pull_request.number || github.ref_name }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
-  emulator-smoke:
-    if: github.event_name != 'pull_request' || github.head_ref == 'experiment/overlay-manual-v0.4'
+  routine-emulator:
+    if: ${{ (github.event_name != 'workflow_dispatch' || inputs.tier == 'routine') && (github.event_name != 'pull_request' || (github.event.pull_request.head.repo.full_name == github.repository && !contains(github.event.pull_request.labels.*.name, 'milestone-test'))) }}
     runs-on: ubuntu-latest
-    timeout-minutes: 25
-    permissions:
-      contents: read
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -30,30 +56,109 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
-      - name: Enable emulator acceleration
+      - name: Enable Android emulator KVM
         run: |
           test -e /dev/kvm
           sudo chmod 666 /dev/kvm
-      - name: Boot Android 15 emulator and test real UI window attachment
+      - name: Cache clean Android 15 emulator snapshot
+        uses: actions/cache@v4
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: goivlab-avd-api35-googleapis-v1
+      - name: Generate one clean emulator snapshot for future builds
+        if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 35
           target: google_apis
           arch: x86_64
           profile: pixel_6
-          ram-size: 4096M
-          disable-animations: true
-          emulator-options: -no-snapshot -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
-          # The runner executes each script command separately; use one command
-          # rather than a multi-line shell brace group, which fails under /bin/sh.
-          script: gradle :app:connectedDebugAndroidTest --no-daemon --stacktrace
-      - name: Upload instrumentation results, not private app data
-        uses: actions/upload-artifact@v4
-        if: always()
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: echo "Clean Android 15 emulator snapshot created"
+      - name: Run fast real popup and overlay smoke
+        uses: reactivecircus/android-emulator-runner@v2
         with:
-          name: GO-IV-Lab-v0.4-emulator-smoke-results
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          disable-animations: true
+          script: bash .github/scripts/run_emulator_tests.sh routine
+      - name: Upload emulator test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GO-IV-Lab-emulator-routine-report
           path: |
             app/build/outputs/androidTest-results/
             app/build/reports/androidTests/
-          if-no-files-found: warn
           retention-days: 7
+          if-no-files-found: warn
+
+  milestone-emulator:
+    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.tier == 'milestone') || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && contains(github.event.pull_request.labels.*.name, 'milestone-test')) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        api-level: [35, 36]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+      - name: Enable emulator KVM
+        run: |
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+      - name: Cache clean emulator snapshot
+        uses: actions/cache@v4
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: goivlab-avd-api${{ matrix.api-level }}-googleapis-v1
+      - name: Generate one clean emulator snapshot
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: echo "Clean emulator snapshot created"
+      - name: Run popup, floating overlay and real offline rank integration
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          disable-animations: true
+          script: bash .github/scripts/run_emulator_tests.sh milestone
+      - name: Upload emulator reports for this Android version
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: GO-IV-Lab-emulator-milestone-API${{ matrix.api-level }}-report
+          path: |
+            app/build/outputs/androidTest-results/
+            app/build/reports/androidTests/
+          retention-days: 14
+          if-no-files-found: warn
