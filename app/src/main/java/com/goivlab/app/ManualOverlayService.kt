@@ -5,6 +5,8 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.content.res.Configuration
@@ -22,6 +24,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import kotlin.math.roundToInt
 
 /**
@@ -34,6 +37,7 @@ class ManualOverlayService : Service() {
         const val ACTION_SHOW = "com.goivlab.app.overlay.SHOW"
         const val ACTION_STOP = "com.goivlab.app.overlay.STOP"
         const val EXTRA_RESULT = "result"
+        const val EXTRA_NICKNAME = "nickname"
         private const val CHANNEL_ID = "go_iv_lab_overlay_v04"
         private const val NOTIFICATION_ID = 1404
         private const val PREF_NAME = "go_iv_lab_overlay_state"
@@ -43,6 +47,8 @@ class ManualOverlayService : Service() {
     private var overlay: LinearLayout? = null
     private var layout: WindowManager.LayoutParams? = null
     private var details: TextView? = null
+    private var copyControl: TextView? = null
+    private var currentNickname: String? = null
     private var collapsed = false
 
     override fun onBind(intent: Intent?): IBinder? = null
@@ -61,8 +67,15 @@ class ManualOverlayService : Service() {
             stopSelf()
             return START_NOT_STICKY
         }
+        val nickname = intent.getStringExtra(EXTRA_NICKNAME)?.takeIf {
+            it.isNotBlank() && it.codePointCount(0, it.length) <= 12
+        }
+        currentNickname = nickname
         try {
-            if (overlay == null) createOverlay(content) else details?.text = content
+            if (overlay == null) createOverlay(content) else {
+                details?.text = content
+                refreshCopyControl()
+            }
             // Started from a visible Activity; do not attempt background auto-restarts.
             startPersistentNotification()
         } catch (_: Exception) {
@@ -129,6 +142,23 @@ class ManualOverlayService : Service() {
         }
         root.addView(body)
         details = body
+        val copy = TextView(this).apply {
+            textSize = 14f
+            setTextColor(Color.rgb(155, 213, 255))
+            setPadding(dp(6), dp(12), dp(6), dp(9))
+            minHeight = dp(44)
+            gravity = Gravity.CENTER_VERTICAL
+            contentDescription = "Copy valid nickname into clipboard"
+            setOnClickListener {
+                val value = currentNickname ?: return@setOnClickListener
+                val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+                clipboard.setPrimaryClip(ClipData.newPlainText("GO IV Lab nickname", value))
+                Toast.makeText(this@ManualOverlayService, "Nickname copied", Toast.LENGTH_SHORT).show()
+            }
+        }
+        root.addView(copy)
+        copyControl = copy
+        refreshCopyControl()
 
         val params = WindowManager.LayoutParams(
             preferredWidth(wm),
@@ -150,6 +180,7 @@ class ManualOverlayService : Service() {
             collapsed = !collapsed
             dragHandle.text = if (collapsed) "GO IV" else "GO IV  •  drag"
             body.visibility = if (collapsed) View.GONE else View.VISIBLE
+            refreshCopyControl()
             collapseControl.text = if (collapsed) "+" else "−"
             collapseControl.contentDescription = if (collapsed) "Expand floating result" else "Minimize floating result"
             params.width = preferredWidth(wm)
@@ -185,6 +216,13 @@ class ManualOverlayService : Service() {
         }
         wm.addView(root, params)
         overlay = root
+    }
+
+    private fun refreshCopyControl() {
+        val copy = copyControl ?: return
+        val value = currentNickname
+        copy.visibility = if (!collapsed && value != null) View.VISIBLE else View.GONE
+        if (value != null) copy.text = "COPY NICKNAME  ·  $value"
     }
 
     private fun preferredWidth(wm: WindowManager): Int =
@@ -252,6 +290,8 @@ class ManualOverlayService : Service() {
         val view = overlay
         overlay = null
         details = null
+        copyControl = null
+        currentNickname = null
         layout = null
         if (view != null) {
             try { windowManager?.removeViewImmediate(view) } catch (_: Exception) {}
