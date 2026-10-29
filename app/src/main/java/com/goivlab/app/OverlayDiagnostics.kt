@@ -9,20 +9,31 @@ import java.util.Locale
 
 /**
  * On-device diagnostics for a manually started overlay.
- * Does not read Pokémon GO, screenshots, clipboard, account or location data.
+ * Fixed internal lifecycle events only; no game data, screenshots, account or location.
  */
 internal object OverlayDiagnostics {
     private const val PREFS = "go_iv_lab_overlay_diagnostics"
     private const val LAST_EVENT = "last_event"
     private const val LAST_EVENT_TIME = "last_event_time"
     private const val LAST_ERROR = "last_error"
+    private const val HISTORY = "recent_events"
 
     fun record(context: Context, event: String, errorClass: String? = null) {
-        val editor = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit()
-            .putString(LAST_EVENT, event.take(100))
-            .putLong(LAST_EVENT_TIME, System.currentTimeMillis())
-        if (errorClass != null) {
-            editor.putString(LAST_ERROR, errorClass.take(100))
+        val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        val now = System.currentTimeMillis()
+        val stamp = SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z", Locale.US).format(Date(now))
+        val safeEvent = event.replace("\n", " ").replace("\r", " ").take(100)
+        val safeError = errorClass?.replace("\n", " ")?.replace("\r", " ")?.take(100)
+        val entry = "$stamp | $safeEvent" +
+            (if (safeError == null) "" else " | $safeError")
+        val history = (prefs.getString(HISTORY, "").orEmpty().lines().filter { it.isNotBlank() } +
+            entry).takeLast(12).joinToString("\n")
+        val editor = prefs.edit()
+            .putString(LAST_EVENT, safeEvent)
+            .putLong(LAST_EVENT_TIME, now)
+            .putString(HISTORY, history)
+        if (safeError != null) {
+            editor.putString(LAST_ERROR, safeError)
         } else if (event == "Overlay foreground notification active") {
             editor.remove(LAST_ERROR)
         }
@@ -45,7 +56,9 @@ internal object OverlayDiagnostics {
             "Last service event: ${prefs.getString(LAST_EVENT, "none")}",
             "Last event time: $eventTime",
             "Last service error class: ${prefs.getString(LAST_ERROR, "none")}",
-            "Note: last event is historical and does not prove an overlay is currently visible.",
+            "Recent lifecycle events (up to 12, oldest first):",
+            prefs.getString(HISTORY, "none").orEmpty(),
+            "Note: recorded events do not prove an overlay is currently visible over Pokémon GO.",
             "No screenshots, game account information, location, or clipboard contents included."
         ).joinToString("\n")
     }
