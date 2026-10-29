@@ -25,14 +25,32 @@ jobs:
         with:
           gradle-version: '8.10.2'
       - name: Test, lint, and build overlay APK
-        run: gradle :nickname-core:test :iv-engine:test :app:lintDebug :app:assembleDebug --no-daemon --stacktrace
+        run: gradle :nickname-core:test :iv-engine:test :app:testDebugUnitTest :app:lintDebug :app:assembleDebug --no-daemon --stacktrace
       - name: Check overlay manifest and offline data
         run: |
           test -s app/build/outputs/apk/debug/app-debug.apk
           unzip -Z1 app/build/outputs/apk/debug/app-debug.apk | grep -Fx 'assets/pokemon-stats.json'
-          grep -F 'android.permission.SYSTEM_ALERT_WINDOW' app/src/main/AndroidManifest.xml
           grep -F 'android:exported="false"' app/src/main/AndroidManifest.xml
-          if grep -E 'android.permission.INTERNET|android.permission.BIND_ACCESSIBILITY_SERVICE|android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION' app/src/main/AndroidManifest.xml; then exit 1; fi
+          grep -F 'android:foregroundServiceType="specialUse"' app/src/main/AndroidManifest.xml
+          grep -F 'versionName = "0.4.0-overlay-experiment"' app/build.gradle.kts
+          AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt"
+          "$AAPT" dump permissions app/build/outputs/apk/debug/app-debug.apk > /tmp/overlay-permissions.txt
+          cat /tmp/overlay-permissions.txt
+          for permission in SYSTEM_ALERT_WINDOW FOREGROUND_SERVICE FOREGROUND_SERVICE_SPECIAL_USE; do
+            grep -F "android.permission.$permission" /tmp/overlay-permissions.txt
+          done
+          if grep -E 'android.permission.(INTERNET|BIND_ACCESSIBILITY_SERVICE|FOREGROUND_SERVICE_MEDIA_PROJECTION|CAMERA|RECORD_AUDIO)' /tmp/overlay-permissions.txt; then
+            echo "Unexpected packaged permission" >&2
+            exit 1
+          fi
+          {
+            echo '### Overlay candidate identity'
+            echo 'Experimental only: not Samsung-tested.'
+            echo '~~~'
+            sha256sum app/build/outputs/apk/debug/app-debug.apk
+            "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs app/build/outputs/apk/debug/app-debug.apk
+            echo '~~~'
+          } >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
           name: GO-IV-Lab-v0.4-overlay-experiment-debug
