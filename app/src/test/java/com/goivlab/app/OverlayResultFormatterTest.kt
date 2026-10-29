@@ -6,6 +6,7 @@ import com.goivlab.iv.PokemonSpecies
 import com.goivlab.iv.PvpIvLookupResult
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class OverlayResultFormatterTest {
@@ -35,8 +36,8 @@ class OverlayResultFormatterTest {
     @Test fun sameRankDataSupportsMultipleSupportedLeagues() {
         for (league in listOf("LC", "GL", "UL", "ML")) {
             val summary = OverlayResultFormatter.format(alolanDiglett, league)
-            assert(summary.contains("· $league\n"))
-            assert(summary.contains("diglett_alolan"))
+            assertTrue(summary.contains("· $league\n"))
+            assertTrue(summary.contains("diglett_alolan"))
         }
     }
 }
