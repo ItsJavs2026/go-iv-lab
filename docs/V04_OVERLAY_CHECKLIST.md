@@ -31,6 +31,7 @@
 8. Rotate screen or change display size if practical; check visible position and close access.
 9. Revoke Draw over other apps with card active; app should stop gracefully rather than crash.
 10. Observe battery consumption, Pokémon GO responsiveness, background/notification behavior and what happens if Android stops the service.
+10a. If the overlay fails to appear, open GO IV Lab Overlay Lab and tap **COPY OVERLAY DIAGNOSTICS**. This copies app package, device/Android release, overlay permission state, last recorded service event/time and error class. It does not collect Pokémon GO accounts, screenshots or location. The last event is not live visibility proof.
 11. If Android blocks overlay on some screens, record the behavior; do not attempt to bypass protection.
 
 ## Constraints and limitations
