@@ -509,7 +509,7 @@ class MainActivity : Activity() {
             } catch (exception: Exception) {
                 pendingOverlayPermissionResult = null
                 pendingOverlayNickname = null
-                statusText.text = "Open Settings and allow GO IV Lab to draw over other apps."
+                statusText.text = "Open Settings > Apps > Special access > Appear on top and allow GO IV Lab Overlay Lab."
             }
             return
         }
