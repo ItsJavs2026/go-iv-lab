@@ -224,6 +224,17 @@ class MainActivity : Activity() {
             }
         }.also { resultCard.addView(it, fullRow()) }
         Button(this).apply {
+            text = "COPY OVERLAY DIAGNOSTICS"
+            contentDescription = "Copy local overlay permission and lifecycle report"
+            setOnClickListener {
+                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                clipboard.setPrimaryClip(
+                    ClipData.newPlainText("GO IV Lab overlay diagnostics", OverlayDiagnostics.report(this@MainActivity))
+                )
+                statusText.text = "Overlay diagnostics copied. No Pokémon GO account or location data included."
+            }
+        }.also { resultCard.addView(it, fullRow()) }
+        Button(this).apply {
             text = "OPEN POKÉMON GO"
             contentDescription = "Open Pokémon GO after starting the floating result"
             setOnClickListener {
@@ -476,6 +487,7 @@ class MainActivity : Activity() {
         }
         if (!Settings.canDrawOverlays(this)) {
             pendingOverlayPermissionResult = calculation
+            OverlayDiagnostics.record(this, "Overlay permission requested in Android Settings")
             statusText.text = "Grant Draw over other apps; floating will start after you return."
             try {
                 startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
@@ -489,6 +501,7 @@ class MainActivity : Activity() {
         val result = calculation.result
         val summary = OverlayResultFormatter.format(result, calculation.league.code)
         try {
+            OverlayDiagnostics.record(this, "Overlay start requested from GO IV Lab")
             startForegroundService(Intent(this, ManualOverlayService::class.java).apply {
                 action = ManualOverlayService.ACTION_SHOW
                 putExtra(ManualOverlayService.EXTRA_RESULT, summary)
@@ -498,6 +511,7 @@ class MainActivity : Activity() {
             })
             statusText.text = "Overlay start requested. You can minimize, drag or stop it."
         } catch (exception: Exception) {
+            OverlayDiagnostics.record(this, "Overlay start request failed", exception.javaClass.simpleName)
             statusText.text = "Overlay could not start: ${exception.javaClass.simpleName}"
         }
     }
