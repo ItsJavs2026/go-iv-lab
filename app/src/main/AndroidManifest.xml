@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Experimental overlay branch only: user-approved draw-over-apps permission. No Internet, accessibility or capture. -->
+    <!-- Only on v0.4 experiment. Screen capture, accessibility and Internet NOT requested. -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <application
         android:allowBackup="false"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:usesCleartextTraffic="false"
         android:theme="@style/Theme.GoIvLab">
-        <service android:name=".ManualOverlayService" android:exported="false" />
+        <service
+            android:name=".ManualOverlayService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="user_initiated_floating_offline_pvp_iv_result_card" />
+        </service>
         <activity
             android:name=".MainActivity"
             android:exported="true"
