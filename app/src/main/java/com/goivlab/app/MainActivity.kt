@@ -2,7 +2,6 @@ package com.goivlab.app
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.provider.Settings
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -486,7 +485,7 @@ class MainActivity : Activity() {
         } else if (Settings.canDrawOverlays(this)) {
             startFloatingOverlay(pending, nicknameSnapshot)
         } else {
-            statusText.text = "Overlay permission not granted; regular in-app popup still works."
+            statusText.text = "Overlay not allowed. Select GO IV Lab Overlay Lab in Draw over other apps; in-app popup still works."
         }
     }
 
@@ -503,10 +502,10 @@ class MainActivity : Activity() {
             pendingOverlayPermissionResult = calculation
             pendingOverlayNickname = nicknameSnapshot
             OverlayDiagnostics.record(this, "Overlay permission requested in Android Settings")
-            statusText.text = "Grant Draw over other apps; floating will start after you return."
+            statusText.text = "In Draw over other apps, select GO IV Lab Overlay Lab and allow it; return here."
             try {
-                startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                    Uri.parse("package:$packageName")))
+                // Android 11+ ignores package data and always shows the full app list.
+                startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION))
             } catch (exception: Exception) {
                 pendingOverlayPermissionResult = null
                 pendingOverlayNickname = null
