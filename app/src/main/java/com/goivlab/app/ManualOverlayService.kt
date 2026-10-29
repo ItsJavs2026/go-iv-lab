@@ -92,7 +92,7 @@ class ManualOverlayService : Service() {
             gravity = Gravity.CENTER_VERTICAL
         }
         val dragHandle = TextView(this).apply {
-            text = "GO IV  •  drag"
+            text = if (collapsed) "GO IV" else "GO IV  •  drag"
             textSize = 13f
             setTypeface(typeface, Typeface.BOLD)
             setTextColor(Color.WHITE)
@@ -108,7 +108,7 @@ class ManualOverlayService : Service() {
             gravity = Gravity.CENTER
             contentDescription = if (collapsed) "Expand floating result" else "Minimize floating result"
         }
-        header.addView(collapseControl, LinearLayout.LayoutParams(dp(35), dp(38)))
+        header.addView(collapseControl, LinearLayout.LayoutParams(dp(44), dp(44)))
         val close = TextView(this).apply {
             text = "×"
             textSize = 23f
@@ -148,6 +148,7 @@ class ManualOverlayService : Service() {
 
         collapseControl.setOnClickListener {
             collapsed = !collapsed
+            dragHandle.text = if (collapsed) "GO IV" else "GO IV  •  drag"
             body.visibility = if (collapsed) View.GONE else View.VISIBLE
             collapseControl.text = if (collapsed) "+" else "−"
             collapseControl.contentDescription = if (collapsed) "Expand floating result" else "Minimize floating result"
