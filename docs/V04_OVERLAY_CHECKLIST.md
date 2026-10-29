@@ -14,11 +14,12 @@
 - [ ] Overlay service is exported=false, FGS specialUse type declared with explanation.
 - [ ] APK includes pinned offline Pokémon stats; no external requests added.
 - [ ] Workflow captures APK SHA-256 and signing certificate details.
-- [ ] Candidate builds labeled v0.4; no stable v0.2/v0.3 artifact mislabeled.
+- [ ] Candidate builds labeled v0.4 and packaged with debug applicationId `com.goivlab.app.overlaylab` and visible label `GO IV Lab Overlay Lab`; no stable v0.2/v0.3 artifact mislabeled.
 - [ ] Existing core rank tests pass for known species/form cases.
 - [ ] Standalone unit tests confirm exact form ID and requested IV information in overlay.
 
 ## Physical Samsung Galaxy S26 Ultra / Android 17 tests (not yet done)
+0. Confirm GO IV Lab Overlay Lab appears as a separate app alongside existing GO IV Lab and that stable data remains untouched.
 1. Calculate Bulbasaur 0/15/15 Great League level 50; confirm v0.2 reference #770, CP 1118. Confirm in-app rank dialog and nickname copy unchanged.
 2. Tap FLOAT from the **in-app popup**. If permission is missing, visit Android Settings after tapping FLOAT, grant Draw over other apps, and return; only the one pending user-initiated request may resume automatically. Verify denial does not start anything.
 3. Verify foreground-service notification appears and its Stop action dismisses the card.
@@ -38,7 +39,7 @@
 - Android can suppress overlays on sensitive screens. Samsung-specific behavior must be physically verified.
 - A foreground service is user-visible and may require notification handling; user can stop at any time.
 - Clipboard action writes only a valid generated nickname; it does not read clipboard content.
-- Debug signing certificate may differ from an earlier APK: **do not uninstall stable builds solely to force this experiment over them**.
+- The overlay experiment's debug application ID is intentionally different from the stable GO IV Lab, to permit side-by-side install and protect existing stable app data. Debug signing may still vary between **successive overlay lab** builds, so do not uninstall either app without checking first.
 - This branch is not approved for public release until physical testing and policy review.
 
 ## Known gaps
