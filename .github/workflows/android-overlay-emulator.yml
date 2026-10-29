@@ -44,11 +44,9 @@ jobs:
           ram-size: 4096M
           disable-animations: true
           emulator-options: -no-snapshot -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
-          script: |
-            gradle :app:connectedDebugAndroidTest --no-daemon --stacktrace || {
-              adb logcat -d -v threadtime | tail -n 2000 > emulator-failure-logcat.txt
-              exit 1
-            }
+          # The runner executes each script command separately; use one command
+          # rather than a multi-line shell brace group, which fails under /bin/sh.
+          script: gradle :app:connectedDebugAndroidTest --no-daemon --stacktrace
       - name: Upload instrumentation results, not private app data
         uses: actions/upload-artifact@v4
         if: always()
@@ -57,6 +55,5 @@ jobs:
           path: |
             app/build/outputs/androidTest-results/
             app/build/reports/androidTests/
-            emulator-failure-logcat.txt
           if-no-files-found: warn
           retention-days: 7
