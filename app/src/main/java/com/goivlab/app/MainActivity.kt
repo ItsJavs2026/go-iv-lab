@@ -476,6 +476,9 @@ class MainActivity : Activity() {
             startForegroundService(Intent(this, ManualOverlayService::class.java).apply {
                 action = ManualOverlayService.ACTION_SHOW
                 putExtra(ManualOverlayService.EXTRA_RESULT, summary)
+                lastNickname?.takeIf { it.fits && it.value.isNotBlank() }?.value?.let {
+                    putExtra(ManualOverlayService.EXTRA_NICKNAME, it)
+                }
             })
             statusText.text = "Overlay start requested. You can minimize, drag or stop it."
         } catch (exception: Exception) {
