@@ -91,6 +91,7 @@ class MainActivity : Activity() {
     private var lastCalculation: Calculation? = null
     private var lastNickname: NicknameResult? = null
     private var pendingOverlayPermissionResult: Calculation? = null
+    private var pendingOverlayNickname: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -400,6 +401,7 @@ class MainActivity : Activity() {
         statusText.text = "Calculating 4,096 IV combinations offline…"
         lastCalculation = null
         pendingOverlayPermissionResult = null
+        pendingOverlayNickname = null
         stopService(Intent(this, ManualOverlayService::class.java))
         showPopupButton.isEnabled = false
         renderNickname()
@@ -475,18 +477,23 @@ class MainActivity : Activity() {
         // Continue exactly one user-initiated FLOAT request after returning
         // from the Draw over other apps settings screen.
         val pending = pendingOverlayPermissionResult ?: return
+        val nicknameSnapshot = pendingOverlayNickname
         pendingOverlayPermissionResult = null
+        pendingOverlayNickname = null
         if (!::statusText.isInitialized) return
         if (lastCalculation !== pending) {
             statusText.text = "Result changed while permission was open — calculate again."
         } else if (Settings.canDrawOverlays(this)) {
-            startFloatingOverlay(pending)
+            startFloatingOverlay(pending, nicknameSnapshot)
         } else {
             statusText.text = "Overlay permission not granted; regular in-app popup still works."
         }
     }
 
-    private fun startFloatingOverlay(calculation: Calculation) {
+    private fun startFloatingOverlay(
+        calculation: Calculation,
+        nicknameSnapshot: String? = lastNickname?.takeIf { it.fits && it.value.isNotBlank() }?.value
+    ) {
         // If an older dialog is still open, never float an obsolete calculation.
         if (lastCalculation !== calculation) {
             statusText.text = "Result changed — calculate again before floating."
@@ -494,6 +501,7 @@ class MainActivity : Activity() {
         }
         if (!Settings.canDrawOverlays(this)) {
             pendingOverlayPermissionResult = calculation
+            pendingOverlayNickname = nicknameSnapshot
             OverlayDiagnostics.record(this, "Overlay permission requested in Android Settings")
             statusText.text = "Grant Draw over other apps; floating will start after you return."
             try {
@@ -501,6 +509,7 @@ class MainActivity : Activity() {
                     Uri.parse("package:$packageName")))
             } catch (exception: Exception) {
                 pendingOverlayPermissionResult = null
+                pendingOverlayNickname = null
                 statusText.text = "Open Settings and allow GO IV Lab to draw over other apps."
             }
             return
@@ -512,7 +521,7 @@ class MainActivity : Activity() {
             startForegroundService(Intent(this, ManualOverlayService::class.java).apply {
                 action = ManualOverlayService.ACTION_SHOW
                 putExtra(ManualOverlayService.EXTRA_RESULT, summary)
-                lastNickname?.takeIf { it.fits && it.value.isNotBlank() }?.value?.let {
+                nicknameSnapshot?.let {
                     putExtra(ManualOverlayService.EXTRA_NICKNAME, it)
                 }
             })
@@ -528,7 +537,7 @@ class MainActivity : Activity() {
         val nickname = lastNickname?.takeIf { it.fits && it.value.isNotBlank() }?.value
         RankPopup.show(
             this, current.result, current.league.label, current.maxLevel, nickname,
-            onFloat = { startFloatingOverlay(current) },
+            onFloat = { startFloatingOverlay(current, nickname) },
             onCopy = {
                 // Copy the exact value displayed, not a later calculation.
                 if (nickname != null) {
@@ -553,6 +562,7 @@ class MainActivity : Activity() {
         // Never leave a now-stale species/IV result floating over the game.
         if (lastCalculation != null) stopService(Intent(this, ManualOverlayService::class.java))
         pendingOverlayPermissionResult = null
+        pendingOverlayNickname = null
         lastCalculation = null
         if (::showPopupButton.isInitialized) showPopupButton.isEnabled = false
         if (::calculateButton.isInitialized) calculateButton.isEnabled = lookup != null
