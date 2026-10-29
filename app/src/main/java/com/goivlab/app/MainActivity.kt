@@ -90,6 +90,7 @@ class MainActivity : Activity() {
     private var labelToId = emptyMap<String, String>()
     private var lastCalculation: Calculation? = null
     private var lastNickname: NicknameResult? = null
+    private var pendingOverlayPermissionResult: Calculation? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -364,6 +365,7 @@ class MainActivity : Activity() {
         calculateButton.isEnabled = false
         statusText.text = "Calculating 4,096 IV combinations offline…"
         lastCalculation = null
+        pendingOverlayPermissionResult = null
         stopService(Intent(this, ManualOverlayService::class.java))
         showPopupButton.isEnabled = false
         renderNickname()
@@ -434,6 +436,22 @@ class MainActivity : Activity() {
         )
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Continue exactly one user-initiated FLOAT request after returning
+        // from the Draw over other apps settings screen.
+        val pending = pendingOverlayPermissionResult ?: return
+        pendingOverlayPermissionResult = null
+        if (!::statusText.isInitialized) return
+        if (lastCalculation !== pending) {
+            statusText.text = "Result changed while permission was open — calculate again."
+        } else if (Settings.canDrawOverlays(this)) {
+            startFloatingOverlay(pending)
+        } else {
+            statusText.text = "Overlay permission not granted; regular in-app popup still works."
+        }
+    }
+
     private fun startFloatingOverlay(calculation: Calculation) {
         // If an older dialog is still open, never float an obsolete calculation.
         if (lastCalculation !== calculation) {
@@ -441,11 +459,13 @@ class MainActivity : Activity() {
             return
         }
         if (!Settings.canDrawOverlays(this)) {
-            statusText.text = "Grant Draw over other apps, then return and tap FLOAT again."
+            pendingOverlayPermissionResult = calculation
+            statusText.text = "Grant Draw over other apps; floating will start after you return."
             try {
                 startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:$packageName")))
             } catch (exception: Exception) {
+                pendingOverlayPermissionResult = null
                 statusText.text = "Open Settings and allow GO IV Lab to draw over other apps."
             }
             return
@@ -492,6 +512,7 @@ class MainActivity : Activity() {
         generation.incrementAndGet()
         // Never leave a now-stale species/IV result floating over the game.
         if (lastCalculation != null) stopService(Intent(this, ManualOverlayService::class.java))
+        pendingOverlayPermissionResult = null
         lastCalculation = null
         if (::showPopupButton.isInitialized) showPopupButton.isEnabled = false
         if (::calculateButton.isInitialized) calculateButton.isEnabled = lookup != null
