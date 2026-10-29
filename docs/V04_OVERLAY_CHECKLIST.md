@@ -20,7 +20,7 @@
 
 ## Physical Samsung Galaxy S26 Ultra / Android 17 tests (not yet done)
 1. Calculate Bulbasaur 0/15/15 Great League level 50; confirm v0.2 reference #770, CP 1118. Confirm in-app rank dialog and nickname copy unchanged.
-2. Tap FLOAT from the **in-app popup**. If permission denied, visit Android Settings, grant Draw over other apps, return, and explicitly tap FLOAT again.
+2. Tap FLOAT from the **in-app popup**. If permission is missing, visit Android Settings after tapping FLOAT, grant Draw over other apps, and return; only the one pending user-initiated request may resume automatically. Verify denial does not start anything.
 3. Verify foreground-service notification appears and its Stop action dismisses the card.
 4. Open Pokémon GO: overlay should remain visible in supported situations, while taps outside card reach the game; no extra screenshot or accessibility permission appears.
 5. Drag card along edges, minimize, expand, close and reopen. Ensure no off-screen card, stuck window or duplicate overlays.
@@ -40,6 +40,6 @@
 - This branch is not approved for public release until physical testing and policy review.
 
 ## Known gaps
-- First-use overlay permission requires returning to the app and tapping FLOAT again; automatic return handling intentionally not enabled yet.
+- First-use overlay permission resumes one pending user-initiated FLOAT request on returning to the app; cancellation must leave the overlay off.
 - Floating card is manual result-only. The long-term screenshot/recognition workflow is a separate future candidate.
 - No CI or emulator can prove that Pokémon GO actually shows the overlay on this specific Samsung firmware.
