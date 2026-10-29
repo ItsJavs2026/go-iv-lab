@@ -208,23 +208,45 @@ class MainActivity : Activity() {
             setOnClickListener { showRankPopup() }
         }
         resultCard.addView(showPopupButton, fullRow())
+        val overlayQuickActions = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
         Button(this).apply {
-            text = "FLOAT RESULTS OVER POKÉMON GO (EXPERIMENT)"
+            text = "FLOAT RANK"
+            contentDescription = "Float this calculated IV rank above Pokémon GO"
             setOnClickListener {
                 val current = lastCalculation
                 if (current == null) statusText.text = "Calculate an IV rank first."
                 else startFloatingOverlay(current)
             }
-        }.also { resultCard.addView(it, fullRow()) }
+        }.also { overlayQuickActions.addView(it, LinearLayout.LayoutParams(0, 49.dp(), 1f)) }
         Button(this).apply {
-            text = "STOP FLOATING OVERLAY"
+            text = "OPEN POKÉMON GO"
+            contentDescription = "Open Pokémon GO after starting the floating result"
+            setOnClickListener {
+                val launch = packageManager.getLaunchIntentForPackage("com.nianticlabs.pokemongo")
+                if (launch == null) {
+                    statusText.text = "Pokémon GO is not available as a launchable installed app."
+                } else {
+                    try {
+                        startActivity(launch)
+                    } catch (exception: Exception) {
+                        statusText.text = "Could not open Pokémon GO: ${exception.javaClass.simpleName}"
+                    }
+                }
+            }
+        }.also { overlayQuickActions.addView(it, LinearLayout.LayoutParams(0, 49.dp(), 1f)) }
+        resultCard.addView(overlayQuickActions, fullRow())
+
+        val overlayMaintenance = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        Button(this).apply {
+            text = "STOP OVERLAY"
+            contentDescription = "Stop the current floating IV result"
             setOnClickListener {
                 stopService(Intent(this@MainActivity, ManualOverlayService::class.java))
                 statusText.text = "Overlay stopped."
             }
-        }.also { resultCard.addView(it, fullRow()) }
+        }.also { overlayMaintenance.addView(it, LinearLayout.LayoutParams(0, 49.dp(), 1f)) }
         Button(this).apply {
-            text = "COPY OVERLAY DIAGNOSTICS"
+            text = "COPY DIAGNOSTICS"
             contentDescription = "Copy local overlay permission and lifecycle report"
             setOnClickListener {
                 val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -233,23 +255,8 @@ class MainActivity : Activity() {
                 )
                 statusText.text = "Overlay diagnostics copied. No Pokémon GO account or location data included."
             }
-        }.also { resultCard.addView(it, fullRow()) }
-        Button(this).apply {
-            text = "OPEN POKÉMON GO"
-            contentDescription = "Open Pokémon GO after starting the floating result"
-            setOnClickListener {
-                val intent = packageManager.getLaunchIntentForPackage("com.nianticlabs.pokemongo")
-                if (intent == null) {
-                    statusText.text = "Pokémon GO is not available as a launchable installed app."
-                } else {
-                    try {
-                        startActivity(intent)
-                    } catch (exception: Exception) {
-                        statusText.text = "Could not open Pokémon GO: ${exception.javaClass.simpleName}"
-                    }
-                }
-            }
-        }.also { resultCard.addView(it, fullRow()) }
+        }.also { overlayMaintenance.addView(it, LinearLayout.LayoutParams(0, 49.dp(), 1f)) }
+        resultCard.addView(overlayMaintenance, fullRow())
         autoPopupCheck = CheckBox(this).apply {
             text = "Automatically show results popup after calculation"
             setTextColor(ink)
