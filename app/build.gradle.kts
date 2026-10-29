@@ -19,6 +19,8 @@ android {
         getByName("debug") {
             isMinifyEnabled = false
             isDebuggable = true
+            // Overlay Lab coexists with the tested v0.2 app, no uninstall needed.
+            applicationIdSuffix = ".overlaylab"
         }
         getByName("release") {
             isMinifyEnabled = false
