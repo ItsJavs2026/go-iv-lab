@@ -55,10 +55,12 @@ class ManualOverlayService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action == ACTION_STOP) {
+            OverlayDiagnostics.record(this, "Stop requested using overlay notification")
             stopSelf()
             return START_NOT_STICKY
         }
         if (intent?.action != ACTION_SHOW || !Settings.canDrawOverlays(this)) {
+            OverlayDiagnostics.record(this, "Start rejected", "MissingOverlayPermissionOrInvalidAction")
             stopSelf()
             return START_NOT_STICKY
         }
@@ -78,7 +80,9 @@ class ManualOverlayService : Service() {
             }
             // Started from a visible Activity; do not attempt background auto-restarts.
             startPersistentNotification()
-        } catch (_: Exception) {
+            OverlayDiagnostics.record(this, "Overlay foreground notification active")
+        } catch (exception: Exception) {
+            OverlayDiagnostics.record(this, "Overlay start failed", exception.javaClass.simpleName)
             stopSelf()
         }
         return START_NOT_STICKY
@@ -216,6 +220,7 @@ class ManualOverlayService : Service() {
         }
         wm.addView(root, params)
         overlay = root
+        OverlayDiagnostics.record(this, "Overlay window attached")
     }
 
     private fun refreshCopyControl() {
@@ -301,6 +306,7 @@ class ManualOverlayService : Service() {
 
     override fun onDestroy() {
         removeOverlay()
+        OverlayDiagnostics.record(this, "Overlay service stopped")
         super.onDestroy()
     }
 
