@@ -74,13 +74,16 @@ class ManualOverlayService : Service() {
         }
         currentNickname = nickname
         try {
+            // startForegroundService() requires prompt promotion to a visible foreground
+            // service. Do this BEFORE inflating/attaching WindowManager views, because
+            // slow or failed window creation must not risk a foreground-start timeout.
+            // Only the visible MainActivity launches this SHOW action.
+            startPersistentNotification()
+            OverlayDiagnostics.record(this, "Overlay foreground notification active")
             if (overlay == null) createOverlay(content) else {
                 details?.text = content
                 refreshCopyControl()
             }
-            // Started from a visible Activity; do not attempt background auto-restarts.
-            startPersistentNotification()
-            OverlayDiagnostics.record(this, "Overlay foreground notification active")
         } catch (exception: Exception) {
             OverlayDiagnostics.record(this, "Overlay start failed", exception.javaClass.simpleName)
             stopSelf()
@@ -132,9 +135,12 @@ class ManualOverlayService : Service() {
             setTextColor(Color.WHITE)
             gravity = Gravity.CENTER
             contentDescription = "Close floating result"
-            setOnClickListener { stopSelf() }
+            setOnClickListener {
+                OverlayDiagnostics.record(this@ManualOverlayService, "Closed from floating card")
+                stopSelf()
+            }
         }
-        header.addView(close, LinearLayout.LayoutParams(dp(35), dp(38)))
+        header.addView(close, LinearLayout.LayoutParams(dp(44), dp(44)))
         root.addView(header)
         val body = TextView(this).apply {
             text = content
