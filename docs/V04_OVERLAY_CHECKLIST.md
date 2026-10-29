@@ -10,6 +10,7 @@
 
 ## Automated pre-install gates
 - [ ] Exact commit passes app:testDebugUnitTest, iv-engine tests, nickname-core tests, app:lintDebug, app:assembleDebug.
+- [ ] Separate Android 15 emulator instrumentation smoke verifies the in-app rank dialog and WindowManager overlay attachment, without treating it as Samsung verification.
 - [ ] Packaged manifest contains SYSTEM_ALERT_WINDOW, FOREGROUND_SERVICE and FOREGROUND_SERVICE_SPECIAL_USE; no INTERNET, accessibility, media-projection, camera or audio permissions.
 - [ ] Overlay service is exported=false, FGS specialUse type declared with explanation.
 - [ ] APK includes pinned offline Pokémon stats; no external requests added.
@@ -17,6 +18,11 @@
 - [ ] Candidate builds labeled v0.4 and packaged with debug applicationId `com.goivlab.app.overlaylab` and visible label `GO IV Lab Overlay Lab`; no stable v0.2/v0.3 artifact mislabeled.
 - [ ] Existing core rank tests pass for known species/form cases.
 - [ ] Standalone unit tests confirm exact form ID and requested IV information in overlay.
+
+## Automated Android 15 emulator smoke (separate from phone verification)
+The optional Android emulator CI runs two real UI tests: (1) offline Bulbasaur 0/15/15 Great League generates rank #770 and opens the in-app dialog with FLOAT, and (2) a manually started overlay attaches and displays that rank above the Android home screen after test-only AppOp permission grant.
+
+This is **not** a test of Pokémon GO itself, Samsung One UI, or user-facing permission navigation. The emulator runner changes only its own isolated test instance. The test never reads games/accounts or captures screen recordings. See `.github/workflows/android-overlay-emulator.yml` and `app/src/androidTest/java/com/goivlab/app/PopupAndOverlaySmokeTest.kt`.
 
 ## Physical Samsung Galaxy S26 Ultra / Android 17 tests (not yet done)
 0. Confirm GO IV Lab Overlay Lab appears as a separate app alongside existing GO IV Lab and that stable data remains untouched.
