@@ -210,30 +210,9 @@ class MainActivity : Activity() {
         Button(this).apply {
             text = "FLOAT RESULTS OVER POKÉMON GO (EXPERIMENT)"
             setOnClickListener {
-                val calculation = lastCalculation
-                if (calculation == null) {
-                    statusText.text = "Calculate a result before starting the overlay."
-                } else if (!Settings.canDrawOverlays(this@MainActivity)) {
-                    statusText.text = "Allow Draw over other apps, return here, then tap Start again."
-                    startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                        Uri.parse("package:$packageName")))
-                } else {
-                    val result = calculation.result
-                    val message = listOf(
-                        "${result.species.name} (${result.species.speciesId}) · ${calculation.league.code}",
-                        "IV ${calculation.ivs.attack}/${calculation.ivs.defense}/${calculation.ivs.stamina} · Rank #${result.rank}/${result.eligibleSpreads}",
-                        "CP ${result.cp} · Lv ${result.level}"
-                    ).joinToString("\n")
-                    try {
-                        startForegroundService(Intent(this@MainActivity, ManualOverlayService::class.java).apply {
-                            action = ManualOverlayService.ACTION_SHOW
-                            putExtra(ManualOverlayService.EXTRA_RESULT, message)
-                        })
-                        statusText.text = "Overlay requested. Use its drag, minimize or close controls in Pokémon GO."
-                    } catch (e: Exception) {
-                        statusText.text = "Overlay could not start: ${e.javaClass.simpleName}"
-                    }
-                }
+                val current = lastCalculation
+                if (current == null) statusText.text = "Calculate an IV rank first."
+                else startFloatingOverlay(current)
             }
         }.also { resultCard.addView(it, fullRow()) }
         Button(this).apply {
@@ -455,19 +434,50 @@ class MainActivity : Activity() {
         )
     }
 
+    private fun startFloatingOverlay(calculation: Calculation) {
+        // If an older dialog is still open, never float an obsolete calculation.
+        if (lastCalculation !== calculation) {
+            statusText.text = "Result changed — calculate again before floating."
+            return
+        }
+        if (!Settings.canDrawOverlays(this)) {
+            statusText.text = "Grant Draw over other apps, then return and tap FLOAT again."
+            try {
+                startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:$packageName")))
+            } catch (exception: Exception) {
+                statusText.text = "Open Settings and allow GO IV Lab to draw over other apps."
+            }
+            return
+        }
+        val result = calculation.result
+        val summary = OverlayResultFormatter.format(result, calculation.league.code)
+        try {
+            startForegroundService(Intent(this, ManualOverlayService::class.java).apply {
+                action = ManualOverlayService.ACTION_SHOW
+                putExtra(ManualOverlayService.EXTRA_RESULT, summary)
+            })
+            statusText.text = "Overlay start requested. You can minimize, drag or stop it."
+        } catch (exception: Exception) {
+            statusText.text = "Overlay could not start: ${exception.javaClass.simpleName}"
+        }
+    }
+
     private fun showRankPopup() {
         val current = lastCalculation ?: return
         val nickname = lastNickname?.takeIf { it.fits && it.value.isNotBlank() }?.value
         RankPopup.show(
-            this, current.result, current.league.label, current.maxLevel, nickname
-        ) {
-            // Copy the value shown in this dialog, never a later recalculation's value.
-            if (nickname != null) {
-                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                clipboard.setPrimaryClip(ClipData.newPlainText("GO IV Lab nickname", nickname))
-                statusText.text = "Popup nickname copied. Paste it manually into Pokémon GO."
+            this, current.result, current.league.label, current.maxLevel, nickname,
+            onFloat = { startFloatingOverlay(current) },
+            onCopy = {
+                // Copy the exact value displayed, not a later calculation.
+                if (nickname != null) {
+                    val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    clipboard.setPrimaryClip(ClipData.newPlainText("GO IV Lab nickname", nickname))
+                    statusText.text = "Popup nickname copied. Paste it manually into Pokémon GO."
+                }
             }
-        }
+        )
     }
 
     private fun copyNickname() {
