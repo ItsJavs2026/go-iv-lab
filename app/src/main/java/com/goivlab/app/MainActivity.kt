@@ -20,6 +20,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -71,6 +72,10 @@ class MainActivity : Activity() {
     private lateinit var hpBar: SeekBar
     private lateinit var calculateButton: Button
     private lateinit var copyButton: Button
+    private lateinit var showPopupButton: Button
+    private lateinit var autoPopupCheck: CheckBox
+    private lateinit var presetSpinner: Spinner
+    private lateinit var presetStore: NicknamePresets
     private lateinit var templateInput: EditText
     private lateinit var statusText: TextView
     private lateinit var resultText: TextView
@@ -86,6 +91,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefs = getSharedPreferences("offline_go_iv_lab_v02", MODE_PRIVATE)
+        presetStore = NicknamePresets(prefs)
         window.navigationBarColor = bg
         window.statusBarColor = bg
 
@@ -107,12 +113,12 @@ class MainActivity : Activity() {
         setContentView(scroll)
 
         column.addView(text("GO IV LAB", 28f, true, ink))
-        column.addView(text("Offline PvP IV checker · v0.2 candidate", 13f, false, muted))
-        spacer(column, 16)
+        column.addView(text("Offline PvP IV checker · v0.3 candidate", 13f, false, muted))
+        spacer(column, 9)
 
         val searchCard = card(column)
         searchCard.addView(text("1 · Select a Pokémon or form", 17f, true, ink))
-        spacer(searchCard, 8)
+        spacer(searchCard, 4)
         pokemonInput = AutoCompleteTextView(this).apply {
             hint = "Search species, Alolan, Shadow…"
             threshold = 1
@@ -125,8 +131,13 @@ class MainActivity : Activity() {
         searchCard.addView(text("Choose an exact entry from the suggestions. Forms are separate.", 12f, false, muted))
         pokemonInput.setOnClickListener { if (labelToId.isNotEmpty()) pokemonInput.showDropDown() }
         pokemonInput.onEdit {
-            selectedId = null
-            invalidateResult("Species changed — tap Calculate.")
+            // The selected entry is retained only when the visible text still
+            // exactly identifies that same species/form. No guessing on partial input.
+            val typed = pokemonInput.text.toString()
+            if (selectedId != null && labelToId[typed] != selectedId) {
+                selectedId = null
+            }
+            invalidateResult("Species changed — choose a form and tap Calculate.")
         }
         pokemonInput.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
             val entry = parent.getItemAtPosition(position)?.toString().orEmpty()
@@ -134,19 +145,31 @@ class MainActivity : Activity() {
             invalidateResult("Form selected — tap Calculate.")
         }
 
-        spacer(column, 12)
+        spacer(column, 8)
         val ivCard = card(column)
         ivCard.addView(text("2 · Appraisal IVs", 17f, true, ink))
         ivCard.addView(text("Set each bar precisely from 0 to 15.", 12f, false, muted))
-        spacer(ivCard, 8)
+        spacer(ivCard, 4)
         attackBar = addIvControl(ivCard, "Attack", 0)
         defenseBar = addIvControl(ivCard, "Defense", 15)
         hpBar = addIvControl(ivCard, "HP", 15)
+        val quickIvs = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        Button(this).apply {
+            text = "0/15/15"
+            contentDescription = "Set IVs to zero attack, fifteen defense and fifteen HP"
+            setOnClickListener { setIvs(0, 15, 15) }
+        }.also { quickIvs.addView(it, LinearLayout.LayoutParams(0, 44.dp(), 1f)) }
+        Button(this).apply {
+            text = "15/15/15"
+            contentDescription = "Set all three IVs to fifteen"
+            setOnClickListener { setIvs(15, 15, 15) }
+        }.also { quickIvs.addView(it, LinearLayout.LayoutParams(0, 44.dp(), 1f)) }
+        ivCard.addView(quickIvs, fullRow())
 
-        spacer(column, 12)
+        spacer(column, 8)
         val leagueCard = card(column)
         leagueCard.addView(text("3 · League and maximum level", 17f, true, ink))
-        spacer(leagueCard, 8)
+        spacer(leagueCard, 4)
         leagueSpinner = spinner(leagues.map { it.label }, 1)
         leagueCard.addView(leagueSpinner, fullRow())
         maxLevelSpinner = spinner(listOf("Level 50 (standard)", "Level 51 (Best Buddy active)"), 0)
@@ -161,7 +184,7 @@ class MainActivity : Activity() {
         leagueSpinner.onItemSelectedListener = selectionListener
         maxLevelSpinner.onItemSelectedListener = selectionListener
 
-        spacer(column, 12)
+        spacer(column, 8)
         val resultCard = card(column)
         calculateButton = Button(this).apply {
             text = "CALCULATE PVP IV RANK"
@@ -172,11 +195,26 @@ class MainActivity : Activity() {
         spacer(resultCard, 7)
         statusText = text("Loading offline Pokémon database…", 13f, false, muted)
         resultCard.addView(statusText)
-        spacer(resultCard, 10)
+        spacer(resultCard, 5)
         resultText = text("Select a Pokémon and calculate to see its IV rank.", 16f, false, ink)
         resultCard.addView(resultText)
+        showPopupButton = Button(this).apply {
+            text = "SHOW RANK POPUP"
+            isEnabled = false
+            setOnClickListener { showRankPopup() }
+        }
+        resultCard.addView(showPopupButton, fullRow())
+        autoPopupCheck = CheckBox(this).apply {
+            text = "Automatically show results popup after calculation"
+            setTextColor(ink)
+            isChecked = prefs.getBoolean("auto_popup_v03", true)
+            setOnCheckedChangeListener { _, checked ->
+                prefs.edit().putBoolean("auto_popup_v03", checked).apply()
+            }
+        }
+        resultCard.addView(autoPopupCheck, fullRow())
 
-        spacer(column, 12)
+        spacer(column, 8)
         val nicknameCard = card(column)
         nicknameCard.addView(text("4 · Nickname maker", 17f, true, ink))
         nicknameCard.addView(text("Tokens: {name} {league} {rank} {attack} {defense} {hp}", 12f, false, muted))
@@ -200,8 +238,42 @@ class MainActivity : Activity() {
             setOnClickListener { copyNickname() }
         }
         nicknameCard.addView(copyButton, fullRow())
+        spacer(nicknameCard, 9)
+        nicknameCard.addView(text("Saved nickname templates (local only)", 13f, true, ink))
+        presetSpinner = spinner(presetStore.all(), 0)
+        nicknameCard.addView(presetSpinner, fullRow())
+        Button(this).apply {
+            text = "USE SELECTED PRESET"
+            setOnClickListener {
+                val selected = presetSpinner.selectedItem?.toString() ?: return@setOnClickListener
+                templateInput.setText(selected)
+                templateInput.setSelection(templateInput.text.length)
+            }
+        }.also { nicknameCard.addView(it, fullRow()) }
+        val presetButtons = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        val savePreset = Button(this).apply {
+            text = "SAVE TEMPLATE"
+            setOnClickListener {
+                if (presetStore.save(templateInput.text.toString())) {
+                    refreshPresets()
+                    statusText.text = "Nickname preset saved on this device."
+                } else statusText.text = "Template must contain 1–120 characters."
+            }
+        }
+        val deletePreset = Button(this).apply {
+            text = "DELETE PRESET"
+            setOnClickListener {
+                val selected = presetSpinner.selectedItem?.toString() ?: return@setOnClickListener
+                presetStore.remove(selected)
+                refreshPresets()
+                statusText.text = "Selected nickname preset removed."
+            }
+        }
+        presetButtons.addView(savePreset, LinearLayout.LayoutParams(0, 48.dp(), 1f))
+        presetButtons.addView(deletePreset, LinearLayout.LayoutParams(0, 48.dp(), 1f))
+        nicknameCard.addView(presetButtons, fullRow())
 
-        spacer(column, 14)
+        spacer(column, 9)
         column.addView(text(
             "IV rank ≠ battle/meta ranking. Base stats: PvPoke snapshot 26 Oct 2026. Calculations are offline; screenshot scanning and overlay will come later.",
             12f, false, muted
@@ -260,7 +332,7 @@ class MainActivity : Activity() {
 
     private fun calculate() {
         val raw = pokemonInput.text.toString().trim()
-        val id = selectedId ?: labelToId[raw] ?: catalog?.find(raw)?.speciesId
+        val id = labelToId[raw] ?: catalog?.find(raw)?.speciesId
         if (id == null) {
             statusText.text = "Choose a Pokémon or exact form from the suggestions."
             return
@@ -274,6 +346,7 @@ class MainActivity : Activity() {
         calculateButton.isEnabled = false
         statusText.text = "Calculating 4,096 IV combinations offline…"
         lastCalculation = null
+        showPopupButton.isEnabled = false
         renderNickname()
         worker.execute {
             try {
@@ -281,6 +354,7 @@ class MainActivity : Activity() {
                 runOnUiThread {
                     if (isDestroyed || generation.get() != request) return@runOnUiThread
                     lastCalculation = Calculation(result, league, ivs, maxLevel)
+                    showPopupButton.isEnabled = true
                     calculateButton.isEnabled = true
                     statusText.text = "Calculated locally · no network requests"
                     resultText.text = buildString {
@@ -292,6 +366,7 @@ class MainActivity : Activity() {
                         append("\n\nThis ranks this species' IV spreads, not its PvP battle performance.")
                     }
                     renderNickname()
+                    if (autoPopupCheck.isChecked) showRankPopup()
                 }
             } catch (exception: Exception) {
                 runOnUiThread {
@@ -334,6 +409,27 @@ class MainActivity : Activity() {
         copyButton.isEnabled = nickname.fits && nickname.value.isNotBlank()
     }
 
+    private fun refreshPresets() {
+        presetSpinner.adapter = ArrayAdapter(
+            this, android.R.layout.simple_spinner_dropdown_item, presetStore.all()
+        )
+    }
+
+    private fun showRankPopup() {
+        val current = lastCalculation ?: return
+        val nickname = lastNickname?.takeIf { it.fits && it.value.isNotBlank() }?.value
+        RankPopup.show(
+            this, current.result, current.league.label, current.maxLevel, nickname
+        ) {
+            // Copy the value shown in this dialog, never a later recalculation's value.
+            if (nickname != null) {
+                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                clipboard.setPrimaryClip(ClipData.newPlainText("GO IV Lab nickname", nickname))
+                statusText.text = "Popup nickname copied. Paste it manually into Pokémon GO."
+            }
+        }
+    }
+
     private fun copyNickname() {
         val current = lastNickname ?: return
         if (!current.fits || current.value.isBlank()) return
@@ -345,10 +441,18 @@ class MainActivity : Activity() {
     private fun invalidateResult(message: String) {
         generation.incrementAndGet()
         lastCalculation = null
+        if (::showPopupButton.isInitialized) showPopupButton.isEnabled = false
         if (::calculateButton.isInitialized) calculateButton.isEnabled = lookup != null
         if (::statusText.isInitialized) statusText.text = message
         if (::resultText.isInitialized) resultText.text = "Tap Calculate to refresh the rank."
         renderNickname()
+    }
+
+    private fun setIvs(attack: Int, defense: Int, hp: Int) {
+        attackBar.progress = attack
+        defenseBar.progress = defense
+        hpBar.progress = hp
+        invalidateResult("IV preset applied — tap Calculate.")
     }
 
     private fun addIvControl(parent: LinearLayout, name: String, initial: Int): SeekBar {
@@ -406,7 +510,7 @@ class MainActivity : Activity() {
     private fun card(parent: LinearLayout): LinearLayout {
         val view = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(14.dp(), 14.dp(), 14.dp(), 14.dp())
+            setPadding(12.dp(), 10.dp(), 12.dp(), 10.dp())
             background = GradientDrawable().apply {
                 setColor(Color.WHITE)
                 cornerRadius = 16.dp().toFloat()

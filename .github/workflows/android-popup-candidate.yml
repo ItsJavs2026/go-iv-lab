@@ -1,0 +1,50 @@
+name: Android v0.3 popup candidate
+on:
+  push:
+    branches: ['candidate/v0.3-popup-presets']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android SDK 35
+        run: |
+          test -n "${ANDROID_HOME:-}"
+          SDKMANAGER="$(find "$ANDROID_HOME/cmdline-tools" -type f -name sdkmanager | sort -V | tail -n 1)"
+          test -x "$SDKMANAGER"
+          yes | "$SDKMANAGER" --licenses >/dev/null || true
+          "$SDKMANAGER" "platforms;android-35" "build-tools;35.0.0"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+      - name: Test, lint, and build v0.3 APK
+        run: gradle :nickname-core:test :iv-engine:test :app:lintDebug :app:assembleDebug --no-daemon --stacktrace
+      - name: Verify packaged offline species data
+        run: |
+          test -s app/build/outputs/apk/debug/app-debug.apk
+          unzip -Z1 app/build/outputs/apk/debug/app-debug.apk | grep -Fx 'assets/pokemon-stats.json'
+      - name: Reject unexpected permissions and verify v0.3 version
+        run: |
+          MANIFEST=app/src/main/AndroidManifest.xml
+          if grep -E 'android.permission.INTERNET|android.permission.SYSTEM_ALERT_WINDOW|android.permission.BIND_ACCESSIBILITY_SERVICE|android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION' "$MANIFEST"; then
+            echo "Unexpected permission declared" >&2
+            exit 1
+          fi
+          grep -F 'versionName = "0.3.0-candidate"' app/build.gradle.kts
+          grep -F 'class MainActivity' app/src/main/java/com/goivlab/app/MainActivity.kt
+          grep -F 'object RankPopup' app/src/main/java/com/goivlab/app/RankPopup.kt
+          grep -F 'class NicknamePresets' app/src/main/java/com/goivlab/app/NicknamePresets.kt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: GO-IV-Lab-v0.3-popup-candidate
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 21
