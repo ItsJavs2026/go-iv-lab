@@ -12,7 +12,7 @@ Source branch: candidate/v0.3-popup-presets. Based on user-tested v0.2; main and
 - Version 0.3.0-candidate; no new permissions.
 
 ## Not yet verified
-- CI Android compilation, lint and artifact.
+- Latest commit CI Android compilation, lint and artifact (previous commit passed; rerun pending).
 - On-device dialog layout, copy behavior and template persistence.
 - Accessibility, small-screen overflow and keyboard interaction.
 - Independent ranking parity for Alolan Diglett.
@@ -51,3 +51,9 @@ Source branch: candidate/v0.3-popup-presets. Based on user-tested v0.2; main and
 - Regression: select Alolan Diglett, edit search to another form without selecting a suggestion, then calculate; never show the old Diglett result.
 - Regression: choose the same form twice, edit IVs rapidly, and verify only the latest calculation may populate the popup.
 - Regression: verify all quick IV buttons update the visible sliders and invalidate any previous result.
+
+## Public repository verified
+- Repository visibility checked via GitHub repository metadata: public.
+- Keep draft PR #3 unmerged until the exact release candidate passes CI and the first round of device feedback.
+- Public tester docs: docs/PUBLIC_TESTING.md; issue forms under .github/ISSUE_TEMPLATE.
+- Important: the successful Actions run 40771861862 is for an earlier commit; do not confuse it with the latest candidate.
