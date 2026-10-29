@@ -116,7 +116,7 @@ class MainActivity : Activity() {
         setContentView(scroll)
 
         column.addView(text("GO IV LAB", 28f, true, ink))
-        column.addView(text("Offline PvP IV checker · v0.3 candidate", 13f, false, muted))
+        column.addView(text("Offline PvP IV checker · v0.4 floating overlay experiment", 13f, false, muted))
         spacer(column, 9)
 
         val searchCard = card(column)
@@ -208,7 +208,7 @@ class MainActivity : Activity() {
         }
         resultCard.addView(showPopupButton, fullRow())
         Button(this).apply {
-            text = "START FLOATING OVERLAY (EXPERIMENT)"
+            text = "FLOAT RESULTS OVER POKÉMON GO (EXPERIMENT)"
             setOnClickListener {
                 val calculation = lastCalculation
                 if (calculation == null) {
@@ -219,16 +219,17 @@ class MainActivity : Activity() {
                         Uri.parse("package:$packageName")))
                 } else {
                     val result = calculation.result
-                    val message = "${result.species.name} · ${calculation.league.code}\\n" +
-                        "IV ${calculation.ivs.attack}/${calculation.ivs.defense}/${calculation.ivs.stamina} · " +
-                        "Rank #${result.rank}/${result.eligibleSpreads}\\n" +
+                    val message = listOf(
+                        "${result.species.name} (${result.species.speciesId}) · ${calculation.league.code}",
+                        "IV ${calculation.ivs.attack}/${calculation.ivs.defense}/${calculation.ivs.stamina} · Rank #${result.rank}/${result.eligibleSpreads}",
                         "CP ${result.cp} · Lv ${result.level}"
+                    ).joinToString("\n")
                     try {
-                        startService(Intent(this@MainActivity, ManualOverlayService::class.java).apply {
+                        startForegroundService(Intent(this@MainActivity, ManualOverlayService::class.java).apply {
                             action = ManualOverlayService.ACTION_SHOW
                             putExtra(ManualOverlayService.EXTRA_RESULT, message)
                         })
-                        statusText.text = "Overlay requested. Switch to Pokémon GO to test."
+                        statusText.text = "Overlay requested. Use its drag, minimize or close controls in Pokémon GO."
                     } catch (e: Exception) {
                         statusText.text = "Overlay could not start: ${e.javaClass.simpleName}"
                     }
@@ -313,7 +314,7 @@ class MainActivity : Activity() {
 
         spacer(column, 9)
         column.addView(text(
-            "IV rank ≠ battle/meta ranking. Base stats: PvPoke snapshot 26 Oct 2026. Calculations are offline; screenshot scanning is not implemented; floating overlay is experimental.",
+            "IV spread rank ≠ battle/meta ranking. PvPoke stats snapshot 26 Oct 2026. Manual floating overlay is experimental; screenshot scanning is not implemented.",
             12f, false, muted
         ))
         loadOfflineCatalog()
@@ -384,6 +385,7 @@ class MainActivity : Activity() {
         calculateButton.isEnabled = false
         statusText.text = "Calculating 4,096 IV combinations offline…"
         lastCalculation = null
+        stopService(Intent(this, ManualOverlayService::class.java))
         showPopupButton.isEnabled = false
         renderNickname()
         worker.execute {
@@ -478,6 +480,8 @@ class MainActivity : Activity() {
 
     private fun invalidateResult(message: String) {
         generation.incrementAndGet()
+        // Never leave a now-stale species/IV result floating over the game.
+        if (lastCalculation != null) stopService(Intent(this, ManualOverlayService::class.java))
         lastCalculation = null
         if (::showPopupButton.isInitialized) showPopupButton.isEnabled = false
         if (::calculateButton.isInitialized) calculateButton.isEnabled = lookup != null
