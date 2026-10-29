@@ -37,6 +37,8 @@ jobs:
           grep -F 'versionName = "0.4.0-overlay-experiment"' app/build.gradle.kts
           AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt"
           "$AAPT" dump badging app/build/outputs/apk/debug/app-debug.apk | grep -F "package: name='com.goivlab.app.overlaylab'"
+          "$AAPT" dump badging app/build/outputs/apk/debug/app-debug.apk | grep -F "launchable-activity: name='com.goivlab.app.MainActivity'"
+          "$AAPT" dump badging app/build/outputs/apk/debug/app-debug.apk | grep -F "application-label:'GO IV Lab Overlay Lab'"
           "$AAPT" dump permissions app/build/outputs/apk/debug/app-debug.apk > /tmp/overlay-permissions.txt
           cat /tmp/overlay-permissions.txt
           for permission in SYSTEM_ALERT_WINDOW FOREGROUND_SERVICE FOREGROUND_SERVICE_SPECIAL_USE; do
