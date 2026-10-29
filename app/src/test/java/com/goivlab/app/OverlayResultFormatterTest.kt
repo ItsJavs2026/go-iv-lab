@@ -22,7 +22,7 @@ class OverlayResultFormatterTest {
 
     @Test fun preservesExactFormAndRankInFloatSummary() {
         assertEquals(
-            "Diglett (Alolan) (diglett_alolan) · GL\nIV 13/14/11 · Rank #125/4096\nCP 735 · Lv 50.0",
+            "Diglett (Alolan) (diglett_alolan) · GL\nIV 13/14/11 · Rank #125/4096\nCP 735 · Lv 50.0\nStat product 93.05% of #1",
             OverlayResultFormatter.format(alolanDiglett, "GL")
         )
     }
