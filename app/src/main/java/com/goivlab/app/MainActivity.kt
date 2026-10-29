@@ -1,6 +1,9 @@
 package com.goivlab.app
 
 import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -40,7 +43,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * Manual-IV proof of concept. All calculation and catalog data stay on-device.
- * Screen recording, floating overlay and automatic Pokémon GO input are NOT implemented.
+ * This experimental branch adds manual floating results; screen recording and automatic Pokémon GO input are NOT implemented.
  */
 class MainActivity : Activity() {
     private data class League(val label: String, val code: String, val cpCap: Int)
@@ -204,6 +207,41 @@ class MainActivity : Activity() {
             setOnClickListener { showRankPopup() }
         }
         resultCard.addView(showPopupButton, fullRow())
+        Button(this).apply {
+            text = "START FLOATING OVERLAY (EXPERIMENT)"
+            setOnClickListener {
+                val calculation = lastCalculation
+                if (calculation == null) {
+                    statusText.text = "Calculate a result before starting the overlay."
+                } else if (!Settings.canDrawOverlays(this@MainActivity)) {
+                    statusText.text = "Allow Draw over other apps, return here, then tap Start again."
+                    startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:$packageName")))
+                } else {
+                    val result = calculation.result
+                    val message = "${result.species.name} · ${calculation.league.code}\\n" +
+                        "IV ${calculation.ivs.attack}/${calculation.ivs.defense}/${calculation.ivs.stamina} · " +
+                        "Rank #${result.rank}/${result.eligibleSpreads}\\n" +
+                        "CP ${result.cp} · Lv ${result.level}"
+                    try {
+                        startService(Intent(this@MainActivity, ManualOverlayService::class.java).apply {
+                            action = ManualOverlayService.ACTION_SHOW
+                            putExtra(ManualOverlayService.EXTRA_RESULT, message)
+                        })
+                        statusText.text = "Overlay requested. Switch to Pokémon GO to test."
+                    } catch (e: Exception) {
+                        statusText.text = "Overlay could not start: ${e.javaClass.simpleName}"
+                    }
+                }
+            }
+        }.also { resultCard.addView(it, fullRow()) }
+        Button(this).apply {
+            text = "STOP FLOATING OVERLAY"
+            setOnClickListener {
+                stopService(Intent(this@MainActivity, ManualOverlayService::class.java))
+                statusText.text = "Overlay stopped."
+            }
+        }.also { resultCard.addView(it, fullRow()) }
         autoPopupCheck = CheckBox(this).apply {
             text = "Automatically show results popup after calculation"
             setTextColor(ink)
@@ -275,7 +313,7 @@ class MainActivity : Activity() {
 
         spacer(column, 9)
         column.addView(text(
-            "IV rank ≠ battle/meta ranking. Base stats: PvPoke snapshot 26 Oct 2026. Calculations are offline; screenshot scanning and overlay will come later.",
+            "IV rank ≠ battle/meta ranking. Base stats: PvPoke snapshot 26 Oct 2026. Calculations are offline; screenshot scanning is not implemented; floating overlay is experimental.",
             12f, false, muted
         ))
         loadOfflineCatalog()
