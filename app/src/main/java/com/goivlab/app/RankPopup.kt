@@ -23,7 +23,7 @@ internal object RankPopup {
         nickname: String?,
         onFloat: (() -> Unit)? = null,
         onCopy: () -> Unit
-    ) {
+    ): AlertDialog {
         val density = context.resources.displayMetrics.density
         fun dp(v: Int) = (v * density + 0.5f).toInt()
         val ink = Color.rgb(24, 39, 64)
@@ -74,5 +74,6 @@ internal object RankPopup {
             (context.resources.displayMetrics.widthPixels * .92f).toInt(),
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
+        return dialog
     }
 }
