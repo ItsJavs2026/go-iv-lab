@@ -44,38 +44,34 @@ class PopupAndOverlaySmokeTest {
     )
 
     @Test fun inAppPopupShowsRankFloatAndCopyControls() {
+        val floated = java.util.concurrent.atomic.AtomicBoolean(false)
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             scenario.onActivity { activity ->
                 var copied = false
-                var floated = false
-                // Inspect the actual shown Android dialog on the UI thread.
-                // UiAutomator's global text search can intermittently race
-                // with the window becoming accessible on software emulators.
                 val dialog = RankPopup.show(
                     activity, example, "Great · 1500 CP", 50.0, "GL770",
-                    onFloat = { floated = true },
+                    onFloat = { floated.set(true) },
                     onCopy = { copied = true }
                 )
-                try {
-                    assertTrue("Rank dialog was not shown", dialog.isShowing)
-                    val decor = dialog.window?.decorView ?: error("Rank dialog has no window")
-                    assertTrue("Rank text missing in shown dialog",
-                        allViews(decor).filterIsInstance<TextView>()
-                            .any { it.text.toString() == "RANK #770" && it.isShown })
-                    val copy = allViews(decor).filterIsInstance<Button>()
-                        .firstOrNull { it.text.toString() == "COPY NICKNAME" }
-                        ?: error("Nickname COPY button missing")
-                    assertTrue("COPY button hidden", copy.isShown)
-                    copy.performClick()
-                    assertTrue("COPY action did not invoke callback", copied)
-                    val floatButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
-                    assertTrue("FLOAT button missing", floatButton?.text.toString() == "FLOAT")
-                    floatButton.performClick()
-                    assertTrue("FLOAT action did not invoke callback", floated)
-                } finally {
-                    dialog.dismiss()
-                }
+                assertTrue("Rank dialog was not shown", dialog.isShowing)
+                val decor = dialog.window?.decorView ?: error("Rank dialog has no window")
+                assertTrue("Rank text missing in shown dialog",
+                    allViews(decor).filterIsInstance<TextView>()
+                        .any { it.text.toString() == "RANK #770" && it.isShown })
+                val copy = allViews(decor).filterIsInstance<Button>()
+                    .firstOrNull { it.text.toString() == "COPY NICKNAME" }
+                    ?: error("Nickname COPY button missing")
+                assertTrue("COPY button hidden", copy.isShown)
+                copy.performClick()
+                assertTrue("COPY action did not invoke callback", copied)
+                val floatButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
+                assertTrue("FLOAT button missing", floatButton?.text.toString() == "FLOAT")
+                // AlertDialog button callback is posted via the main looper.
+                // Never assert before returning control to the event loop.
+                floatButton.performClick()
             }
+            instrumentation.waitForIdleSync()
+            assertTrue("FLOAT action did not invoke callback after main looper idle", floated.get())
         }
     }
 
