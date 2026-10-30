@@ -1,10 +1,15 @@
 package com.goivlab.app
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.ParcelFileDescriptor
 import android.os.SystemClock
 import android.provider.Settings
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -15,7 +20,6 @@ import com.goivlab.iv.BaseStats
 import com.goivlab.iv.IvSpread
 import com.goivlab.iv.PokemonSpecies
 import com.goivlab.iv.PvpIvLookupResult
-import java.util.concurrent.atomic.AtomicBoolean
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -40,26 +44,38 @@ class PopupAndOverlaySmokeTest {
     )
 
     @Test fun inAppPopupShowsRankFloatAndCopyControls() {
-        val copied = AtomicBoolean(false)
-        val floated = AtomicBoolean(false)
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             scenario.onActivity { activity ->
-                RankPopup.show(
+                var copied = false
+                var floated = false
+                // Inspect the actual shown Android dialog on the UI thread.
+                // UiAutomator's global text search can intermittently race
+                // with the window becoming accessible on software emulators.
+                val dialog = RankPopup.show(
                     activity, example, "Great · 1500 CP", 50.0, "GL770",
-                    onFloat = { floated.set(true) },
-                    onCopy = { copied.set(true) }
+                    onFloat = { floated = true },
+                    onCopy = { copied = true }
                 )
+                try {
+                    assertTrue("Rank dialog was not shown", dialog.isShowing)
+                    val decor = dialog.window?.decorView ?: error("Rank dialog has no window")
+                    assertTrue("Rank text missing in shown dialog",
+                        allViews(decor).filterIsInstance<TextView>()
+                            .any { it.text.toString() == "RANK #770" && it.isShown })
+                    val copy = allViews(decor).filterIsInstance<Button>()
+                        .firstOrNull { it.text.toString() == "COPY NICKNAME" }
+                        ?: error("Nickname COPY button missing")
+                    assertTrue("COPY button hidden", copy.isShown)
+                    copy.performClick()
+                    assertTrue("COPY action did not invoke callback", copied)
+                    val floatButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
+                    assertTrue("FLOAT button missing", floatButton?.text.toString() == "FLOAT")
+                    floatButton.performClick()
+                    assertTrue("FLOAT action did not invoke callback", floated)
+                } finally {
+                    dialog.dismiss()
+                }
             }
-            assertTrue("In-app dialog did not render rank", device.wait(
-                Until.hasObject(By.text("RANK #770")), 15_000
-            ))
-            assertTrue("FLOAT action missing", device.hasObject(By.text("FLOAT")))
-            device.findObject(By.text("COPY NICKNAME")).click()
-            assertTrue("Nickname copy callback not invoked after click",
-                waitFor(5_000) { copied.get() })
-            device.findObject(By.text("FLOAT")).click()
-            assertTrue("FLOAT callback not invoked after click",
-                waitFor(5_000) { floated.get() })
         }
     }
 
@@ -95,6 +111,18 @@ class PopupAndOverlaySmokeTest {
                 app.stopService(Intent(app, ManualOverlayService::class.java))
             }
         }
+    }
+
+    private fun allViews(root: View): List<View> {
+        val result = ArrayList<View>()
+        fun walk(view: View) {
+            result.add(view)
+            if (view is ViewGroup) for (index in 0 until view.childCount) {
+                walk(view.getChildAt(index))
+            }
+        }
+        walk(root)
+        return result
     }
 
     private fun grantOwnOverlayPermission() {
