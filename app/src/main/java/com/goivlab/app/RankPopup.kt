@@ -21,8 +21,9 @@ internal object RankPopup {
         league: String,
         maxLevel: Double,
         nickname: String?,
+        onFloat: (() -> Unit)? = null,
         onCopy: () -> Unit
-    ) {
+    ): AlertDialog {
         val density = context.resources.displayMetrics.density
         fun dp(v: Int) = (v * density + 0.5f).toInt()
         val ink = Color.rgb(24, 39, 64)
@@ -60,6 +61,7 @@ internal object RankPopup {
         val dialog = AlertDialog.Builder(context)
             .setView(ScrollView(context).apply { addView(content) })
             .setPositiveButton("DONE", null)
+            .apply { if (onFloat != null) setNeutralButton("FLOAT", { _, _ -> onFloat() }) }
             .create()
         dialog.show()
         dialog.window?.setBackgroundDrawable(
@@ -72,5 +74,6 @@ internal object RankPopup {
             (context.resources.displayMetrics.widthPixels * .92f).toInt(),
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
+        return dialog
     }
 }

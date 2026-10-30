@@ -1,0 +1,68 @@
+name: Android v0.4 manual overlay experiment
+on:
+  push:
+    branches: ['experiment/overlay-manual-v0.4']
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  group: overlay-build-v04-${{ github.event.pull_request.head.ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: github.event_name != 'pull_request' || github.head_ref == 'experiment/overlay-manual-v0.4'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android SDK 35
+        run: |
+          test -n "${ANDROID_HOME:-}"
+          SDKMANAGER="$(find "$ANDROID_HOME/cmdline-tools" -type f -name sdkmanager | sort -V | tail -n 1)"
+          test -x "$SDKMANAGER"
+          yes | "$SDKMANAGER" --licenses >/dev/null || true
+          "$SDKMANAGER" "platforms;android-35" "build-tools;35.0.0"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+      - name: Test, lint, and build overlay APK
+        run: gradle :nickname-core:test :iv-engine:test :app:testDebugUnitTest :app:lintDebug :app:assembleDebug --no-daemon --stacktrace
+      - name: Check overlay manifest and offline data
+        run: |
+          test -s app/build/outputs/apk/debug/app-debug.apk
+          unzip -Z1 app/build/outputs/apk/debug/app-debug.apk | grep -Fx 'assets/pokemon-stats.json'
+          grep -F 'android:exported="false"' app/src/main/AndroidManifest.xml
+          grep -F 'android:foregroundServiceType="specialUse"' app/src/main/AndroidManifest.xml
+          grep -F 'versionName = "0.4.0-overlay-experiment"' app/build.gradle.kts
+          AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt"
+          "$AAPT" dump badging app/build/outputs/apk/debug/app-debug.apk | grep -F "package: name='com.goivlab.app.overlaylab'"
+          "$AAPT" dump badging app/build/outputs/apk/debug/app-debug.apk | grep -F "launchable-activity: name='com.goivlab.app.MainActivity'"
+          "$AAPT" dump badging app/build/outputs/apk/debug/app-debug.apk | grep -F "application-label:'GO IV Lab Overlay Lab'"
+          "$AAPT" dump permissions app/build/outputs/apk/debug/app-debug.apk > /tmp/overlay-permissions.txt
+          cat /tmp/overlay-permissions.txt
+          for permission in SYSTEM_ALERT_WINDOW FOREGROUND_SERVICE FOREGROUND_SERVICE_SPECIAL_USE; do
+            grep -F "android.permission.$permission" /tmp/overlay-permissions.txt
+          done
+          if grep -E 'android.permission.(INTERNET|BIND_ACCESSIBILITY_SERVICE|FOREGROUND_SERVICE_MEDIA_PROJECTION|CAMERA|RECORD_AUDIO)' /tmp/overlay-permissions.txt; then
+            echo "Unexpected packaged permission" >&2
+            exit 1
+          fi
+          {
+            echo '### Overlay candidate identity'
+            echo 'Experimental only: not Samsung-tested.'
+            echo '~~~'
+            sha256sum app/build/outputs/apk/debug/app-debug.apk
+            "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs app/build/outputs/apk/debug/app-debug.apk
+            echo '~~~'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: GO-IV-Lab-v0.4-overlay-experiment-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
