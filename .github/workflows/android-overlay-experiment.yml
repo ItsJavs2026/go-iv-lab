@@ -16,6 +16,11 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+      - name: Syntax-check phone-only Android Code Studio build script
+        run: |
+          bash -n scripts/build_goivlab_android_code_studio.sh
+          grep -F 'EXPECTED_BRANCH="experiment/overlay-manual-v0.4"' scripts/build_goivlab_android_code_studio.sh
+          test -f docs/PHONE_BUILD_ANDROID_CODE_STUDIO.md
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
