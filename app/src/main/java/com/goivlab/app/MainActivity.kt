@@ -31,6 +31,7 @@ import android.widget.SeekBar
 import android.widget.Spinner
 import android.widget.TextView
 import com.goivlab.iv.EvolutionFamilies
+import com.goivlab.iv.OpenLeagueMeta
 import com.goivlab.iv.IvSpread
 import com.goivlab.iv.PokemonStatsCatalog
 import com.goivlab.iv.PvpIvLookup
@@ -88,6 +89,7 @@ class MainActivity : Activity() {
 
     private var catalog: PokemonStatsCatalog? = null
     private var evolutionFamilies: EvolutionFamilies? = null
+    private var openLeagueMeta: OpenLeagueMeta? = null
     private var lookup: PvpIvLookup? = null
     private var selectedId: String? = null
     private var labelToId = emptyMap<String, String>()
@@ -357,11 +359,16 @@ class MainActivity : Activity() {
                     EvolutionFamilies.parse(assets.open("evolution-families.json")
                         .bufferedReader(Charsets.UTF_8).use { it.readText() })
                 }.getOrNull()
+                val meta = runCatching {
+                    OpenLeagueMeta.parse(assets.open("open-league-pvpoke-rankings.json")
+                        .bufferedReader(Charsets.UTF_8).use { it.readText() })
+                }.getOrNull()
                 val entries = parsedSpeciesOptions(parsed, json)
                 runOnUiThread {
                     if (isDestroyed) return@runOnUiThread
                     catalog = parsed
                     evolutionFamilies = families
+                    openLeagueMeta = meta
                     lookup = PvpIvLookup(parsed)
                     labelToId = entries.associate { it.first to it.second }
                     pokemonInput.setAdapter(ArrayAdapter(
@@ -574,6 +581,7 @@ class MainActivity : Activity() {
     private fun compareEvolutionStages(calculation: Calculation) {
         if (lastCalculation !== calculation) return
         val families = evolutionFamilies
+        val leagueRating = openLeagueMeta
         val dataset = catalog
         val engine = lookup
         if (families == null || dataset == null || engine == null) {
@@ -615,22 +623,38 @@ class MainActivity : Activity() {
                     append(" · ${calculation.league.code}, level cap ${calculation.maxLevel.toInt()}\n\n")
                     for ((stage, result, _) in completed) {
                         append("${stage.stage.uppercase(Locale.US)} · ${stage.species.name}\n")
+                        val rating = leagueRating?.get(calculation.league.code, stage.species.speciesId)
                         if (result != null) {
-                            append("Rank #${result.rank}/${result.eligibleSpreads} · ")
+                            append("IV rank #${result.rank}/${result.eligibleSpreads} · ")
                             append(String.format(Locale.US, "%.2f", result.statProductPercent))
-                            append("% of this species' best · CP ${result.cp}, Lv ${result.level}\n\n")
-                        } else {
-                            append("No eligible ranking for these settings\n\n")
-                        }
+                            append("% relative fit · CP ${result.cp}, Lv ${result.level}\n")
+                            if (rating != null) {
+                                append("Open ${calculation.league.code} PvPoke: ")
+                                append(String.format(Locale.US, "%.1f", rating.score))
+                                append("/100 · meta rank #${rating.rank}\n\n")
+                            } else append("No verified Open League meta rating\n\n")
+                        } else append("No eligible ranking for these settings\n\n")
                     }
+                    val battlePick = completed
+                        .filter { it.second != null &&
+                            leagueRating?.get(calculation.league.code, it.first.species.speciesId) != null }
+                        .maxByOrNull {
+                            leagueRating!!.get(calculation.league.code, it.first.species.speciesId)!!.score
+                        }
+                    if (battlePick != null) {
+                        append("RECOMMENDED OPEN LEAGUE STAGE: ${battlePick.first.species.name} ")
+                        append("(${battlePick.first.stage.lowercase(Locale.US)}).\n")
+                        append("Based on PvPoke simulated overall battle strength, not IV rank alone.\n\n")
+                    } else append("No rated, eligible stage; no battle recommendation available.\n\n")
                     if (highest != null) {
                         append("Highest relative IV fit: ${highest.first.species.name} ")
-                        append("(${highest.first.stage.lowercase(Locale.US)} stage).\n\n")
+                        append("(${highest.first.stage.lowercase(Locale.US)}).\n\n")
                     }
-                    append("IMPORTANT: This identifies IV fit relative to EACH species' own best spread. ")
-                    append("It does NOT establish which evolution is strongest in PvP. ")
-                    append("Moves, typing, team and current league meta must also be evaluated. ")
-                    append("Evolution preserves IVs in ordinary evolutions, but form changes or purification may differ.")
+                    append("Source: pinned PvPoke Open League overall simulation, Oct 26, 2026. ")
+                    append("Not a current special-cup ranking or a guarantee of matchups. ")
+                    append("Your actual moveset, typing, team composition, resources, and availability may change the best choice. ")
+                    append("Relative IV fit compares each species with ITS OWN #1 IV spread; it is not battle strength. ") 
+                    append("Purification or special transformations can change the IV comparison.")
                 }
                 AlertDialog.Builder(this)
                     .setTitle("Evolution comparison · ${calculation.league.code}")
