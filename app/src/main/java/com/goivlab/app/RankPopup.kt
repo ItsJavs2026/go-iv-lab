@@ -22,6 +22,7 @@ internal object RankPopup {
         maxLevel: Double,
         nickname: String?,
         onFloat: (() -> Unit)? = null,
+        onCompare: (() -> Unit)? = null,
         onCopy: () -> Unit
     ): AlertDialog {
         val density = context.resources.displayMetrics.density
@@ -62,6 +63,7 @@ internal object RankPopup {
             .setView(ScrollView(context).apply { addView(content) })
             .setPositiveButton("DONE", null)
             .apply { if (onFloat != null) setNeutralButton("FLOAT", { _, _ -> onFloat() }) }
+            .apply { if (onCompare != null) setNegativeButton("EVOLUTIONS", { _, _ -> onCompare() }) }
             .create()
         dialog.show()
         dialog.window?.setBackgroundDrawable(
