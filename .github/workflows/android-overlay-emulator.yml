@@ -61,13 +61,13 @@ jobs:
           test -e /dev/kvm
           sudo chmod 666 /dev/kvm
       - name: Cache clean Android 15 emulator snapshot
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         id: avd-cache
         with:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: goivlab-avd-api35-googleapis-v1
+          key: goivlab-avd-api35-googleapis-v2
       - name: Generate one clean emulator snapshot for future builds
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
@@ -79,6 +79,14 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           script: echo "Clean Android 15 emulator snapshot created"
+      - name: Persist emulator setup before UI tests
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: goivlab-avd-api35-googleapis-v2
       - name: Run fast real popup and overlay smoke
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -87,7 +95,7 @@ jobs:
           arch: x86_64
           profile: pixel_6
           force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: bash .github/scripts/run_emulator_tests.sh routine
       - name: Upload emulator test reports
@@ -123,13 +131,13 @@ jobs:
           test -e /dev/kvm
           sudo chmod 666 /dev/kvm
       - name: Cache clean emulator snapshot
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         id: avd-cache
         with:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: goivlab-avd-api${{ matrix.api-level }}-googleapis-v1
+          key: goivlab-avd-api${{ matrix.api-level }}-googleapis-v2
       - name: Generate one clean emulator snapshot
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
@@ -141,6 +149,14 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           script: echo "Clean emulator snapshot created"
+      - name: Persist emulator setup before milestone tests
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: goivlab-avd-api${{ matrix.api-level }}-googleapis-v2
       - name: Run popup, floating overlay and real offline rank integration
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -149,7 +165,7 @@ jobs:
           arch: x86_64
           profile: pixel_6
           force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: bash .github/scripts/run_emulator_tests.sh milestone
       - name: Upload emulator reports for this Android version
