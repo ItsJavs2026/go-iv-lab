@@ -1,0 +1,7603 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "d98f52174e01f8f67414bc6973599788d098c10e",
+  "sourceGameMasterGitBlobSha1": "f5a1c50c9162fac0f0c34bb7a662f995c6506b74",
+  "description": "Pinned PvPoke GO evolution family relations; only exact forms contained in pokemon-stats.json, edges represent evolution possibilities, not guaranteed available evolution for every player.",
+  "entries": [
+    {
+      "id": "abomasnow",
+      "parent": "snover"
+    },
+    {
+      "id": "abomasnow_shadow",
+      "parent": "snover_shadow"
+    },
+    {
+      "id": "abra",
+      "parent": null,
+      "evolutions": [
+        "kadabra"
+      ]
+    },
+    {
+      "id": "abra_shadow",
+      "parent": null,
+      "evolutions": [
+        "kadabra_shadow"
+      ]
+    },
+    {
+      "id": "accelgor",
+      "parent": "shelmet"
+    },
+    {
+      "id": "accelgor_shadow",
+      "parent": "shelmet_shadow"
+    },
+    {
+      "id": "aegislash_blade",
+      "parent": "doublade"
+    },
+    {
+      "id": "aegislash_shield",
+      "parent": "doublade"
+    },
+    {
+      "id": "aggron",
+      "parent": "lairon"
+    },
+    {
+      "id": "aggron_shadow",
+      "parent": "lairon_shadow"
+    },
+    {
+      "id": "aipom",
+      "parent": null,
+      "evolutions": [
+        "ambipom"
+      ]
+    },
+    {
+      "id": "aipom_shadow",
+      "parent": null,
+      "evolutions": [
+        "ambipom_shadow"
+      ]
+    },
+    {
+      "id": "alakazam",
+      "parent": "kadabra"
+    },
+    {
+      "id": "alakazam_shadow",
+      "parent": "kadabra_shadow"
+    },
+    {
+      "id": "alcremie",
+      "parent": "milcery"
+    },
+    {
+      "id": "altaria",
+      "parent": "swablu"
+    },
+    {
+      "id": "altaria_shadow",
+      "parent": "swablu_shadow"
+    },
+    {
+      "id": "amaura",
+      "parent": null,
+      "evolutions": [
+        "aurorus"
+      ]
+    },
+    {
+      "id": "amaura_shadow",
+      "parent": null,
+      "evolutions": [
+        "aurorus_shadow"
+      ]
+    },
+    {
+      "id": "ambipom",
+      "parent": "aipom"
+    },
+    {
+      "id": "ambipom_shadow",
+      "parent": "aipom_shadow"
+    },
+    {
+      "id": "amoonguss",
+      "parent": "foongus"
+    },
+    {
+      "id": "amoonguss_shadow",
+      "parent": "foongus_shadow"
+    },
+    {
+      "id": "ampharos",
+      "parent": "flaaffy"
+    },
+    {
+      "id": "ampharos_shadow",
+      "parent": "flaaffy_shadow"
+    },
+    {
+      "id": "annihilape",
+      "parent": "primeape"
+    },
+    {
+      "id": "annihilape_shadow",
+      "parent": "primeape_shadow"
+    },
+    {
+      "id": "anorith",
+      "parent": null,
+      "evolutions": [
+        "armaldo"
+      ]
+    },
+    {
+      "id": "anorith_shadow",
+      "parent": null,
+      "evolutions": [
+        "armaldo_shadow"
+      ]
+    },
+    {
+      "id": "appletun",
+      "parent": "applin"
+    },
+    {
+      "id": "applin",
+      "parent": null,
+      "evolutions": [
+        "flapple",
+        "appletun",
+        "dipplin"
+      ]
+    },
+    {
+      "id": "araquanid",
+      "parent": "dewpider"
+    },
+    {
+      "id": "araquanid_shadow",
+      "parent": "dewpider_shadow"
+    },
+    {
+      "id": "arbok",
+      "parent": "ekans"
+    },
+    {
+      "id": "arbok_shadow",
+      "parent": "ekans_shadow"
+    },
+    {
+      "id": "arboliva",
+      "parent": "dolliv"
+    },
+    {
+      "id": "arcanine",
+      "parent": "growlithe"
+    },
+    {
+      "id": "arcanine_hisuian",
+      "parent": "growlithe_hisuian"
+    },
+    {
+      "id": "arcanine_shadow",
+      "parent": "growlithe_shadow"
+    },
+    {
+      "id": "archaludon",
+      "parent": "duraludon"
+    },
+    {
+      "id": "archen",
+      "parent": null,
+      "evolutions": [
+        "archeops"
+      ]
+    },
+    {
+      "id": "archen_shadow",
+      "parent": null,
+      "evolutions": [
+        "archeops_shadow"
+      ]
+    },
+    {
+      "id": "archeops",
+      "parent": "archen"
+    },
+    {
+      "id": "archeops_shadow",
+      "parent": "archen_shadow"
+    },
+    {
+      "id": "arctibax",
+      "parent": "frigibax",
+      "evolutions": [
+        "baxcalibur"
+      ]
+    },
+    {
+      "id": "ariados",
+      "parent": "spinarak"
+    },
+    {
+      "id": "armaldo",
+      "parent": "anorith"
+    },
+    {
+      "id": "armaldo_shadow",
+      "parent": "anorith_shadow"
+    },
+    {
+      "id": "armarouge",
+      "parent": "charcadet"
+    },
+    {
+      "id": "aromatisse",
+      "parent": "spritzee"
+    },
+    {
+      "id": "aron",
+      "parent": null,
+      "evolutions": [
+        "lairon"
+      ]
+    },
+    {
+      "id": "aron_shadow",
+      "parent": null,
+      "evolutions": [
+        "lairon_shadow"
+      ]
+    },
+    {
+      "id": "arrokuda",
+      "parent": null,
+      "evolutions": [
+        "barraskewda"
+      ]
+    },
+    {
+      "id": "aurorus",
+      "parent": "amaura"
+    },
+    {
+      "id": "aurorus_shadow",
+      "parent": "amaura_shadow"
+    },
+    {
+      "id": "avalugg",
+      "parent": "bergmite"
+    },
+    {
+      "id": "avalugg_hisuian",
+      "parent": "bergmite"
+    },
+    {
+      "id": "axew",
+      "parent": null,
+      "evolutions": [
+        "fraxure"
+      ]
+    },
+    {
+      "id": "axew_shadow",
+      "parent": null,
+      "evolutions": [
+        "fraxure_shadow"
+      ]
+    },
+    {
+      "id": "azumarill",
+      "parent": "marill"
+    },
+    {
+      "id": "azurill",
+      "parent": null,
+      "evolutions": [
+        "marill"
+      ]
+    },
+    {
+      "id": "bagon",
+      "parent": null,
+      "evolutions": [
+        "shelgon"
+      ]
+    },
+    {
+      "id": "bagon_shadow",
+      "parent": null,
+      "evolutions": [
+        "shelgon_shadow"
+      ]
+    },
+    {
+      "id": "baltoy",
+      "parent": null,
+      "evolutions": [
+        "claydol"
+      ]
+    },
+    {
+      "id": "baltoy_shadow",
+      "parent": null,
+      "evolutions": [
+        "claydol_shadow"
+      ]
+    },
+    {
+      "id": "banette",
+      "parent": "shuppet"
+    },
+    {
+      "id": "banette_shadow",
+      "parent": "shuppet_shadow"
+    },
+    {
+      "id": "barbaracle",
+      "parent": "binacle"
+    },
+    {
+      "id": "barboach",
+      "parent": null,
+      "evolutions": [
+        "whiscash"
+      ]
+    },
+    {
+      "id": "barboach_shadow",
+      "parent": null,
+      "evolutions": [
+        "whiscash_shadow"
+      ]
+    },
+    {
+      "id": "barraskewda",
+      "parent": "arrokuda"
+    },
+    {
+      "id": "basculegion_female",
+      "parent": "basculin"
+    },
+    {
+      "id": "basculegion_male",
+      "parent": "basculin"
+    },
+    {
+      "id": "basculin",
+      "parent": null,
+      "evolutions": [
+        "basculegion_female",
+        "basculegion_male"
+      ]
+    },
+    {
+      "id": "bastiodon",
+      "parent": "shieldon"
+    },
+    {
+      "id": "bastiodon_shadow",
+      "parent": "shieldon_shadow"
+    },
+    {
+      "id": "baxcalibur",
+      "parent": "arctibax"
+    },
+    {
+      "id": "bayleef",
+      "parent": "chikorita",
+      "evolutions": [
+        "meganium"
+      ]
+    },
+    {
+      "id": "bayleef_shadow",
+      "parent": "chikorita_shadow",
+      "evolutions": [
+        "meganium_shadow"
+      ]
+    },
+    {
+      "id": "beartic",
+      "parent": "cubchoo"
+    },
+    {
+      "id": "beautifly",
+      "parent": "silcoon"
+    },
+    {
+      "id": "beedrill",
+      "parent": "kakuna"
+    },
+    {
+      "id": "beedrill_shadow",
+      "parent": "kakuna_shadow"
+    },
+    {
+      "id": "beheeyem",
+      "parent": "elgyem"
+    },
+    {
+      "id": "beldum",
+      "parent": null,
+      "evolutions": [
+        "metang"
+      ]
+    },
+    {
+      "id": "beldum_shadow",
+      "parent": null,
+      "evolutions": [
+        "metang_shadow"
+      ]
+    },
+    {
+      "id": "bellibolt",
+      "parent": "tadbulb"
+    },
+    {
+      "id": "bellossom",
+      "parent": "gloom"
+    },
+    {
+      "id": "bellossom_shadow",
+      "parent": "gloom_shadow"
+    },
+    {
+      "id": "bellsprout",
+      "parent": null,
+      "evolutions": [
+        "weepinbell"
+      ]
+    },
+    {
+      "id": "bellsprout_shadow",
+      "parent": null,
+      "evolutions": [
+        "weepinbell_shadow"
+      ]
+    },
+    {
+      "id": "bergmite",
+      "parent": null,
+      "evolutions": [
+        "avalugg"
+      ]
+    },
+    {
+      "id": "bewear",
+      "parent": "stufful"
+    },
+    {
+      "id": "bewear_shadow",
+      "parent": "stufful_shadow"
+    },
+    {
+      "id": "bibarel",
+      "parent": "bidoof"
+    },
+    {
+      "id": "bibarel_shadow",
+      "parent": "bidoof_shadow"
+    },
+    {
+      "id": "bidoof",
+      "parent": null,
+      "evolutions": [
+        "bibarel"
+      ]
+    },
+    {
+      "id": "bidoof_shadow",
+      "parent": null,
+      "evolutions": [
+        "bibarel_shadow"
+      ]
+    },
+    {
+      "id": "binacle",
+      "parent": null,
+      "evolutions": [
+        "barbaracle"
+      ]
+    },
+    {
+      "id": "bisharp",
+      "parent": "pawniard",
+      "evolutions": [
+        "kingambit"
+      ]
+    },
+    {
+      "id": "blastoise",
+      "parent": "wartortle"
+    },
+    {
+      "id": "blastoise_shadow",
+      "parent": "wartortle_shadow"
+    },
+    {
+      "id": "blaziken",
+      "parent": "combusken"
+    },
+    {
+      "id": "blaziken_shadow",
+      "parent": "combusken_shadow"
+    },
+    {
+      "id": "blipbug",
+      "parent": null,
+      "evolutions": [
+        "dottler"
+      ]
+    },
+    {
+      "id": "blissey",
+      "parent": "chansey"
+    },
+    {
+      "id": "blitzle",
+      "parent": null,
+      "evolutions": [
+        "zebstrika"
+      ]
+    },
+    {
+      "id": "blitzle_shadow",
+      "parent": null,
+      "evolutions": [
+        "zebstrika_shadow"
+      ]
+    },
+    {
+      "id": "boldore",
+      "parent": "roggenrola",
+      "evolutions": [
+        "gigalith"
+      ]
+    },
+    {
+      "id": "boldore_shadow",
+      "parent": "roggenrola_shadow",
+      "evolutions": [
+        "gigalith_shadow"
+      ]
+    },
+    {
+      "id": "boltund",
+      "parent": "yamper"
+    },
+    {
+      "id": "bonsly",
+      "parent": null,
+      "evolutions": [
+        "sudowoodo"
+      ]
+    },
+    {
+      "id": "bounsweet",
+      "parent": null,
+      "evolutions": [
+        "steenee"
+      ]
+    },
+    {
+      "id": "braixen",
+      "parent": "fennekin",
+      "evolutions": [
+        "delphox"
+      ]
+    },
+    {
+      "id": "braixen_shadow",
+      "parent": "fennekin_shadow",
+      "evolutions": [
+        "delphox_shadow"
+      ]
+    },
+    {
+      "id": "brambleghast",
+      "parent": "bramblin"
+    },
+    {
+      "id": "bramblin",
+      "parent": null,
+      "evolutions": [
+        "brambleghast"
+      ]
+    },
+    {
+      "id": "braviary",
+      "parent": "rufflet"
+    },
+    {
+      "id": "braviary_hisuian",
+      "parent": "rufflet"
+    },
+    {
+      "id": "breloom",
+      "parent": "shroomish"
+    },
+    {
+      "id": "brionne",
+      "parent": "popplio",
+      "evolutions": [
+        "primarina"
+      ]
+    },
+    {
+      "id": "bronzong",
+      "parent": "bronzor"
+    },
+    {
+      "id": "bronzor",
+      "parent": null,
+      "evolutions": [
+        "bronzong"
+      ]
+    },
+    {
+      "id": "budew",
+      "parent": null,
+      "evolutions": [
+        "roselia"
+      ]
+    },
+    {
+      "id": "buizel",
+      "parent": null,
+      "evolutions": [
+        "floatzel"
+      ]
+    },
+    {
+      "id": "bulbasaur",
+      "parent": null,
+      "evolutions": [
+        "ivysaur"
+      ]
+    },
+    {
+      "id": "bulbasaur_shadow",
+      "parent": null,
+      "evolutions": [
+        "ivysaur_shadow"
+      ]
+    },
+    {
+      "id": "buneary",
+      "parent": null,
+      "evolutions": [
+        "lopunny"
+      ]
+    },
+    {
+      "id": "bunnelby",
+      "parent": null,
+      "evolutions": [
+        "diggersby"
+      ]
+    },
+    {
+      "id": "bunnelby_shadow",
+      "parent": null,
+      "evolutions": [
+        "diggersby_shadow"
+      ]
+    },
+    {
+      "id": "burmy_plant",
+      "parent": null,
+      "evolutions": [
+        "wormadam_plant",
+        "mothim"
+      ]
+    },
+    {
+      "id": "burmy_sandy",
+      "parent": null,
+      "evolutions": [
+        "wormadam_sandy",
+        "mothim"
+      ]
+    },
+    {
+      "id": "burmy_trash",
+      "parent": null,
+      "evolutions": [
+        "wormadam_trash",
+        "mothim"
+      ]
+    },
+    {
+      "id": "butterfree",
+      "parent": "metapod"
+    },
+    {
+      "id": "butterfree_shadow",
+      "parent": "metapod_shadow"
+    },
+    {
+      "id": "cacnea",
+      "parent": null,
+      "evolutions": [
+        "cacturne"
+      ]
+    },
+    {
+      "id": "cacnea_shadow",
+      "parent": null,
+      "evolutions": [
+        "cacturne_shadow"
+      ]
+    },
+    {
+      "id": "cacturne",
+      "parent": "cacnea"
+    },
+    {
+      "id": "cacturne_shadow",
+      "parent": "cacnea_shadow"
+    },
+    {
+      "id": "camerupt",
+      "parent": "numel"
+    },
+    {
+      "id": "camerupt_shadow",
+      "parent": "numel_shadow"
+    },
+    {
+      "id": "capsakid",
+      "parent": null,
+      "evolutions": [
+        "scovillain"
+      ]
+    },
+    {
+      "id": "carkol",
+      "parent": "boltund",
+      "evolutions": [
+        "coalossal"
+      ]
+    },
+    {
+      "id": "carracosta",
+      "parent": "tirtouga"
+    },
+    {
+      "id": "carracosta_shadow",
+      "parent": "tirtouga_shadow"
+    },
+    {
+      "id": "carvanha",
+      "parent": null,
+      "evolutions": [
+        "sharpedo"
+      ]
+    },
+    {
+      "id": "carvanha_shadow",
+      "parent": null,
+      "evolutions": [
+        "sharpedo_shadow"
+      ]
+    },
+    {
+      "id": "cascoon",
+      "parent": "wurmple",
+      "evolutions": [
+        "dustox"
+      ]
+    },
+    {
+      "id": "caterpie",
+      "parent": null,
+      "evolutions": [
+        "metapod"
+      ]
+    },
+    {
+      "id": "caterpie_shadow",
+      "parent": null,
+      "evolutions": [
+        "metapod_shadow"
+      ]
+    },
+    {
+      "id": "centiskorch",
+      "parent": "sizzlipede"
+    },
+    {
+      "id": "ceruledge",
+      "parent": "charcadet"
+    },
+    {
+      "id": "cetitan",
+      "parent": "cetoddle"
+    },
+    {
+      "id": "cetoddle",
+      "parent": null,
+      "evolutions": [
+        "cetitan"
+      ]
+    },
+    {
+      "id": "chandelure",
+      "parent": "lampent"
+    },
+    {
+      "id": "chandelure_shadow",
+      "parent": "lampent_shadow"
+    },
+    {
+      "id": "chansey",
+      "parent": "happiny",
+      "evolutions": [
+        "blissey"
+      ]
+    },
+    {
+      "id": "charcadet",
+      "parent": null,
+      "evolutions": [
+        "armarouge",
+        "ceruledge"
+      ]
+    },
+    {
+      "id": "charizard",
+      "parent": "charmeleon"
+    },
+    {
+      "id": "charizard_shadow",
+      "parent": "charmeleon_shadow"
+    },
+    {
+      "id": "charjabug",
+      "parent": "grubbin",
+      "evolutions": [
+        "vikavolt"
+      ]
+    },
+    {
+      "id": "charjabug_shadow",
+      "parent": "grubbin_shadow",
+      "evolutions": [
+        "vikavolt_shadow"
+      ]
+    },
+    {
+      "id": "charmander",
+      "parent": null,
+      "evolutions": [
+        "charmeleon"
+      ]
+    },
+    {
+      "id": "charmander_shadow",
+      "parent": null,
+      "evolutions": [
+        "charmeleon_shadow"
+      ]
+    },
+    {
+      "id": "charmeleon",
+      "parent": "charmander",
+      "evolutions": [
+        "charizard"
+      ]
+    },
+    {
+      "id": "charmeleon_shadow",
+      "parent": "charmander_shadow",
+      "evolutions": [
+        "charizard_shadow"
+      ]
+    },
+    {
+      "id": "cherrim_overcast",
+      "parent": "cherubi"
+    },
+    {
+      "id": "cherrim_sunny",
+      "parent": "cherubi"
+    },
+    {
+      "id": "cherubi",
+      "parent": null,
+      "evolutions": [
+        "cherrim_overcast",
+        "cherrim_sunny"
+      ]
+    },
+    {
+      "id": "chesnaught",
+      "parent": "quilladin"
+    },
+    {
+      "id": "chesnaught_shadow",
+      "parent": "quilladin_shadow"
+    },
+    {
+      "id": "chespin",
+      "parent": null,
+      "evolutions": [
+        "quilladin"
+      ]
+    },
+    {
+      "id": "chespin_shadow",
+      "parent": null,
+      "evolutions": [
+        "quilladin_shadow"
+      ]
+    },
+    {
+      "id": "chewtle",
+      "parent": null,
+      "evolutions": [
+        "drednaw"
+      ]
+    },
+    {
+      "id": "chikorita",
+      "parent": null,
+      "evolutions": [
+        "bayleef"
+      ]
+    },
+    {
+      "id": "chikorita_shadow",
+      "parent": null,
+      "evolutions": [
+        "bayleef_shadow"
+      ]
+    },
+    {
+      "id": "chimchar",
+      "parent": null,
+      "evolutions": [
+        "monferno"
+      ]
+    },
+    {
+      "id": "chimchar_shadow",
+      "parent": null,
+      "evolutions": [
+        "monferno_shadow"
+      ]
+    },
+    {
+      "id": "chimecho",
+      "parent": "chingling"
+    },
+    {
+      "id": "chinchou",
+      "parent": null,
+      "evolutions": [
+        "lanturn"
+      ]
+    },
+    {
+      "id": "chingling",
+      "parent": null,
+      "evolutions": [
+        "chimecho"
+      ]
+    },
+    {
+      "id": "cinccino",
+      "parent": "minccino"
+    },
+    {
+      "id": "cinderace",
+      "parent": "raboot"
+    },
+    {
+      "id": "clamperl",
+      "parent": null,
+      "evolutions": [
+        "huntail",
+        "gorebyss"
+      ]
+    },
+    {
+      "id": "clauncher",
+      "parent": null,
+      "evolutions": [
+        "clawitzer"
+      ]
+    },
+    {
+      "id": "clawitzer",
+      "parent": "clauncher"
+    },
+    {
+      "id": "claydol",
+      "parent": "baltoy"
+    },
+    {
+      "id": "claydol_shadow",
+      "parent": "baltoy_shadow"
+    },
+    {
+      "id": "clefable",
+      "parent": "clefairy"
+    },
+    {
+      "id": "clefairy",
+      "parent": "cleffa",
+      "evolutions": [
+        "clefable"
+      ]
+    },
+    {
+      "id": "cleffa",
+      "parent": null,
+      "evolutions": [
+        "clefairy"
+      ]
+    },
+    {
+      "id": "clobbopus",
+      "parent": null,
+      "evolutions": [
+        "grapploct"
+      ]
+    },
+    {
+      "id": "clodsire",
+      "parent": "wooper_paldean"
+    },
+    {
+      "id": "cloyster",
+      "parent": "shellder"
+    },
+    {
+      "id": "cloyster_shadow",
+      "parent": "shellder_shadow"
+    },
+    {
+      "id": "coalossal",
+      "parent": "rolycoly"
+    },
+    {
+      "id": "cofagrigus",
+      "parent": "yamask"
+    },
+    {
+      "id": "cofagrigus_shadow",
+      "parent": "yamask_shadow"
+    },
+    {
+      "id": "combee",
+      "parent": null,
+      "evolutions": [
+        "vespiquen"
+      ]
+    },
+    {
+      "id": "combusken",
+      "parent": "torchic",
+      "evolutions": [
+        "blaziken"
+      ]
+    },
+    {
+      "id": "combusken_shadow",
+      "parent": "torchic_shadow",
+      "evolutions": [
+        "blaziken_shadow"
+      ]
+    },
+    {
+      "id": "conkeldurr",
+      "parent": "gurdurr"
+    },
+    {
+      "id": "conkeldurr_shadow",
+      "parent": "gurdurr_shadow"
+    },
+    {
+      "id": "copperajah",
+      "parent": "cufant"
+    },
+    {
+      "id": "corphish",
+      "parent": null,
+      "evolutions": [
+        "crawdaunt"
+      ]
+    },
+    {
+      "id": "corphish_shadow",
+      "parent": null,
+      "evolutions": [
+        "crawdaunt_shadow"
+      ]
+    },
+    {
+      "id": "corviknight",
+      "parent": "corvisquire"
+    },
+    {
+      "id": "corviknight_shadow",
+      "parent": "corvisquire_shadow"
+    },
+    {
+      "id": "corvisquire",
+      "parent": "rookidee",
+      "evolutions": [
+        "corviknight"
+      ]
+    },
+    {
+      "id": "corvisquire_shadow",
+      "parent": "rookidee_shadow",
+      "evolutions": [
+        "corviknight_shadow"
+      ]
+    },
+    {
+      "id": "cosmoem",
+      "parent": "cosmog",
+      "evolutions": [
+        "solgaleo",
+        "lunala"
+      ]
+    },
+    {
+      "id": "cosmog",
+      "parent": null,
+      "evolutions": [
+        "cosmoem"
+      ]
+    },
+    {
+      "id": "cottonee",
+      "parent": null,
+      "evolutions": [
+        "whimsicott"
+      ]
+    },
+    {
+      "id": "crabominable",
+      "parent": "crabrawler"
+    },
+    {
+      "id": "crabrawler",
+      "parent": null,
+      "evolutions": [
+        "crabominable"
+      ]
+    },
+    {
+      "id": "cradily",
+      "parent": "lileep"
+    },
+    {
+      "id": "cradily_shadow",
+      "parent": "lileep_shadow"
+    },
+    {
+      "id": "cranidos",
+      "parent": null,
+      "evolutions": [
+        "rampardos"
+      ]
+    },
+    {
+      "id": "cranidos_shadow",
+      "parent": null,
+      "evolutions": [
+        "rampardos_shadow"
+      ]
+    },
+    {
+      "id": "crawdaunt",
+      "parent": "corphish"
+    },
+    {
+      "id": "crawdaunt_shadow",
+      "parent": "corphish_shadow"
+    },
+    {
+      "id": "croagunk",
+      "parent": null,
+      "evolutions": [
+        "toxicroak"
+      ]
+    },
+    {
+      "id": "croagunk_shadow",
+      "parent": null,
+      "evolutions": [
+        "toxicroak_shadow"
+      ]
+    },
+    {
+      "id": "crobat",
+      "parent": "golbat"
+    },
+    {
+      "id": "crobat_shadow",
+      "parent": "golbat_shadow"
+    },
+    {
+      "id": "crocalor",
+      "parent": "fuecoco",
+      "evolutions": [
+        "skeledirge"
+      ]
+    },
+    {
+      "id": "croconaw",
+      "parent": "totodile",
+      "evolutions": [
+        "feraligatr"
+      ]
+    },
+    {
+      "id": "croconaw_shadow",
+      "parent": "totodile_shadow",
+      "evolutions": [
+        "feraligatr_shadow"
+      ]
+    },
+    {
+      "id": "crustle",
+      "parent": "dwebble"
+    },
+    {
+      "id": "crustle_shadow",
+      "parent": "dwebble_shadow"
+    },
+    {
+      "id": "cubchoo",
+      "parent": null,
+      "evolutions": [
+        "beartic"
+      ]
+    },
+    {
+      "id": "cubone",
+      "parent": null,
+      "evolutions": [
+        "marowak",
+        "marowak_alolan"
+      ]
+    },
+    {
+      "id": "cubone_shadow",
+      "parent": null,
+      "evolutions": [
+        "marowak_shadow",
+        "marowak_alolan_shadow"
+      ]
+    },
+    {
+      "id": "cufant",
+      "parent": null,
+      "evolutions": [
+        "copperajah"
+      ]
+    },
+    {
+      "id": "cursola",
+      "parent": "corsola"
+    },
+    {
+      "id": "cutiefly",
+      "parent": null,
+      "evolutions": [
+        "ribombee"
+      ]
+    },
+    {
+      "id": "cyndaquil",
+      "parent": null,
+      "evolutions": [
+        "quilava"
+      ]
+    },
+    {
+      "id": "cyndaquil_shadow",
+      "parent": null,
+      "evolutions": [
+        "quilava_shadow"
+      ]
+    },
+    {
+      "id": "dachsbun",
+      "parent": "fidough"
+    },
+    {
+      "id": "darmanitan_galarian_standard",
+      "parent": "darumaka"
+    },
+    {
+      "id": "darmanitan_galarian_zen",
+      "parent": "darumaka"
+    },
+    {
+      "id": "darmanitan_standard",
+      "parent": "darumaka"
+    },
+    {
+      "id": "darmanitan_standard_shadow",
+      "parent": "darumaka_shadow"
+    },
+    {
+      "id": "darmanitan_zen",
+      "parent": "darumaka"
+    },
+    {
+      "id": "dartrix",
+      "parent": "rowlet",
+      "evolutions": [
+        "decidueye"
+      ]
+    },
+    {
+      "id": "darumaka",
+      "parent": null,
+      "evolutions": [
+        "darmanitan_standard"
+      ]
+    },
+    {
+      "id": "darumaka_galarian",
+      "parent": null,
+      "evolutions": [
+        "darmanitan_galarian_standard"
+      ]
+    },
+    {
+      "id": "darumaka_shadow",
+      "parent": null,
+      "evolutions": [
+        "darmanitan_standard_shadow"
+      ]
+    },
+    {
+      "id": "decidueye",
+      "parent": "dartrix"
+    },
+    {
+      "id": "decidueye_hisuian",
+      "parent": "dartrix"
+    },
+    {
+      "id": "deerling",
+      "parent": null,
+      "evolutions": [
+        "sawsbuck"
+      ]
+    },
+    {
+      "id": "deino",
+      "parent": null,
+      "evolutions": [
+        "zweilous"
+      ]
+    },
+    {
+      "id": "deino_shadow",
+      "parent": null,
+      "evolutions": [
+        "zweilous_shadow"
+      ]
+    },
+    {
+      "id": "delcatty",
+      "parent": "skitty"
+    },
+    {
+      "id": "delphox",
+      "parent": "braixen"
+    },
+    {
+      "id": "delphox_shadow",
+      "parent": "braixen_shadow"
+    },
+    {
+      "id": "dewgong",
+      "parent": "seel"
+    },
+    {
+      "id": "dewgong_shadow",
+      "parent": "seel_shadow"
+    },
+    {
+      "id": "dewott",
+      "parent": "oshawott",
+      "evolutions": [
+        "samurott"
+      ]
+    },
+    {
+      "id": "dewott_shadow",
+      "parent": "oshawott_shadow",
+      "evolutions": [
+        "samurott_shadow"
+      ]
+    },
+    {
+      "id": "dewpider",
+      "parent": null,
+      "evolutions": [
+        "araquanid"
+      ]
+    },
+    {
+      "id": "dewpider_shadow",
+      "parent": null,
+      "evolutions": [
+        "araquanid_shadow"
+      ]
+    },
+    {
+      "id": "diggersby",
+      "parent": "bunnelby"
+    },
+    {
+      "id": "diggersby_shadow",
+      "parent": "bunnelby_shadow"
+    },
+    {
+      "id": "diglett",
+      "parent": null,
+      "evolutions": [
+        "dugtrio"
+      ]
+    },
+    {
+      "id": "diglett_alolan",
+      "parent": null,
+      "evolutions": [
+        "dugtrio_alolan"
+      ]
+    },
+    {
+      "id": "diglett_alolan_shadow",
+      "parent": null,
+      "evolutions": [
+        "dugtrio_alolan_shadow"
+      ]
+    },
+    {
+      "id": "diglett_shadow",
+      "parent": null,
+      "evolutions": [
+        "dugtrio_shadow"
+      ]
+    },
+    {
+      "id": "dipplin",
+      "parent": "applin",
+      "evolutions": [
+        "hydrapple"
+      ]
+    },
+    {
+      "id": "dodrio",
+      "parent": "doduo"
+    },
+    {
+      "id": "doduo",
+      "parent": null,
+      "evolutions": [
+        "dodrio"
+      ]
+    },
+    {
+      "id": "dolliv",
+      "parent": "smoliv",
+      "evolutions": [
+        "arboliva"
+      ]
+    },
+    {
+      "id": "donphan",
+      "parent": "phanpy"
+    },
+    {
+      "id": "donphan_shadow",
+      "parent": "phanpy_shadow"
+    },
+    {
+      "id": "dottler",
+      "parent": "blipbug",
+      "evolutions": [
+        "orbeetle"
+      ]
+    },
+    {
+      "id": "doublade",
+      "parent": "honedge",
+      "evolutions": [
+        "aegislash_shield"
+      ]
+    },
+    {
+      "id": "dragalge",
+      "parent": "skrelp"
+    },
+    {
+      "id": "dragapult",
+      "parent": "drakloak"
+    },
+    {
+      "id": "dragonair",
+      "parent": "dratini",
+      "evolutions": [
+        "dragonite"
+      ]
+    },
+    {
+      "id": "dragonair_shadow",
+      "parent": "dratini_shadow",
+      "evolutions": [
+        "dragonite_shadow"
+      ]
+    },
+    {
+      "id": "dragonite",
+      "parent": "dragonair"
+    },
+    {
+      "id": "dragonite_shadow",
+      "parent": "dragonair_shadow"
+    },
+    {
+      "id": "drakloak",
+      "parent": "dreepy",
+      "evolutions": [
+        "dragapult"
+      ]
+    },
+    {
+      "id": "drapion",
+      "parent": "skorupi"
+    },
+    {
+      "id": "drapion_shadow",
+      "parent": "skorupi_shadow"
+    },
+    {
+      "id": "dratini",
+      "parent": null,
+      "evolutions": [
+        "dragonair"
+      ]
+    },
+    {
+      "id": "dratini_shadow",
+      "parent": null,
+      "evolutions": [
+        "dragonair_shadow"
+      ]
+    },
+    {
+      "id": "drednaw",
+      "parent": "chewtle"
+    },
+    {
+      "id": "dreepy",
+      "parent": null,
+      "evolutions": [
+        "drakloak"
+      ]
+    },
+    {
+      "id": "drifblim",
+      "parent": "drifloon"
+    },
+    {
+      "id": "drifblim_shadow",
+      "parent": "drifloon_shadow"
+    },
+    {
+      "id": "drifloon",
+      "parent": null,
+      "evolutions": [
+        "drifblim"
+      ]
+    },
+    {
+      "id": "drifloon_shadow",
+      "parent": null,
+      "evolutions": [
+        "drifblim_shadow"
+      ]
+    },
+    {
+      "id": "drilbur",
+      "parent": null,
+      "evolutions": [
+        "excadrill"
+      ]
+    },
+    {
+      "id": "drilbur_shadow",
+      "parent": null,
+      "evolutions": [
+        "excadrill_shadow"
+      ]
+    },
+    {
+      "id": "drizzile",
+      "parent": "sobble",
+      "evolutions": [
+        "inteleon"
+      ]
+    },
+    {
+      "id": "drowzee",
+      "parent": null,
+      "evolutions": [
+        "hypno"
+      ]
+    },
+    {
+      "id": "drowzee_shadow",
+      "parent": null,
+      "evolutions": [
+        "hypno_shadow"
+      ]
+    },
+    {
+      "id": "dubwool",
+      "parent": "wooloo"
+    },
+    {
+      "id": "ducklett",
+      "parent": null,
+      "evolutions": [
+        "swanna"
+      ]
+    },
+    {
+      "id": "ducklett_shadow",
+      "parent": null,
+      "evolutions": [
+        "swanna_shadow"
+      ]
+    },
+    {
+      "id": "dudunsparce",
+      "parent": "dunsparce"
+    },
+    {
+      "id": "dugtrio",
+      "parent": "diglett"
+    },
+    {
+      "id": "dugtrio_alolan",
+      "parent": "diglett_alolan"
+    },
+    {
+      "id": "dugtrio_alolan_shadow",
+      "parent": "diglett_alolan_shadow"
+    },
+    {
+      "id": "dugtrio_shadow",
+      "parent": "diglett_shadow"
+    },
+    {
+      "id": "dunsparce",
+      "parent": null,
+      "evolutions": [
+        "dudunsparce"
+      ]
+    },
+    {
+      "id": "duosion",
+      "parent": "solosis",
+      "evolutions": [
+        "reuniclus"
+      ]
+    },
+    {
+      "id": "duosion_shadow",
+      "parent": "solosis_shadow",
+      "evolutions": [
+        "reuniclus_shadow"
+      ]
+    },
+    {
+      "id": "duraludon",
+      "parent": null,
+      "evolutions": [
+        "archaludon"
+      ]
+    },
+    {
+      "id": "dusclops",
+      "parent": "duskull",
+      "evolutions": [
+        "dusknoir"
+      ]
+    },
+    {
+      "id": "dusclops_shadow",
+      "parent": "duskull_shadow",
+      "evolutions": [
+        "dusknoir_shadow"
+      ]
+    },
+    {
+      "id": "dusknoir",
+      "parent": "dusclops"
+    },
+    {
+      "id": "dusknoir_shadow",
+      "parent": "dusclops_shadow"
+    },
+    {
+      "id": "duskull",
+      "parent": null,
+      "evolutions": [
+        "dusclops"
+      ]
+    },
+    {
+      "id": "duskull_shadow",
+      "parent": null,
+      "evolutions": [
+        "dusclops_shadow"
+      ]
+    },
+    {
+      "id": "dustox",
+      "parent": "cascoon"
+    },
+    {
+      "id": "dwebble",
+      "parent": null,
+      "evolutions": [
+        "crustle"
+      ]
+    },
+    {
+      "id": "dwebble_shadow",
+      "parent": null,
+      "evolutions": [
+        "crustle_shadow"
+      ]
+    },
+    {
+      "id": "eelektrik",
+      "parent": "tynamo",
+      "evolutions": [
+        "eelektross"
+      ]
+    },
+    {
+      "id": "eelektross",
+      "parent": "eelektrik"
+    },
+    {
+      "id": "eevee",
+      "parent": null,
+      "evolutions": [
+        "vaporeon",
+        "jolteon",
+        "flareon",
+        "espeon",
+        "umbreon",
+        "leafeon",
+        "glaceon",
+        "sylveon"
+      ]
+    },
+    {
+      "id": "ekans",
+      "parent": null,
+      "evolutions": [
+        "arbok"
+      ]
+    },
+    {
+      "id": "ekans_shadow",
+      "parent": null,
+      "evolutions": [
+        "arbok_shadow"
+      ]
+    },
+    {
+      "id": "eldegoss",
+      "parent": "gossifleur"
+    },
+    {
+      "id": "electabuzz",
+      "parent": "elekid",
+      "evolutions": [
+        "electivire"
+      ]
+    },
+    {
+      "id": "electabuzz_shadow",
+      "parent": "elekid",
+      "evolutions": [
+        "electivire_shadow"
+      ]
+    },
+    {
+      "id": "electivire",
+      "parent": "electabuzz"
+    },
+    {
+      "id": "electivire_shadow",
+      "parent": "electabuzz_shadow"
+    },
+    {
+      "id": "electrike",
+      "parent": null,
+      "evolutions": [
+        "manectric"
+      ]
+    },
+    {
+      "id": "electrike_shadow",
+      "parent": null,
+      "evolutions": [
+        "manectric_shadow"
+      ]
+    },
+    {
+      "id": "electrode",
+      "parent": "voltorb"
+    },
+    {
+      "id": "electrode_hisuian",
+      "parent": "voltorb_hisuian"
+    },
+    {
+      "id": "electrode_shadow",
+      "parent": "voltorb_shadow"
+    },
+    {
+      "id": "elekid",
+      "parent": null,
+      "evolutions": [
+        "electabuzz"
+      ]
+    },
+    {
+      "id": "elgyem",
+      "parent": null,
+      "evolutions": [
+        "beheeyem"
+      ]
+    },
+    {
+      "id": "emboar",
+      "parent": "pignite"
+    },
+    {
+      "id": "emboar_shadow",
+      "parent": "pignite_shadow"
+    },
+    {
+      "id": "empoleon",
+      "parent": "prinplup"
+    },
+    {
+      "id": "empoleon_shadow",
+      "parent": "prinplup_shadow"
+    },
+    {
+      "id": "escavalier",
+      "parent": "karrablast"
+    },
+    {
+      "id": "escavalier_shadow",
+      "parent": "karrablast_shadow"
+    },
+    {
+      "id": "espathra",
+      "parent": "flittle"
+    },
+    {
+      "id": "espeon",
+      "parent": "eevee"
+    },
+    {
+      "id": "espurr",
+      "parent": null,
+      "evolutions": [
+        "meowstic",
+        "meowstic"
+      ]
+    },
+    {
+      "id": "excadrill",
+      "parent": "drilbur"
+    },
+    {
+      "id": "excadrill_shadow",
+      "parent": "drilbur_shadow"
+    },
+    {
+      "id": "exeggcute",
+      "parent": null,
+      "evolutions": [
+        "exeggutor"
+      ]
+    },
+    {
+      "id": "exeggcute_shadow",
+      "parent": null,
+      "evolutions": [
+        "exeggutor_shadow"
+      ]
+    },
+    {
+      "id": "exeggutor",
+      "parent": "exeggcute"
+    },
+    {
+      "id": "exeggutor_alolan",
+      "parent": "exeggcute"
+    },
+    {
+      "id": "exeggutor_alolan_shadow",
+      "parent": "exeggcute_shadow"
+    },
+    {
+      "id": "exeggutor_shadow",
+      "parent": "exeggcute_shadow"
+    },
+    {
+      "id": "exploud",
+      "parent": "loudred"
+    },
+    {
+      "id": "exploud_shadow",
+      "parent": "loudred_shadow"
+    },
+    {
+      "id": "farfetchd_galarian",
+      "parent": null,
+      "evolutions": [
+        "sirfetchd"
+      ]
+    },
+    {
+      "id": "farigiraf",
+      "parent": "girafarig"
+    },
+    {
+      "id": "fearow",
+      "parent": "spearow"
+    },
+    {
+      "id": "feebas",
+      "parent": null,
+      "evolutions": [
+        "milotic"
+      ]
+    },
+    {
+      "id": "feebas_shadow",
+      "parent": null,
+      "evolutions": [
+        "milotic_shadow"
+      ]
+    },
+    {
+      "id": "fennekin",
+      "parent": null,
+      "evolutions": [
+        "braixen"
+      ]
+    },
+    {
+      "id": "fennekin_shadow",
+      "parent": null,
+      "evolutions": [
+        "braixen_shadow"
+      ]
+    },
+    {
+      "id": "feraligatr",
+      "parent": "croconaw"
+    },
+    {
+      "id": "feraligatr_shadow",
+      "parent": "croconaw_shadow"
+    },
+    {
+      "id": "ferroseed",
+      "parent": null,
+      "evolutions": [
+        "ferrothorn"
+      ]
+    },
+    {
+      "id": "ferroseed_shadow",
+      "parent": null,
+      "evolutions": [
+        "ferrothorn_shadow"
+      ]
+    },
+    {
+      "id": "ferrothorn",
+      "parent": "ferroseed"
+    },
+    {
+      "id": "ferrothorn_shadow",
+      "parent": "ferroseed_shadow"
+    },
+    {
+      "id": "fidough",
+      "parent": null,
+      "evolutions": [
+        "dachsbun"
+      ]
+    },
+    {
+      "id": "finizen",
+      "parent": null,
+      "evolutions": [
+        "palafin"
+      ]
+    },
+    {
+      "id": "finneon",
+      "parent": null,
+      "evolutions": [
+        "lumineon"
+      ]
+    },
+    {
+      "id": "flaaffy",
+      "parent": "mareep",
+      "evolutions": [
+        "ampharos"
+      ]
+    },
+    {
+      "id": "flaaffy_shadow",
+      "parent": "mareep_shadow",
+      "evolutions": [
+        "ampharos_shadow"
+      ]
+    },
+    {
+      "id": "flabebe",
+      "parent": null,
+      "evolutions": [
+        "floette"
+      ]
+    },
+    {
+      "id": "flapple",
+      "parent": "applin"
+    },
+    {
+      "id": "flareon",
+      "parent": "eevee"
+    },
+    {
+      "id": "fletchinder",
+      "parent": "fletchling",
+      "evolutions": [
+        "talonflame"
+      ]
+    },
+    {
+      "id": "fletchinder_shadow",
+      "parent": "fletchling_shadow",
+      "evolutions": [
+        "talonflame_shadow"
+      ]
+    },
+    {
+      "id": "fletchling",
+      "parent": null,
+      "evolutions": [
+        "fletchinder"
+      ]
+    },
+    {
+      "id": "fletchling_shadow",
+      "parent": null,
+      "evolutions": [
+        "fletchinder_shadow"
+      ]
+    },
+    {
+      "id": "flittle",
+      "parent": null,
+      "evolutions": [
+        "espathra"
+      ]
+    },
+    {
+      "id": "floatzel",
+      "parent": "buizel"
+    },
+    {
+      "id": "floette",
+      "parent": "flabebe",
+      "evolutions": [
+        "florges"
+      ]
+    },
+    {
+      "id": "floragato",
+      "parent": "sprigatito",
+      "evolutions": [
+        "meowscarada"
+      ]
+    },
+    {
+      "id": "florges",
+      "parent": "floette"
+    },
+    {
+      "id": "flygon",
+      "parent": "vibrava"
+    },
+    {
+      "id": "flygon_shadow",
+      "parent": "vibrava_shadow"
+    },
+    {
+      "id": "fomantis",
+      "parent": null,
+      "evolutions": [
+        "lurantis"
+      ]
+    },
+    {
+      "id": "fomantis_shadow",
+      "parent": null,
+      "evolutions": [
+        "lurantis_shadow"
+      ]
+    },
+    {
+      "id": "foongus",
+      "parent": null,
+      "evolutions": [
+        "amoonguss"
+      ]
+    },
+    {
+      "id": "foongus_shadow",
+      "parent": null,
+      "evolutions": [
+        "amoonguss_shadow"
+      ]
+    },
+    {
+      "id": "forretress",
+      "parent": "pineco"
+    },
+    {
+      "id": "forretress_shadow",
+      "parent": "pineco_shadow"
+    },
+    {
+      "id": "fraxure",
+      "parent": "axew",
+      "evolutions": [
+        "haxorus"
+      ]
+    },
+    {
+      "id": "fraxure_shadow",
+      "parent": "axew_shadow",
+      "evolutions": [
+        "haxorus_shadow"
+      ]
+    },
+    {
+      "id": "frigibax",
+      "parent": null,
+      "evolutions": [
+        "arctibax"
+      ]
+    },
+    {
+      "id": "frillish",
+      "parent": null,
+      "evolutions": [
+        "jellicent"
+      ]
+    },
+    {
+      "id": "froakie",
+      "parent": null,
+      "evolutions": [
+        "frogadier"
+      ]
+    },
+    {
+      "id": "froakie_shadow",
+      "parent": null,
+      "evolutions": [
+        "frogadier_shadow"
+      ]
+    },
+    {
+      "id": "frogadier",
+      "parent": "froakie",
+      "evolutions": [
+        "greninja"
+      ]
+    },
+    {
+      "id": "frogadier_shadow",
+      "parent": "froakie_shadow",
+      "evolutions": [
+        "greninja_shadow"
+      ]
+    },
+    {
+      "id": "froslass",
+      "parent": "snorunt"
+    },
+    {
+      "id": "froslass_shadow",
+      "parent": "snorunt_shadow"
+    },
+    {
+      "id": "frosmoth",
+      "parent": "snom"
+    },
+    {
+      "id": "fuecoco",
+      "parent": null,
+      "evolutions": [
+        "crocalor"
+      ]
+    },
+    {
+      "id": "furret",
+      "parent": "sentret"
+    },
+    {
+      "id": "gabite",
+      "parent": "gible",
+      "evolutions": [
+        "garchomp"
+      ]
+    },
+    {
+      "id": "gabite_shadow",
+      "parent": "gible_shadow",
+      "evolutions": [
+        "garchomp_shadow"
+      ]
+    },
+    {
+      "id": "gallade",
+      "parent": "kirlia"
+    },
+    {
+      "id": "gallade_shadow",
+      "parent": "kirlia_shadow"
+    },
+    {
+      "id": "galvantula",
+      "parent": "joltik"
+    },
+    {
+      "id": "galvantula_shadow",
+      "parent": "joltik_shadow"
+    },
+    {
+      "id": "garbodor",
+      "parent": "trubbish"
+    },
+    {
+      "id": "garbodor_shadow",
+      "parent": "trubbish_shadow"
+    },
+    {
+      "id": "garchomp",
+      "parent": "gabite"
+    },
+    {
+      "id": "garchomp_shadow",
+      "parent": "gabite_shadow"
+    },
+    {
+      "id": "gardevoir",
+      "parent": "kirlia"
+    },
+    {
+      "id": "gardevoir_shadow",
+      "parent": "kirlia_shadow"
+    },
+    {
+      "id": "garganacl",
+      "parent": "naclstack"
+    },
+    {
+      "id": "gastly",
+      "parent": null,
+      "evolutions": [
+        "haunter"
+      ]
+    },
+    {
+      "id": "gastly_shadow",
+      "parent": null,
+      "evolutions": [
+        "haunter_shadow"
+      ]
+    },
+    {
+      "id": "gengar",
+      "parent": "haunter"
+    },
+    {
+      "id": "gengar_shadow",
+      "parent": "haunter_shadow"
+    },
+    {
+      "id": "geodude",
+      "parent": null,
+      "evolutions": [
+        "graveler"
+      ]
+    },
+    {
+      "id": "geodude_alolan",
+      "parent": null,
+      "evolutions": [
+        "graveler_alolan"
+      ]
+    },
+    {
+      "id": "geodude_alolan_shadow",
+      "parent": null,
+      "evolutions": [
+        "graveler_alolan_shadow"
+      ]
+    },
+    {
+      "id": "geodude_shadow",
+      "parent": null,
+      "evolutions": [
+        "graveler_shadow"
+      ]
+    },
+    {
+      "id": "gholdengo",
+      "parent": "gimmighoul"
+    },
+    {
+      "id": "gible",
+      "parent": null,
+      "evolutions": [
+        "gabite"
+      ]
+    },
+    {
+      "id": "gible_shadow",
+      "parent": null,
+      "evolutions": [
+        "gabite_shadow"
+      ]
+    },
+    {
+      "id": "gigalith",
+      "parent": "boldore"
+    },
+    {
+      "id": "gigalith_shadow",
+      "parent": "boldore_shadow"
+    },
+    {
+      "id": "gimmighoul",
+      "parent": null,
+      "evolutions": [
+        "gholdengo"
+      ]
+    },
+    {
+      "id": "girafarig",
+      "parent": null,
+      "evolutions": [
+        "farigiraf"
+      ]
+    },
+    {
+      "id": "glaceon",
+      "parent": "eevee"
+    },
+    {
+      "id": "glalie",
+      "parent": "snorunt"
+    },
+    {
+      "id": "glalie_shadow",
+      "parent": "snorunt_shadow"
+    },
+    {
+      "id": "glameow",
+      "parent": null,
+      "evolutions": [
+        "purugly"
+      ]
+    },
+    {
+      "id": "glameow_shadow",
+      "parent": null,
+      "evolutions": [
+        "purugly_shadow"
+      ]
+    },
+    {
+      "id": "gligar",
+      "parent": null,
+      "evolutions": [
+        "gliscor"
+      ]
+    },
+    {
+      "id": "gligar_shadow",
+      "parent": null,
+      "evolutions": [
+        "gliscor_shadow"
+      ]
+    },
+    {
+      "id": "glimmet",
+      "parent": null,
+      "evolutions": [
+        "glimmora"
+      ]
+    },
+    {
+      "id": "glimmora",
+      "parent": "glimmet"
+    },
+    {
+      "id": "gliscor",
+      "parent": "gligar"
+    },
+    {
+      "id": "gliscor_shadow",
+      "parent": "gligar_shadow"
+    },
+    {
+      "id": "gloom",
+      "parent": "oddish",
+      "evolutions": [
+        "vileplume",
+        "bellossom"
+      ]
+    },
+    {
+      "id": "gloom_shadow",
+      "parent": "oddish_shadow",
+      "evolutions": [
+        "vileplume_shadow",
+        "bellossom_shadow"
+      ]
+    },
+    {
+      "id": "gogoat",
+      "parent": "skiddo"
+    },
+    {
+      "id": "golbat",
+      "parent": "zubat",
+      "evolutions": [
+        "crobat"
+      ]
+    },
+    {
+      "id": "golbat_shadow",
+      "parent": "zubat_shadow",
+      "evolutions": [
+        "crobat_shadow"
+      ]
+    },
+    {
+      "id": "goldeen",
+      "parent": null,
+      "evolutions": [
+        "seaking"
+      ]
+    },
+    {
+      "id": "golduck",
+      "parent": "psyduck"
+    },
+    {
+      "id": "golduck_shadow",
+      "parent": "psyduck_shadow"
+    },
+    {
+      "id": "golem",
+      "parent": "graveler"
+    },
+    {
+      "id": "golem_alolan",
+      "parent": "graveler_alolan"
+    },
+    {
+      "id": "golem_alolan_shadow",
+      "parent": "graveler_alolan_shadow"
+    },
+    {
+      "id": "golem_shadow",
+      "parent": "graveler_shadow"
+    },
+    {
+      "id": "golett",
+      "parent": null,
+      "evolutions": [
+        "golurk"
+      ]
+    },
+    {
+      "id": "golett_shadow",
+      "parent": null,
+      "evolutions": [
+        "golurk_shadow"
+      ]
+    },
+    {
+      "id": "golisopod",
+      "parent": "wimpod"
+    },
+    {
+      "id": "golisopod_shadow",
+      "parent": "wimpod_shadow"
+    },
+    {
+      "id": "golurk",
+      "parent": "golett"
+    },
+    {
+      "id": "golurk_shadow",
+      "parent": "golett_shadow"
+    },
+    {
+      "id": "goodra",
+      "parent": "sliggoo"
+    },
+    {
+      "id": "goodra_hisuian",
+      "parent": "sliggoo"
+    },
+    {
+      "id": "goomy",
+      "parent": null,
+      "evolutions": [
+        "sliggoo"
+      ]
+    },
+    {
+      "id": "gorebyss",
+      "parent": "clamperl"
+    },
+    {
+      "id": "gossifleur",
+      "parent": null,
+      "evolutions": [
+        "eldegoss"
+      ]
+    },
+    {
+      "id": "gothita",
+      "parent": null,
+      "evolutions": [
+        "gothorita"
+      ]
+    },
+    {
+      "id": "gothita_shadow",
+      "parent": null,
+      "evolutions": [
+        "gothorita_shadow"
+      ]
+    },
+    {
+      "id": "gothitelle",
+      "parent": "gothorita"
+    },
+    {
+      "id": "gothitelle_shadow",
+      "parent": "gothorita_shadow"
+    },
+    {
+      "id": "gothorita",
+      "parent": "gothita",
+      "evolutions": [
+        "gothitelle"
+      ]
+    },
+    {
+      "id": "gothorita_shadow",
+      "parent": "gothita_shadow",
+      "evolutions": [
+        "gothitelle_shadow"
+      ]
+    },
+    {
+      "id": "gourgeist_average",
+      "parent": "pumpkaboo_average"
+    },
+    {
+      "id": "gourgeist_large",
+      "parent": "pumpkaboo_large"
+    },
+    {
+      "id": "gourgeist_small",
+      "parent": "pumpkaboo_small"
+    },
+    {
+      "id": "gourgeist_super",
+      "parent": "pumpkaboo_super"
+    },
+    {
+      "id": "grafaiai",
+      "parent": "shroodle"
+    },
+    {
+      "id": "granbull",
+      "parent": "snubbull"
+    },
+    {
+      "id": "granbull_shadow",
+      "parent": "snubbull_shadow"
+    },
+    {
+      "id": "grapploct",
+      "parent": "clobbopus"
+    },
+    {
+      "id": "graveler",
+      "parent": "geodude",
+      "evolutions": [
+        "golem"
+      ]
+    },
+    {
+      "id": "graveler_alolan",
+      "parent": "geodude_alolan",
+      "evolutions": [
+        "golem_alolan"
+      ]
+    },
+    {
+      "id": "graveler_alolan_shadow",
+      "parent": "geodude_alolan_shadow",
+      "evolutions": [
+        "golem_alolan_shadow"
+      ]
+    },
+    {
+      "id": "graveler_shadow",
+      "parent": "geodude_shadow",
+      "evolutions": [
+        "golem_shadow"
+      ]
+    },
+    {
+      "id": "greavard",
+      "parent": null,
+      "evolutions": [
+        "houndstone"
+      ]
+    },
+    {
+      "id": "greedent",
+      "parent": "skwovet"
+    },
+    {
+      "id": "greninja",
+      "parent": "frogadier"
+    },
+    {
+      "id": "greninja_shadow",
+      "parent": "frogadier_shadow"
+    },
+    {
+      "id": "grimer",
+      "parent": null,
+      "evolutions": [
+        "muk"
+      ]
+    },
+    {
+      "id": "grimer_alolan",
+      "parent": null,
+      "evolutions": [
+        "muk_alolan"
+      ]
+    },
+    {
+      "id": "grimer_alolan_shadow",
+      "parent": null,
+      "evolutions": [
+        "muk_alolan_shadow"
+      ]
+    },
+    {
+      "id": "grimer_shadow",
+      "parent": null,
+      "evolutions": [
+        "muk_shadow"
+      ]
+    },
+    {
+      "id": "grimmsnarl",
+      "parent": "morgrem"
+    },
+    {
+      "id": "grookey",
+      "parent": null,
+      "evolutions": [
+        "thwackey"
+      ]
+    },
+    {
+      "id": "grotle",
+      "parent": "turtwig",
+      "evolutions": [
+        "torterra"
+      ]
+    },
+    {
+      "id": "grotle_shadow",
+      "parent": "turtwig_shadow",
+      "evolutions": [
+        "torterra_shadow"
+      ]
+    },
+    {
+      "id": "grovyle",
+      "parent": "treecko",
+      "evolutions": [
+        "sceptile"
+      ]
+    },
+    {
+      "id": "grovyle_shadow",
+      "parent": "treecko_shadow",
+      "evolutions": [
+        "sceptile_shadow"
+      ]
+    },
+    {
+      "id": "growlithe",
+      "parent": null,
+      "evolutions": [
+        "arcanine"
+      ]
+    },
+    {
+      "id": "growlithe_hisuian",
+      "parent": null,
+      "evolutions": [
+        "arcanine_hisuian"
+      ]
+    },
+    {
+      "id": "growlithe_shadow",
+      "parent": null,
+      "evolutions": [
+        "arcanine_shadow"
+      ]
+    },
+    {
+      "id": "grubbin",
+      "parent": null,
+      "evolutions": [
+        "charjabug"
+      ]
+    },
+    {
+      "id": "grubbin_shadow",
+      "parent": null,
+      "evolutions": [
+        "charjabug_shadow"
+      ]
+    },
+    {
+      "id": "grumpig",
+      "parent": "spoink"
+    },
+    {
+      "id": "grumpig_shadow",
+      "parent": "spoink_shadow"
+    },
+    {
+      "id": "gulpin",
+      "parent": null,
+      "evolutions": [
+        "swalot"
+      ]
+    },
+    {
+      "id": "gumshoos",
+      "parent": "yungoos"
+    },
+    {
+      "id": "gurdurr",
+      "parent": "timburr",
+      "evolutions": [
+        "conkeldurr"
+      ]
+    },
+    {
+      "id": "gurdurr_shadow",
+      "parent": "timburr_shadow",
+      "evolutions": [
+        "conkeldurr_shadow"
+      ]
+    },
+    {
+      "id": "gyarados",
+      "parent": "magikarp"
+    },
+    {
+      "id": "gyarados_shadow",
+      "parent": "magikarp_shadow"
+    },
+    {
+      "id": "hakamo_o",
+      "parent": "jangmo_o",
+      "evolutions": [
+        "kommo_o"
+      ]
+    },
+    {
+      "id": "happiny",
+      "parent": null,
+      "evolutions": [
+        "chansey"
+      ]
+    },
+    {
+      "id": "hariyama",
+      "parent": "makuhita"
+    },
+    {
+      "id": "hariyama_shadow",
+      "parent": "makuhita_shadow"
+    },
+    {
+      "id": "hatenna",
+      "parent": null,
+      "evolutions": [
+        "hattrem"
+      ]
+    },
+    {
+      "id": "hatterene",
+      "parent": "hattrem"
+    },
+    {
+      "id": "hattrem",
+      "parent": "hatenna",
+      "evolutions": [
+        "hatterene"
+      ]
+    },
+    {
+      "id": "haunter",
+      "parent": "gastly",
+      "evolutions": [
+        "gengar"
+      ]
+    },
+    {
+      "id": "haunter_shadow",
+      "parent": "gastly_shadow",
+      "evolutions": [
+        "gengar_shadow"
+      ]
+    },
+    {
+      "id": "haxorus",
+      "parent": "fraxure"
+    },
+    {
+      "id": "haxorus_shadow",
+      "parent": "fraxure_shadow"
+    },
+    {
+      "id": "heliolisk",
+      "parent": "helioptile"
+    },
+    {
+      "id": "heliolisk_shadow",
+      "parent": "helioptile_shadow"
+    },
+    {
+      "id": "helioptile",
+      "parent": null,
+      "evolutions": [
+        "heliolisk"
+      ]
+    },
+    {
+      "id": "helioptile_shadow",
+      "parent": null,
+      "evolutions": [
+        "heliolisk_shadow"
+      ]
+    },
+    {
+      "id": "herdier",
+      "parent": "lillipup",
+      "evolutions": [
+        "stoutland"
+      ]
+    },
+    {
+      "id": "hippopotas",
+      "parent": null,
+      "evolutions": [
+        "hippowdon"
+      ]
+    },
+    {
+      "id": "hippopotas_shadow",
+      "parent": null,
+      "evolutions": [
+        "hippowdon_shadow"
+      ]
+    },
+    {
+      "id": "hippowdon",
+      "parent": "hippopotas"
+    },
+    {
+      "id": "hippowdon_shadow",
+      "parent": "hippopotas_shadow"
+    },
+    {
+      "id": "hitmonchan",
+      "parent": "tyrogue"
+    },
+    {
+      "id": "hitmonchan_shadow",
+      "parent": "tyrogue"
+    },
+    {
+      "id": "hitmonlee",
+      "parent": "tyrogue"
+    },
+    {
+      "id": "hitmonlee_shadow",
+      "parent": "tyrogue"
+    },
+    {
+      "id": "hitmontop",
+      "parent": "tyrogue"
+    },
+    {
+      "id": "hitmontop_shadow",
+      "parent": "tyrogue"
+    },
+    {
+      "id": "honchkrow",
+      "parent": "murkrow"
+    },
+    {
+      "id": "honchkrow_shadow",
+      "parent": "murkrow_shadow"
+    },
+    {
+      "id": "honedge",
+      "parent": null,
+      "evolutions": [
+        "doublade"
+      ]
+    },
+    {
+      "id": "hoothoot",
+      "parent": null,
+      "evolutions": [
+        "noctowl"
+      ]
+    },
+    {
+      "id": "hoothoot_shadow",
+      "parent": null,
+      "evolutions": [
+        "noctowl_shadow"
+      ]
+    },
+    {
+      "id": "hoppip",
+      "parent": null,
+      "evolutions": [
+        "skiploom"
+      ]
+    },
+    {
+      "id": "hoppip_shadow",
+      "parent": null,
+      "evolutions": [
+        "skiploom_shadow"
+      ]
+    },
+    {
+      "id": "horsea",
+      "parent": null,
+      "evolutions": [
+        "seadra"
+      ]
+    },
+    {
+      "id": "horsea_shadow",
+      "parent": null,
+      "evolutions": [
+        "seadra_shadow"
+      ]
+    },
+    {
+      "id": "houndoom",
+      "parent": "houndour"
+    },
+    {
+      "id": "houndoom_shadow",
+      "parent": "houndour_shadow"
+    },
+    {
+      "id": "houndour",
+      "parent": null,
+      "evolutions": [
+        "houndoom"
+      ]
+    },
+    {
+      "id": "houndour_shadow",
+      "parent": null,
+      "evolutions": [
+        "houndoom_shadow"
+      ]
+    },
+    {
+      "id": "houndstone",
+      "parent": "greavard"
+    },
+    {
+      "id": "huntail",
+      "parent": "clamperl"
+    },
+    {
+      "id": "hydrapple",
+      "parent": "dipplin"
+    },
+    {
+      "id": "hydreigon",
+      "parent": "zweilous"
+    },
+    {
+      "id": "hydreigon_shadow",
+      "parent": "zweilous_shadow"
+    },
+    {
+      "id": "hypno",
+      "parent": "drowzee"
+    },
+    {
+      "id": "hypno_shadow",
+      "parent": "drowzee_shadow"
+    },
+    {
+      "id": "igglybuff",
+      "parent": null,
+      "evolutions": [
+        "jigglypuff"
+      ]
+    },
+    {
+      "id": "impidimp",
+      "parent": null,
+      "evolutions": [
+        "morgrem"
+      ]
+    },
+    {
+      "id": "incineroar",
+      "parent": "torracat"
+    },
+    {
+      "id": "infernape",
+      "parent": "monferno"
+    },
+    {
+      "id": "infernape_shadow",
+      "parent": "monferno_shadow"
+    },
+    {
+      "id": "inkay",
+      "parent": null,
+      "evolutions": [
+        "malamar"
+      ]
+    },
+    {
+      "id": "inkay_shadow",
+      "parent": null,
+      "evolutions": [
+        "malamar_shadow"
+      ]
+    },
+    {
+      "id": "inteleon",
+      "parent": "drizzile"
+    },
+    {
+      "id": "ivysaur",
+      "parent": "bulbasaur",
+      "evolutions": [
+        "venusaur"
+      ]
+    },
+    {
+      "id": "ivysaur_shadow",
+      "parent": "bulbasaur_shadow",
+      "evolutions": [
+        "venusaur_shadow"
+      ]
+    },
+    {
+      "id": "jangmo_o",
+      "parent": null,
+      "evolutions": [
+        "hakamo_o"
+      ]
+    },
+    {
+      "id": "jellicent",
+      "parent": "frillish"
+    },
+    {
+      "id": "jigglypuff",
+      "parent": "igglybuff",
+      "evolutions": [
+        "wigglytuff"
+      ]
+    },
+    {
+      "id": "jolteon",
+      "parent": "eevee"
+    },
+    {
+      "id": "joltik",
+      "parent": null,
+      "evolutions": [
+        "galvantula"
+      ]
+    },
+    {
+      "id": "joltik_shadow",
+      "parent": null,
+      "evolutions": [
+        "galvantula_shadow"
+      ]
+    },
+    {
+      "id": "jumpluff",
+      "parent": "skiploom"
+    },
+    {
+      "id": "jumpluff_shadow",
+      "parent": "skiploom_shadow"
+    },
+    {
+      "id": "jynx",
+      "parent": "smoochum"
+    },
+    {
+      "id": "kabuto",
+      "parent": null,
+      "evolutions": [
+        "kabutops"
+      ]
+    },
+    {
+      "id": "kabuto_shadow",
+      "parent": null,
+      "evolutions": [
+        "kabutops_shadow"
+      ]
+    },
+    {
+      "id": "kabutops",
+      "parent": "kabuto"
+    },
+    {
+      "id": "kabutops_shadow",
+      "parent": "kabuto_shadow"
+    },
+    {
+      "id": "kadabra",
+      "parent": "abra",
+      "evolutions": [
+        "alakazam"
+      ]
+    },
+    {
+      "id": "kadabra_shadow",
+      "parent": "abra_shadow",
+      "evolutions": [
+        "alakazam_shadow"
+      ]
+    },
+    {
+      "id": "kakuna",
+      "parent": "weedle",
+      "evolutions": [
+        "beedrill"
+      ]
+    },
+    {
+      "id": "kakuna_shadow",
+      "parent": "weedle_shadow",
+      "evolutions": [
+        "beedrill_shadow"
+      ]
+    },
+    {
+      "id": "karrablast",
+      "parent": null,
+      "evolutions": [
+        "escavalier"
+      ]
+    },
+    {
+      "id": "karrablast_shadow",
+      "parent": null,
+      "evolutions": [
+        "escavalier_shadow"
+      ]
+    },
+    {
+      "id": "kilowattrel",
+      "parent": "wattrel"
+    },
+    {
+      "id": "kingambit",
+      "parent": "bisharp"
+    },
+    {
+      "id": "kingdra",
+      "parent": "seadra"
+    },
+    {
+      "id": "kingdra_shadow",
+      "parent": "seadra_shadow"
+    },
+    {
+      "id": "kingler",
+      "parent": "krabby"
+    },
+    {
+      "id": "kingler_shadow",
+      "parent": "krabby_shadow"
+    },
+    {
+      "id": "kirlia",
+      "parent": "ralts",
+      "evolutions": [
+        "gallade",
+        "gardevoir"
+      ]
+    },
+    {
+      "id": "kirlia_shadow",
+      "parent": "ralts_shadow",
+      "evolutions": [
+        "gallade_shadow",
+        "gardevoir_shadow"
+      ]
+    },
+    {
+      "id": "klang",
+      "parent": "klink",
+      "evolutions": [
+        "klinklang"
+      ]
+    },
+    {
+      "id": "kleavor",
+      "parent": "scyther"
+    },
+    {
+      "id": "klink",
+      "parent": null,
+      "evolutions": [
+        "klang"
+      ]
+    },
+    {
+      "id": "klinklang",
+      "parent": "klang"
+    },
+    {
+      "id": "koffing",
+      "parent": null,
+      "evolutions": [
+        "weezing"
+      ]
+    },
+    {
+      "id": "koffing_shadow",
+      "parent": null,
+      "evolutions": [
+        "weezing_shadow"
+      ]
+    },
+    {
+      "id": "kommo_o",
+      "parent": "hakamo_o"
+    },
+    {
+      "id": "krabby",
+      "parent": null,
+      "evolutions": [
+        "kingler"
+      ]
+    },
+    {
+      "id": "krabby_shadow",
+      "parent": null,
+      "evolutions": [
+        "kingler_shadow"
+      ]
+    },
+    {
+      "id": "kricketot",
+      "parent": null,
+      "evolutions": [
+        "kricketune"
+      ]
+    },
+    {
+      "id": "kricketune",
+      "parent": "kricketot"
+    },
+    {
+      "id": "krokorok",
+      "parent": "sandile",
+      "evolutions": [
+        "krookodile"
+      ]
+    },
+    {
+      "id": "krookodile",
+      "parent": "krokorok"
+    },
+    {
+      "id": "kubfu",
+      "parent": null,
+      "evolutions": [
+        "urshifu_rapid_strike",
+        "urshifu_single_strike"
+      ]
+    },
+    {
+      "id": "lairon",
+      "parent": "aron",
+      "evolutions": [
+        "aggron"
+      ]
+    },
+    {
+      "id": "lairon_shadow",
+      "parent": "aron_shadow",
+      "evolutions": [
+        "aggron_shadow"
+      ]
+    },
+    {
+      "id": "lampent",
+      "parent": "litwick",
+      "evolutions": [
+        "chandelure"
+      ]
+    },
+    {
+      "id": "lampent_shadow",
+      "parent": "litwick_shadow",
+      "evolutions": [
+        "chandelure_shadow"
+      ]
+    },
+    {
+      "id": "lanturn",
+      "parent": "chinchou"
+    },
+    {
+      "id": "larvesta",
+      "parent": null,
+      "evolutions": [
+        "volcarona"
+      ]
+    },
+    {
+      "id": "larvitar",
+      "parent": null,
+      "evolutions": [
+        "pupitar"
+      ]
+    },
+    {
+      "id": "larvitar_shadow",
+      "parent": null,
+      "evolutions": [
+        "pupitar_shadow"
+      ]
+    },
+    {
+      "id": "leafeon",
+      "parent": "eevee"
+    },
+    {
+      "id": "leavanny",
+      "parent": "swadloon"
+    },
+    {
+      "id": "lechonk",
+      "parent": null,
+      "evolutions": [
+        "oinkologne",
+        "oinkologne"
+      ]
+    },
+    {
+      "id": "ledian",
+      "parent": "ledyba"
+    },
+    {
+      "id": "ledian_shadow",
+      "parent": "ledyba_shadow"
+    },
+    {
+      "id": "ledyba",
+      "parent": null,
+      "evolutions": [
+        "ledian"
+      ]
+    },
+    {
+      "id": "ledyba_shadow",
+      "parent": null,
+      "evolutions": [
+        "ledian_shadow"
+      ]
+    },
+    {
+      "id": "lickilicky",
+      "parent": "lickitung"
+    },
+    {
+      "id": "lickitung",
+      "parent": null,
+      "evolutions": [
+        "lickilicky"
+      ]
+    },
+    {
+      "id": "liepard",
+      "parent": "purrloin"
+    },
+    {
+      "id": "liepard_shadow",
+      "parent": "purrloin_shadow"
+    },
+    {
+      "id": "lileep",
+      "parent": null,
+      "evolutions": [
+        "cradily"
+      ]
+    },
+    {
+      "id": "lileep_shadow",
+      "parent": null,
+      "evolutions": [
+        "cradily_shadow"
+      ]
+    },
+    {
+      "id": "lilligant",
+      "parent": "petilil"
+    },
+    {
+      "id": "lilligant_hisuian",
+      "parent": "petilil"
+    },
+    {
+      "id": "lillipup",
+      "parent": null,
+      "evolutions": [
+        "herdier"
+      ]
+    },
+    {
+      "id": "linoone",
+      "parent": "zigzagoon"
+    },
+    {
+      "id": "linoone_galarian",
+      "parent": "zigzagoon_galarian",
+      "evolutions": [
+        "obstagoon"
+      ]
+    },
+    {
+      "id": "linoone_galarian_shadow",
+      "parent": "zigzagoon_galarian_shadow",
+      "evolutions": [
+        "obstagoon_shadow"
+      ]
+    },
+    {
+      "id": "litleo",
+      "parent": null,
+      "evolutions": [
+        "pyroar",
+        "pyroar"
+      ]
+    },
+    {
+      "id": "litten",
+      "parent": null,
+      "evolutions": [
+        "torracat"
+      ]
+    },
+    {
+      "id": "litwick",
+      "parent": null,
+      "evolutions": [
+        "lampent"
+      ]
+    },
+    {
+      "id": "litwick_shadow",
+      "parent": null,
+      "evolutions": [
+        "lampent_shadow"
+      ]
+    },
+    {
+      "id": "lokix",
+      "parent": "nymble"
+    },
+    {
+      "id": "lombre",
+      "parent": "lotad",
+      "evolutions": [
+        "ludicolo"
+      ]
+    },
+    {
+      "id": "lopunny",
+      "parent": "buneary"
+    },
+    {
+      "id": "lotad",
+      "parent": null,
+      "evolutions": [
+        "lombre"
+      ]
+    },
+    {
+      "id": "loudred",
+      "parent": "whismur",
+      "evolutions": [
+        "exploud"
+      ]
+    },
+    {
+      "id": "loudred_shadow",
+      "parent": "whismur_shadow",
+      "evolutions": [
+        "exploud_shadow"
+      ]
+    },
+    {
+      "id": "lucario",
+      "parent": "riolu"
+    },
+    {
+      "id": "ludicolo",
+      "parent": "lombre"
+    },
+    {
+      "id": "lumineon",
+      "parent": "finneon"
+    },
+    {
+      "id": "lunala",
+      "parent": "cosmoem"
+    },
+    {
+      "id": "lurantis",
+      "parent": "fomantis"
+    },
+    {
+      "id": "lurantis_shadow",
+      "parent": "fomantis_shadow"
+    },
+    {
+      "id": "luxio",
+      "parent": "shinx",
+      "evolutions": [
+        "luxray"
+      ]
+    },
+    {
+      "id": "luxio_shadow",
+      "parent": "shinx_shadow",
+      "evolutions": [
+        "luxray_shadow"
+      ]
+    },
+    {
+      "id": "luxray",
+      "parent": "luxio"
+    },
+    {
+      "id": "luxray_shadow",
+      "parent": "luxio_shadow"
+    },
+    {
+      "id": "lycanroc_dusk",
+      "parent": "rockruff"
+    },
+    {
+      "id": "lycanroc_midday",
+      "parent": "rockruff"
+    },
+    {
+      "id": "lycanroc_midnight",
+      "parent": "rockruff"
+    },
+    {
+      "id": "mabosstiff",
+      "parent": "maschiff"
+    },
+    {
+      "id": "machamp",
+      "parent": "machoke"
+    },
+    {
+      "id": "machamp_shadow",
+      "parent": "machoke_shadow"
+    },
+    {
+      "id": "machoke",
+      "parent": "machop",
+      "evolutions": [
+        "machamp"
+      ]
+    },
+    {
+      "id": "machoke_shadow",
+      "parent": "machop_shadow",
+      "evolutions": [
+        "machamp_shadow"
+      ]
+    },
+    {
+      "id": "machop",
+      "parent": null,
+      "evolutions": [
+        "machoke"
+      ]
+    },
+    {
+      "id": "machop_shadow",
+      "parent": null,
+      "evolutions": [
+        "machoke_shadow"
+      ]
+    },
+    {
+      "id": "magby",
+      "parent": null,
+      "evolutions": [
+        "magmar"
+      ]
+    },
+    {
+      "id": "magcargo",
+      "parent": "slugma"
+    },
+    {
+      "id": "magikarp",
+      "parent": null,
+      "evolutions": [
+        "gyarados"
+      ]
+    },
+    {
+      "id": "magikarp_shadow",
+      "parent": null,
+      "evolutions": [
+        "gyarados_shadow"
+      ]
+    },
+    {
+      "id": "magmar",
+      "parent": "magby",
+      "evolutions": [
+        "magmortar"
+      ]
+    },
+    {
+      "id": "magmar_shadow",
+      "parent": "magby",
+      "evolutions": [
+        "magmortar_shadow"
+      ]
+    },
+    {
+      "id": "magmortar",
+      "parent": "magmar"
+    },
+    {
+      "id": "magmortar_shadow",
+      "parent": "magmar_shadow"
+    },
+    {
+      "id": "magnemite",
+      "parent": null,
+      "evolutions": [
+        "magneton"
+      ]
+    },
+    {
+      "id": "magnemite_shadow",
+      "parent": null,
+      "evolutions": [
+        "magneton_shadow"
+      ]
+    },
+    {
+      "id": "magneton",
+      "parent": "magnemite",
+      "evolutions": [
+        "magnezone"
+      ]
+    },
+    {
+      "id": "magneton_shadow",
+      "parent": "magnemite_shadow",
+      "evolutions": [
+        "magnezone_shadow"
+      ]
+    },
+    {
+      "id": "magnezone",
+      "parent": "magneton"
+    },
+    {
+      "id": "magnezone_shadow",
+      "parent": "magneton_shadow"
+    },
+    {
+      "id": "makuhita",
+      "parent": null,
+      "evolutions": [
+        "hariyama"
+      ]
+    },
+    {
+      "id": "makuhita_shadow",
+      "parent": null,
+      "evolutions": [
+        "hariyama_shadow"
+      ]
+    },
+    {
+      "id": "malamar",
+      "parent": "inkay"
+    },
+    {
+      "id": "malamar_shadow",
+      "parent": "inkay_shadow"
+    },
+    {
+      "id": "mamoswine",
+      "parent": "piloswine"
+    },
+    {
+      "id": "mamoswine_shadow",
+      "parent": "piloswine_shadow"
+    },
+    {
+      "id": "manaphy",
+      "parent": "phione"
+    },
+    {
+      "id": "mandibuzz",
+      "parent": "vullaby"
+    },
+    {
+      "id": "manectric",
+      "parent": "electrike"
+    },
+    {
+      "id": "manectric_shadow",
+      "parent": "electrike_shadow"
+    },
+    {
+      "id": "mankey",
+      "parent": null,
+      "evolutions": [
+        "primeape"
+      ]
+    },
+    {
+      "id": "mankey_shadow",
+      "parent": null,
+      "evolutions": [
+        "primeape_shadow"
+      ]
+    },
+    {
+      "id": "mantine",
+      "parent": "mantyke"
+    },
+    {
+      "id": "mantyke",
+      "parent": null,
+      "evolutions": [
+        "mantine"
+      ]
+    },
+    {
+      "id": "mareanie",
+      "parent": null,
+      "evolutions": [
+        "toxapex"
+      ]
+    },
+    {
+      "id": "mareep",
+      "parent": null,
+      "evolutions": [
+        "flaaffy"
+      ]
+    },
+    {
+      "id": "mareep_shadow",
+      "parent": null,
+      "evolutions": [
+        "flaaffy_shadow"
+      ]
+    },
+    {
+      "id": "marill",
+      "parent": "azurill",
+      "evolutions": [
+        "azumarill"
+      ]
+    },
+    {
+      "id": "marowak",
+      "parent": "cubone"
+    },
+    {
+      "id": "marowak_alolan",
+      "parent": "cubone"
+    },
+    {
+      "id": "marowak_alolan_shadow",
+      "parent": "cubone_shadow"
+    },
+    {
+      "id": "marowak_shadow",
+      "parent": "cubone_shadow"
+    },
+    {
+      "id": "marshtomp",
+      "parent": "mudkip",
+      "evolutions": [
+        "swampert"
+      ]
+    },
+    {
+      "id": "marshtomp_shadow",
+      "parent": "mudkip_shadow",
+      "evolutions": [
+        "swampert_shadow"
+      ]
+    },
+    {
+      "id": "maschiff",
+      "parent": null,
+      "evolutions": [
+        "mabosstiff"
+      ]
+    },
+    {
+      "id": "masquerain",
+      "parent": "surskit"
+    },
+    {
+      "id": "maushold",
+      "parent": "tandemaus"
+    },
+    {
+      "id": "maushold_family_of_four",
+      "parent": "tandemaus"
+    },
+    {
+      "id": "maushold_family_of_three",
+      "parent": "tandemaus"
+    },
+    {
+      "id": "medicham",
+      "parent": "meditite"
+    },
+    {
+      "id": "meditite",
+      "parent": null,
+      "evolutions": [
+        "medicham"
+      ]
+    },
+    {
+      "id": "meganium",
+      "parent": "bayleef"
+    },
+    {
+      "id": "meganium_shadow",
+      "parent": "bayleef_shadow"
+    },
+    {
+      "id": "melmetal",
+      "parent": "meltan"
+    },
+    {
+      "id": "meltan",
+      "parent": null,
+      "evolutions": [
+        "melmetal"
+      ]
+    },
+    {
+      "id": "meowscarada",
+      "parent": "floragato"
+    },
+    {
+      "id": "meowstic",
+      "parent": "espurr"
+    },
+    {
+      "id": "meowstic_female",
+      "parent": "espurr"
+    },
+    {
+      "id": "meowth",
+      "parent": null,
+      "evolutions": [
+        "persian"
+      ]
+    },
+    {
+      "id": "meowth_alolan",
+      "parent": null,
+      "evolutions": [
+        "persian_alolan"
+      ]
+    },
+    {
+      "id": "meowth_galarian",
+      "parent": null,
+      "evolutions": [
+        "perrserker"
+      ]
+    },
+    {
+      "id": "meowth_shadow",
+      "parent": null,
+      "evolutions": [
+        "persian_shadow"
+      ]
+    },
+    {
+      "id": "metagross",
+      "parent": "metang"
+    },
+    {
+      "id": "metagross_shadow",
+      "parent": "metang_shadow"
+    },
+    {
+      "id": "metang",
+      "parent": "beldum",
+      "evolutions": [
+        "metagross"
+      ]
+    },
+    {
+      "id": "metang_shadow",
+      "parent": "beldum_shadow",
+      "evolutions": [
+        "metagross_shadow"
+      ]
+    },
+    {
+      "id": "metapod",
+      "parent": "caterpie",
+      "evolutions": [
+        "butterfree"
+      ]
+    },
+    {
+      "id": "metapod_shadow",
+      "parent": "caterpie_shadow",
+      "evolutions": [
+        "butterfree_shadow"
+      ]
+    },
+    {
+      "id": "mienfoo",
+      "parent": null,
+      "evolutions": [
+        "mienshao"
+      ]
+    },
+    {
+      "id": "mienshao",
+      "parent": "mienfoo"
+    },
+    {
+      "id": "mightyena",
+      "parent": "poochyena"
+    },
+    {
+      "id": "mightyena_shadow",
+      "parent": "poochyena_shadow"
+    },
+    {
+      "id": "milcery",
+      "parent": null,
+      "evolutions": [
+        "alcremie"
+      ]
+    },
+    {
+      "id": "milotic",
+      "parent": "feebas"
+    },
+    {
+      "id": "milotic_shadow",
+      "parent": "feebas_shadow"
+    },
+    {
+      "id": "mime_jr",
+      "parent": null,
+      "evolutions": [
+        "mr_mime"
+      ]
+    },
+    {
+      "id": "minccino",
+      "parent": null,
+      "evolutions": [
+        "cinccino"
+      ]
+    },
+    {
+      "id": "misdreavus",
+      "parent": null,
+      "evolutions": [
+        "mismagius"
+      ]
+    },
+    {
+      "id": "misdreavus_shadow",
+      "parent": null,
+      "evolutions": [
+        "mismagius_shadow"
+      ]
+    },
+    {
+      "id": "mismagius",
+      "parent": "misdreavus"
+    },
+    {
+      "id": "mismagius_shadow",
+      "parent": "misdreavus_shadow"
+    },
+    {
+      "id": "monferno",
+      "parent": "chimchar",
+      "evolutions": [
+        "infernape"
+      ]
+    },
+    {
+      "id": "monferno_shadow",
+      "parent": "chimchar_shadow",
+      "evolutions": [
+        "infernape_shadow"
+      ]
+    },
+    {
+      "id": "morelull",
+      "parent": null,
+      "evolutions": [
+        "shiinotic"
+      ]
+    },
+    {
+      "id": "morgrem",
+      "parent": "impidimp",
+      "evolutions": [
+        "grimmsnarl"
+      ]
+    },
+    {
+      "id": "mothim",
+      "parent": "burmy_trash"
+    },
+    {
+      "id": "mr_mime",
+      "parent": "mime_jr"
+    },
+    {
+      "id": "mr_mime_galarian",
+      "parent": "mime_jr",
+      "evolutions": [
+        "mr_rime"
+      ]
+    },
+    {
+      "id": "mr_rime",
+      "parent": "mr_mime_galarian"
+    },
+    {
+      "id": "mudbray",
+      "parent": null,
+      "evolutions": [
+        "mudsdale"
+      ]
+    },
+    {
+      "id": "mudkip",
+      "parent": null,
+      "evolutions": [
+        "marshtomp"
+      ]
+    },
+    {
+      "id": "mudkip_shadow",
+      "parent": null,
+      "evolutions": [
+        "marshtomp_shadow"
+      ]
+    },
+    {
+      "id": "mudsdale",
+      "parent": "mudbray"
+    },
+    {
+      "id": "muk",
+      "parent": "grimer"
+    },
+    {
+      "id": "muk_alolan",
+      "parent": "grimer_alolan"
+    },
+    {
+      "id": "muk_alolan_shadow",
+      "parent": "grimer_alolan_shadow"
+    },
+    {
+      "id": "muk_shadow",
+      "parent": "grimer_shadow"
+    },
+    {
+      "id": "munchlax",
+      "parent": null,
+      "evolutions": [
+        "snorlax"
+      ]
+    },
+    {
+      "id": "munna",
+      "parent": null,
+      "evolutions": [
+        "musharna"
+      ]
+    },
+    {
+      "id": "murkrow",
+      "parent": null,
+      "evolutions": [
+        "honchkrow"
+      ]
+    },
+    {
+      "id": "murkrow_shadow",
+      "parent": null,
+      "evolutions": [
+        "honchkrow_shadow"
+      ]
+    },
+    {
+      "id": "musharna",
+      "parent": "munna"
+    },
+    {
+      "id": "nacli",
+      "parent": null,
+      "evolutions": [
+        "naclstack"
+      ]
+    },
+    {
+      "id": "naclstack",
+      "parent": "nacli",
+      "evolutions": [
+        "garganacl"
+      ]
+    },
+    {
+      "id": "naganadel",
+      "parent": "poipole"
+    },
+    {
+      "id": "natu",
+      "parent": null,
+      "evolutions": [
+        "xatu"
+      ]
+    },
+    {
+      "id": "natu_shadow",
+      "parent": null,
+      "evolutions": [
+        "xatu_shadow"
+      ]
+    },
+    {
+      "id": "nickit",
+      "parent": null,
+      "evolutions": [
+        "thievul"
+      ]
+    },
+    {
+      "id": "nidoking",
+      "parent": "nidorino"
+    },
+    {
+      "id": "nidoking_shadow",
+      "parent": "nidorino_shadow"
+    },
+    {
+      "id": "nidoqueen",
+      "parent": "nidorina"
+    },
+    {
+      "id": "nidoqueen_shadow",
+      "parent": "nidorina_shadow"
+    },
+    {
+      "id": "nidoran_female",
+      "parent": null,
+      "evolutions": [
+        "nidorina"
+      ]
+    },
+    {
+      "id": "nidoran_female_shadow",
+      "parent": null,
+      "evolutions": [
+        "nidorina_shadow"
+      ]
+    },
+    {
+      "id": "nidoran_male",
+      "parent": null,
+      "evolutions": [
+        "nidorino"
+      ]
+    },
+    {
+      "id": "nidoran_male_shadow",
+      "parent": null,
+      "evolutions": [
+        "nidorino_shadow"
+      ]
+    },
+    {
+      "id": "nidorina",
+      "parent": "nidoran_female",
+      "evolutions": [
+        "nidoqueen"
+      ]
+    },
+    {
+      "id": "nidorina_shadow",
+      "parent": "nidoran_female_shadow",
+      "evolutions": [
+        "nidoqueen_shadow"
+      ]
+    },
+    {
+      "id": "nidorino",
+      "parent": "nidoran_male",
+      "evolutions": [
+        "nidoking"
+      ]
+    },
+    {
+      "id": "nidorino_shadow",
+      "parent": "nidoran_male_shadow",
+      "evolutions": [
+        "nidoking_shadow"
+      ]
+    },
+    {
+      "id": "nincada",
+      "parent": null,
+      "evolutions": [
+        "ninjask"
+      ]
+    },
+    {
+      "id": "ninetales",
+      "parent": "vulpix"
+    },
+    {
+      "id": "ninetales_alolan",
+      "parent": "vulpix_alolan"
+    },
+    {
+      "id": "ninetales_alolan_shadow",
+      "parent": "vulpix_alolan_shadow"
+    },
+    {
+      "id": "ninetales_shadow",
+      "parent": "vulpix_shadow"
+    },
+    {
+      "id": "ninjask",
+      "parent": "nincada"
+    },
+    {
+      "id": "noctowl",
+      "parent": "hoothoot"
+    },
+    {
+      "id": "noctowl_shadow",
+      "parent": "hoothoot_shadow"
+    },
+    {
+      "id": "noibat",
+      "parent": null,
+      "evolutions": [
+        "noivern"
+      ]
+    },
+    {
+      "id": "noibat_shadow",
+      "parent": null,
+      "evolutions": [
+        "noivern_shadow"
+      ]
+    },
+    {
+      "id": "noivern",
+      "parent": "noibat"
+    },
+    {
+      "id": "noivern_shadow",
+      "parent": "noibat_shadow"
+    },
+    {
+      "id": "nosepass",
+      "parent": null,
+      "evolutions": [
+        "probopass"
+      ]
+    },
+    {
+      "id": "nosepass_shadow",
+      "parent": null,
+      "evolutions": [
+        "probopass_shadow"
+      ]
+    },
+    {
+      "id": "numel",
+      "parent": null,
+      "evolutions": [
+        "camerupt"
+      ]
+    },
+    {
+      "id": "numel_shadow",
+      "parent": null,
+      "evolutions": [
+        "camerupt_shadow"
+      ]
+    },
+    {
+      "id": "nuzleaf",
+      "parent": "seedot",
+      "evolutions": [
+        "shiftry"
+      ]
+    },
+    {
+      "id": "nuzleaf_shadow",
+      "parent": "seedot_shadow",
+      "evolutions": [
+        "shiftry_shadow"
+      ]
+    },
+    {
+      "id": "nymble",
+      "parent": null,
+      "evolutions": [
+        "lokix"
+      ]
+    },
+    {
+      "id": "obstagoon",
+      "parent": "linoone_galarian"
+    },
+    {
+      "id": "obstagoon_shadow",
+      "parent": "linoone_galarian_shadow"
+    },
+    {
+      "id": "octillery",
+      "parent": "remoraid"
+    },
+    {
+      "id": "oddish",
+      "parent": null,
+      "evolutions": [
+        "gloom"
+      ]
+    },
+    {
+      "id": "oddish_shadow",
+      "parent": null,
+      "evolutions": [
+        "gloom_shadow"
+      ]
+    },
+    {
+      "id": "oinkologne",
+      "parent": "lechonk"
+    },
+    {
+      "id": "oinkologne_female",
+      "parent": "lechonk"
+    },
+    {
+      "id": "omanyte",
+      "parent": null,
+      "evolutions": [
+        "omastar"
+      ]
+    },
+    {
+      "id": "omanyte_shadow",
+      "parent": null,
+      "evolutions": [
+        "omastar_shadow"
+      ]
+    },
+    {
+      "id": "omastar",
+      "parent": "omanyte"
+    },
+    {
+      "id": "omastar_shadow",
+      "parent": "omanyte_shadow"
+    },
+    {
+      "id": "onix",
+      "parent": null,
+      "evolutions": [
+        "steelix"
+      ]
+    },
+    {
+      "id": "onix_shadow",
+      "parent": null,
+      "evolutions": [
+        "steelix_shadow"
+      ]
+    },
+    {
+      "id": "orbeetle",
+      "parent": "dottler"
+    },
+    {
+      "id": "oshawott",
+      "parent": null,
+      "evolutions": [
+        "dewott"
+      ]
+    },
+    {
+      "id": "oshawott_shadow",
+      "parent": null,
+      "evolutions": [
+        "dewott_shadow"
+      ]
+    },
+    {
+      "id": "overqwil",
+      "parent": "qwilfish_hisuian"
+    },
+    {
+      "id": "palafin",
+      "parent": "finizen"
+    },
+    {
+      "id": "palafin_hero",
+      "parent": "finizen"
+    },
+    {
+      "id": "palafin_zero",
+      "parent": "finizen"
+    },
+    {
+      "id": "palossand",
+      "parent": "sandygast"
+    },
+    {
+      "id": "palossand_shadow",
+      "parent": "sandygast_shadow"
+    },
+    {
+      "id": "palpitoad",
+      "parent": "tympole",
+      "evolutions": [
+        "seismitoad"
+      ]
+    },
+    {
+      "id": "pancham",
+      "parent": null,
+      "evolutions": [
+        "pangoro"
+      ]
+    },
+    {
+      "id": "pancham_shadow",
+      "parent": null,
+      "evolutions": [
+        "pangoro_shadow"
+      ]
+    },
+    {
+      "id": "pangoro",
+      "parent": "pancham"
+    },
+    {
+      "id": "pangoro_shadow",
+      "parent": "pancham_shadow"
+    },
+    {
+      "id": "panpour",
+      "parent": null,
+      "evolutions": [
+        "simipour"
+      ]
+    },
+    {
+      "id": "pansage",
+      "parent": null,
+      "evolutions": [
+        "simisage"
+      ]
+    },
+    {
+      "id": "pansear",
+      "parent": null,
+      "evolutions": [
+        "simisear"
+      ]
+    },
+    {
+      "id": "paras",
+      "parent": null,
+      "evolutions": [
+        "parasect"
+      ]
+    },
+    {
+      "id": "parasect",
+      "parent": "paras"
+    },
+    {
+      "id": "patrat",
+      "parent": null,
+      "evolutions": [
+        "watchog"
+      ]
+    },
+    {
+      "id": "patrat_shadow",
+      "parent": null,
+      "evolutions": [
+        "watchog_shadow"
+      ]
+    },
+    {
+      "id": "pawmi",
+      "parent": null,
+      "evolutions": [
+        "pawmo"
+      ]
+    },
+    {
+      "id": "pawmo",
+      "parent": "pawmi",
+      "evolutions": [
+        "pawmot"
+      ]
+    },
+    {
+      "id": "pawmot",
+      "parent": "pawmo"
+    },
+    {
+      "id": "pawniard",
+      "parent": null,
+      "evolutions": [
+        "bisharp"
+      ]
+    },
+    {
+      "id": "pelipper",
+      "parent": "wingull"
+    },
+    {
+      "id": "perrserker",
+      "parent": "meowth_galarian"
+    },
+    {
+      "id": "persian",
+      "parent": "meowth"
+    },
+    {
+      "id": "persian_alolan",
+      "parent": "meowth_alolan"
+    },
+    {
+      "id": "persian_shadow",
+      "parent": "meowth_shadow"
+    },
+    {
+      "id": "petilil",
+      "parent": null,
+      "evolutions": [
+        "lilligant"
+      ]
+    },
+    {
+      "id": "phanpy",
+      "parent": null,
+      "evolutions": [
+        "donphan"
+      ]
+    },
+    {
+      "id": "phanpy_shadow",
+      "parent": null,
+      "evolutions": [
+        "donphan_shadow"
+      ]
+    },
+    {
+      "id": "phantump",
+      "parent": null,
+      "evolutions": [
+        "trevenant"
+      ]
+    },
+    {
+      "id": "phantump_shadow",
+      "parent": null,
+      "evolutions": [
+        "trevenant_shadow"
+      ]
+    },
+    {
+      "id": "pichu",
+      "parent": null,
+      "evolutions": [
+        "pikachu"
+      ]
+    },
+    {
+      "id": "pidgeot",
+      "parent": "pidgeotto"
+    },
+    {
+      "id": "pidgeot_shadow",
+      "parent": "pidgeotto_shadow"
+    },
+    {
+      "id": "pidgeotto",
+      "parent": "pidgey",
+      "evolutions": [
+        "pidgeot"
+      ]
+    },
+    {
+      "id": "pidgeotto_shadow",
+      "parent": "pidgey_shadow",
+      "evolutions": [
+        "pidgeot_shadow"
+      ]
+    },
+    {
+      "id": "pidgey",
+      "parent": null,
+      "evolutions": [
+        "pidgeotto"
+      ]
+    },
+    {
+      "id": "pidgey_shadow",
+      "parent": null,
+      "evolutions": [
+        "pidgeotto_shadow"
+      ]
+    },
+    {
+      "id": "pidove",
+      "parent": null,
+      "evolutions": [
+        "tranquill"
+      ]
+    },
+    {
+      "id": "pidove_shadow",
+      "parent": null,
+      "evolutions": [
+        "tranquill_shadow"
+      ]
+    },
+    {
+      "id": "pignite",
+      "parent": "tepig",
+      "evolutions": [
+        "emboar"
+      ]
+    },
+    {
+      "id": "pignite_shadow",
+      "parent": "tepig_shadow",
+      "evolutions": [
+        "emboar_shadow"
+      ]
+    },
+    {
+      "id": "pikachu",
+      "parent": "pichu",
+      "evolutions": [
+        "raichu"
+      ]
+    },
+    {
+      "id": "pikachu_horizons",
+      "parent": "pichu"
+    },
+    {
+      "id": "pikachu_kariyushi",
+      "parent": "pichu"
+    },
+    {
+      "id": "pikachu_pop_star",
+      "parent": "pichu"
+    },
+    {
+      "id": "pikachu_rock_star",
+      "parent": "pichu"
+    },
+    {
+      "id": "pikachu_shaymin",
+      "parent": "pichu",
+      "evolutions": [
+        "raichu"
+      ]
+    },
+    {
+      "id": "pikipek",
+      "parent": null,
+      "evolutions": [
+        "trumbeak"
+      ]
+    },
+    {
+      "id": "pikipek_shadow",
+      "parent": null,
+      "evolutions": [
+        "trumbeak_shadow"
+      ]
+    },
+    {
+      "id": "piloswine",
+      "parent": "swinub",
+      "evolutions": [
+        "mamoswine"
+      ]
+    },
+    {
+      "id": "piloswine_shadow",
+      "parent": "swinub_shadow",
+      "evolutions": [
+        "mamoswine_shadow"
+      ]
+    },
+    {
+      "id": "pineco",
+      "parent": null,
+      "evolutions": [
+        "forretress"
+      ]
+    },
+    {
+      "id": "pineco_shadow",
+      "parent": null,
+      "evolutions": [
+        "forretress_shadow"
+      ]
+    },
+    {
+      "id": "piplup",
+      "parent": null,
+      "evolutions": [
+        "prinplup"
+      ]
+    },
+    {
+      "id": "piplup_shadow",
+      "parent": null,
+      "evolutions": [
+        "prinplup_shadow"
+      ]
+    },
+    {
+      "id": "poipole",
+      "parent": null,
+      "evolutions": [
+        "naganadel"
+      ]
+    },
+    {
+      "id": "politoed",
+      "parent": "poliwhirl"
+    },
+    {
+      "id": "politoed_shadow",
+      "parent": "poliwhirl_shadow"
+    },
+    {
+      "id": "poliwag",
+      "parent": null,
+      "evolutions": [
+        "poliwhirl"
+      ]
+    },
+    {
+      "id": "poliwag_shadow",
+      "parent": null,
+      "evolutions": [
+        "poliwhirl_shadow"
+      ]
+    },
+    {
+      "id": "poliwhirl",
+      "parent": "poliwag",
+      "evolutions": [
+        "poliwrath",
+        "politoed"
+      ]
+    },
+    {
+      "id": "poliwhirl_shadow",
+      "parent": "poliwag_shadow",
+      "evolutions": [
+        "poliwrath_shadow",
+        "politoed_shadow"
+      ]
+    },
+    {
+      "id": "poliwrath",
+      "parent": "poliwhirl"
+    },
+    {
+      "id": "poliwrath_shadow",
+      "parent": "poliwhirl_shadow"
+    },
+    {
+      "id": "poltchageist",
+      "parent": "sinistcha"
+    },
+    {
+      "id": "polteageist",
+      "parent": "sinistea"
+    },
+    {
+      "id": "ponyta",
+      "parent": null,
+      "evolutions": [
+        "rapidash"
+      ]
+    },
+    {
+      "id": "ponyta_galarian",
+      "parent": null,
+      "evolutions": [
+        "rapidash_galarian"
+      ]
+    },
+    {
+      "id": "ponyta_shadow",
+      "parent": null,
+      "evolutions": [
+        "rapidash_shadow"
+      ]
+    },
+    {
+      "id": "poochyena",
+      "parent": null,
+      "evolutions": [
+        "mightyena"
+      ]
+    },
+    {
+      "id": "poochyena_shadow",
+      "parent": null,
+      "evolutions": [
+        "mightyena_shadow"
+      ]
+    },
+    {
+      "id": "popplio",
+      "parent": null,
+      "evolutions": [
+        "brionne"
+      ]
+    },
+    {
+      "id": "porygon",
+      "parent": null,
+      "evolutions": [
+        "porygon2"
+      ]
+    },
+    {
+      "id": "porygon_shadow",
+      "parent": null,
+      "evolutions": [
+        "porygon2_shadow"
+      ]
+    },
+    {
+      "id": "porygon_z",
+      "parent": "porygon2"
+    },
+    {
+      "id": "porygon_z_shadow",
+      "parent": "porygon2_shadow"
+    },
+    {
+      "id": "porygon2",
+      "parent": "porygon",
+      "evolutions": [
+        "porygon_z"
+      ]
+    },
+    {
+      "id": "porygon2_shadow",
+      "parent": "porygon_shadow",
+      "evolutions": [
+        "porygon_z_shadow"
+      ]
+    },
+    {
+      "id": "primarina",
+      "parent": "brionne"
+    },
+    {
+      "id": "primeape",
+      "parent": "mankey",
+      "evolutions": [
+        "annihilape"
+      ]
+    },
+    {
+      "id": "primeape_shadow",
+      "parent": "mankey_shadow",
+      "evolutions": [
+        "annihilape_shadow"
+      ]
+    },
+    {
+      "id": "prinplup",
+      "parent": "piplup",
+      "evolutions": [
+        "empoleon"
+      ]
+    },
+    {
+      "id": "prinplup_shadow",
+      "parent": "piplup_shadow",
+      "evolutions": [
+        "empoleon_shadow"
+      ]
+    },
+    {
+      "id": "probopass",
+      "parent": "nosepass"
+    },
+    {
+      "id": "probopass_shadow",
+      "parent": "nosepass_shadow"
+    },
+    {
+      "id": "psyduck",
+      "parent": null,
+      "evolutions": [
+        "golduck"
+      ]
+    },
+    {
+      "id": "psyduck_shadow",
+      "parent": null,
+      "evolutions": [
+        "golduck_shadow"
+      ]
+    },
+    {
+      "id": "pumpkaboo_average",
+      "parent": null,
+      "evolutions": [
+        "gourgeist_average"
+      ]
+    },
+    {
+      "id": "pumpkaboo_large",
+      "parent": null,
+      "evolutions": [
+        "gourgeist_large"
+      ]
+    },
+    {
+      "id": "pumpkaboo_small",
+      "parent": null,
+      "evolutions": [
+        "gourgeist_small"
+      ]
+    },
+    {
+      "id": "pumpkaboo_super",
+      "parent": null,
+      "evolutions": [
+        "gourgeist_super"
+      ]
+    },
+    {
+      "id": "pupitar",
+      "parent": "larvitar",
+      "evolutions": [
+        "tyranitar"
+      ]
+    },
+    {
+      "id": "pupitar_shadow",
+      "parent": "larvitar_shadow",
+      "evolutions": [
+        "tyranitar_shadow"
+      ]
+    },
+    {
+      "id": "purrloin",
+      "parent": null,
+      "evolutions": [
+        "liepard"
+      ]
+    },
+    {
+      "id": "purrloin_shadow",
+      "parent": null,
+      "evolutions": [
+        "liepard_shadow"
+      ]
+    },
+    {
+      "id": "purugly",
+      "parent": "glameow"
+    },
+    {
+      "id": "purugly_shadow",
+      "parent": "glameow_shadow"
+    },
+    {
+      "id": "pyroar",
+      "parent": "litleo"
+    },
+    {
+      "id": "quagsire",
+      "parent": "wooper"
+    },
+    {
+      "id": "quagsire_shadow",
+      "parent": "wooper_shadow"
+    },
+    {
+      "id": "quaquaval",
+      "parent": "quaxwell"
+    },
+    {
+      "id": "quaxly",
+      "parent": null,
+      "evolutions": [
+        "quaxwell"
+      ]
+    },
+    {
+      "id": "quaxwell",
+      "parent": "quaxly",
+      "evolutions": [
+        "quaquaval"
+      ]
+    },
+    {
+      "id": "quilava",
+      "parent": "cyndaquil",
+      "evolutions": [
+        "typhlosion"
+      ]
+    },
+    {
+      "id": "quilava_shadow",
+      "parent": "cyndaquil_shadow",
+      "evolutions": [
+        "typhlosion_shadow"
+      ]
+    },
+    {
+      "id": "quilladin",
+      "parent": "chespin",
+      "evolutions": [
+        "chesnaught"
+      ]
+    },
+    {
+      "id": "quilladin_shadow",
+      "parent": "chespin_shadow",
+      "evolutions": [
+        "chesnaught_shadow"
+      ]
+    },
+    {
+      "id": "qwilfish_hisuian",
+      "parent": null,
+      "evolutions": [
+        "overqwil"
+      ]
+    },
+    {
+      "id": "raboot",
+      "parent": "scorbunny",
+      "evolutions": [
+        "cinderace"
+      ]
+    },
+    {
+      "id": "rabsca",
+      "parent": "rellor"
+    },
+    {
+      "id": "raichu",
+      "parent": "pikachu"
+    },
+    {
+      "id": "raichu_alolan",
+      "parent": "pikachu"
+    },
+    {
+      "id": "ralts",
+      "parent": null,
+      "evolutions": [
+        "kirlia"
+      ]
+    },
+    {
+      "id": "ralts_shadow",
+      "parent": null,
+      "evolutions": [
+        "kirlia_shadow"
+      ]
+    },
+    {
+      "id": "rampardos",
+      "parent": "cranidos"
+    },
+    {
+      "id": "rampardos_shadow",
+      "parent": "cranidos_shadow"
+    },
+    {
+      "id": "rapidash",
+      "parent": "ponyta"
+    },
+    {
+      "id": "rapidash_galarian",
+      "parent": "ponyta_galarian"
+    },
+    {
+      "id": "rapidash_shadow",
+      "parent": "ponyta_shadow"
+    },
+    {
+      "id": "raticate",
+      "parent": "rattata_alolan"
+    },
+    {
+      "id": "raticate_alolan",
+      "parent": "rattata_alolan"
+    },
+    {
+      "id": "raticate_alolan_shadow",
+      "parent": "rattata_alolan_shadow"
+    },
+    {
+      "id": "raticate_shadow",
+      "parent": "rattata_alolan_shadow"
+    },
+    {
+      "id": "rattata",
+      "parent": null,
+      "evolutions": [
+        "raticate"
+      ]
+    },
+    {
+      "id": "rattata_alolan",
+      "parent": null,
+      "evolutions": [
+        "raticate_alolan"
+      ]
+    },
+    {
+      "id": "rattata_alolan_shadow",
+      "parent": null,
+      "evolutions": [
+        "raticate_alolan_shadow"
+      ]
+    },
+    {
+      "id": "rattata_shadow",
+      "parent": null,
+      "evolutions": [
+        "raticate_shadow"
+      ]
+    },
+    {
+      "id": "rellor",
+      "parent": null,
+      "evolutions": [
+        "rabsca"
+      ]
+    },
+    {
+      "id": "remoraid",
+      "parent": null,
+      "evolutions": [
+        "octillery"
+      ]
+    },
+    {
+      "id": "reuniclus",
+      "parent": "duosion"
+    },
+    {
+      "id": "reuniclus_shadow",
+      "parent": "duosion_shadow"
+    },
+    {
+      "id": "revavroom",
+      "parent": "varoom"
+    },
+    {
+      "id": "rhydon",
+      "parent": "rhyhorn",
+      "evolutions": [
+        "rhyperior"
+      ]
+    },
+    {
+      "id": "rhydon_shadow",
+      "parent": "rhyhorn_shadow",
+      "evolutions": [
+        "rhyperior_shadow"
+      ]
+    },
+    {
+      "id": "rhyhorn",
+      "parent": null,
+      "evolutions": [
+        "rhydon"
+      ]
+    },
+    {
+      "id": "rhyhorn_shadow",
+      "parent": null,
+      "evolutions": [
+        "rhydon_shadow"
+      ]
+    },
+    {
+      "id": "rhyperior",
+      "parent": "rhydon"
+    },
+    {
+      "id": "rhyperior_shadow",
+      "parent": "rhydon_shadow"
+    },
+    {
+      "id": "ribombee",
+      "parent": "cutiefly"
+    },
+    {
+      "id": "rillaboom",
+      "parent": "thwackey"
+    },
+    {
+      "id": "riolu",
+      "parent": null,
+      "evolutions": [
+        "lucario"
+      ]
+    },
+    {
+      "id": "rockruff",
+      "parent": null,
+      "evolutions": [
+        "lycanroc_midnight",
+        "lycanroc_midday"
+      ]
+    },
+    {
+      "id": "roggenrola",
+      "parent": null,
+      "evolutions": [
+        "boldore"
+      ]
+    },
+    {
+      "id": "roggenrola_shadow",
+      "parent": null,
+      "evolutions": [
+        "boldore_shadow"
+      ]
+    },
+    {
+      "id": "rolycoly",
+      "parent": null,
+      "evolutions": [
+        "carkol"
+      ]
+    },
+    {
+      "id": "rookidee",
+      "parent": null,
+      "evolutions": [
+        "corvisquire"
+      ]
+    },
+    {
+      "id": "rookidee_shadow",
+      "parent": null,
+      "evolutions": [
+        "corvisquire_shadow"
+      ]
+    },
+    {
+      "id": "roselia",
+      "parent": "budew",
+      "evolutions": [
+        "roserade"
+      ]
+    },
+    {
+      "id": "roserade",
+      "parent": "roselia"
+    },
+    {
+      "id": "rowlet",
+      "parent": null,
+      "evolutions": [
+        "dartrix"
+      ]
+    },
+    {
+      "id": "rufflet",
+      "parent": null,
+      "evolutions": [
+        "braviary"
+      ]
+    },
+    {
+      "id": "runerigus",
+      "parent": "yamask_galarian"
+    },
+    {
+      "id": "salamence",
+      "parent": "shelgon"
+    },
+    {
+      "id": "salamence_shadow",
+      "parent": "shelgon_shadow"
+    },
+    {
+      "id": "salandit",
+      "parent": null,
+      "evolutions": [
+        "salazzle"
+      ]
+    },
+    {
+      "id": "salazzle",
+      "parent": "salandit"
+    },
+    {
+      "id": "samurott",
+      "parent": "dewott"
+    },
+    {
+      "id": "samurott_hisuian",
+      "parent": "dewott"
+    },
+    {
+      "id": "samurott_shadow",
+      "parent": "dewott_shadow"
+    },
+    {
+      "id": "sandaconda",
+      "parent": "silicobra"
+    },
+    {
+      "id": "sandile",
+      "parent": null,
+      "evolutions": [
+        "krokorok"
+      ]
+    },
+    {
+      "id": "sandshrew",
+      "parent": null,
+      "evolutions": [
+        "sandslash"
+      ]
+    },
+    {
+      "id": "sandshrew_alolan",
+      "parent": null,
+      "evolutions": [
+        "sandslash_alolan"
+      ]
+    },
+    {
+      "id": "sandshrew_alolan_shadow",
+      "parent": null,
+      "evolutions": [
+        "sandslash_alolan_shadow"
+      ]
+    },
+    {
+      "id": "sandshrew_shadow",
+      "parent": null,
+      "evolutions": [
+        "sandslash_shadow"
+      ]
+    },
+    {
+      "id": "sandslash",
+      "parent": "sandshrew"
+    },
+    {
+      "id": "sandslash_alolan",
+      "parent": "sandshrew_alolan"
+    },
+    {
+      "id": "sandslash_alolan_shadow",
+      "parent": "sandshrew_alolan_shadow"
+    },
+    {
+      "id": "sandslash_shadow",
+      "parent": "sandshrew_shadow"
+    },
+    {
+      "id": "sandygast",
+      "parent": null,
+      "evolutions": [
+        "palossand"
+      ]
+    },
+    {
+      "id": "sandygast_shadow",
+      "parent": null,
+      "evolutions": [
+        "palossand_shadow"
+      ]
+    },
+    {
+      "id": "sawsbuck",
+      "parent": "deerling"
+    },
+    {
+      "id": "scatterbug",
+      "parent": null,
+      "evolutions": [
+        "spewpa"
+      ]
+    },
+    {
+      "id": "sceptile",
+      "parent": "grovyle"
+    },
+    {
+      "id": "sceptile_shadow",
+      "parent": "grovyle_shadow"
+    },
+    {
+      "id": "scizor",
+      "parent": "scyther"
+    },
+    {
+      "id": "scizor_shadow",
+      "parent": "scyther_shadow"
+    },
+    {
+      "id": "scolipede",
+      "parent": "whirlipede"
+    },
+    {
+      "id": "scolipede_shadow",
+      "parent": "whirlipede_shadow"
+    },
+    {
+      "id": "scorbunny",
+      "parent": null,
+      "evolutions": [
+        "raboot"
+      ]
+    },
+    {
+      "id": "scovillain",
+      "parent": "capsakid"
+    },
+    {
+      "id": "scrafty",
+      "parent": "scraggy"
+    },
+    {
+      "id": "scraggy",
+      "parent": null,
+      "evolutions": [
+        "scrafty"
+      ]
+    },
+    {
+      "id": "scyther",
+      "parent": null,
+      "evolutions": [
+        "scizor",
+        "kleavor"
+      ]
+    },
+    {
+      "id": "scyther_shadow",
+      "parent": null,
+      "evolutions": [
+        "scizor_shadow"
+      ]
+    },
+    {
+      "id": "seadra",
+      "parent": "horsea",
+      "evolutions": [
+        "kingdra"
+      ]
+    },
+    {
+      "id": "seadra_shadow",
+      "parent": "horsea_shadow",
+      "evolutions": [
+        "kingdra_shadow"
+      ]
+    },
+    {
+      "id": "seaking",
+      "parent": "goldeen"
+    },
+    {
+      "id": "sealeo",
+      "parent": "spheal",
+      "evolutions": [
+        "walrein"
+      ]
+    },
+    {
+      "id": "sealeo_shadow",
+      "parent": "spheal_shadow",
+      "evolutions": [
+        "walrein_shadow"
+      ]
+    },
+    {
+      "id": "seedot",
+      "parent": null,
+      "evolutions": [
+        "nuzleaf"
+      ]
+    },
+    {
+      "id": "seedot_shadow",
+      "parent": null,
+      "evolutions": [
+        "nuzleaf_shadow"
+      ]
+    },
+    {
+      "id": "seel",
+      "parent": null,
+      "evolutions": [
+        "dewgong"
+      ]
+    },
+    {
+      "id": "seel_shadow",
+      "parent": null,
+      "evolutions": [
+        "dewgong_shadow"
+      ]
+    },
+    {
+      "id": "seismitoad",
+      "parent": "palpitoad"
+    },
+    {
+      "id": "sentret",
+      "parent": null,
+      "evolutions": [
+        "furret"
+      ]
+    },
+    {
+      "id": "serperior",
+      "parent": "servine"
+    },
+    {
+      "id": "serperior_shadow",
+      "parent": "servine_shadow"
+    },
+    {
+      "id": "servine",
+      "parent": "snivy",
+      "evolutions": [
+        "serperior"
+      ]
+    },
+    {
+      "id": "servine_shadow",
+      "parent": "snivy_shadow",
+      "evolutions": [
+        "serperior_shadow"
+      ]
+    },
+    {
+      "id": "sewaddle",
+      "parent": null,
+      "evolutions": [
+        "swadloon"
+      ]
+    },
+    {
+      "id": "sharpedo",
+      "parent": "carvanha"
+    },
+    {
+      "id": "sharpedo_shadow",
+      "parent": "carvanha_shadow"
+    },
+    {
+      "id": "shedinja",
+      "parent": "nincada"
+    },
+    {
+      "id": "shelgon",
+      "parent": "bagon",
+      "evolutions": [
+        "salamence"
+      ]
+    },
+    {
+      "id": "shelgon_shadow",
+      "parent": "bagon_shadow",
+      "evolutions": [
+        "salamence_shadow"
+      ]
+    },
+    {
+      "id": "shellder",
+      "parent": null,
+      "evolutions": [
+        "cloyster"
+      ]
+    },
+    {
+      "id": "shellder_shadow",
+      "parent": null,
+      "evolutions": [
+        "cloyster_shadow"
+      ]
+    },
+    {
+      "id": "shellos",
+      "parent": null,
+      "evolutions": [
+        "gastrodon"
+      ]
+    },
+    {
+      "id": "shelmet",
+      "parent": null,
+      "evolutions": [
+        "accelgor"
+      ]
+    },
+    {
+      "id": "shelmet_shadow",
+      "parent": null,
+      "evolutions": [
+        "accelgor_shadow"
+      ]
+    },
+    {
+      "id": "shieldon",
+      "parent": null,
+      "evolutions": [
+        "bastiodon"
+      ]
+    },
+    {
+      "id": "shieldon_shadow",
+      "parent": null,
+      "evolutions": [
+        "bastiodon_shadow"
+      ]
+    },
+    {
+      "id": "shiftry",
+      "parent": "nuzleaf"
+    },
+    {
+      "id": "shiftry_shadow",
+      "parent": "nuzleaf_shadow"
+    },
+    {
+      "id": "shiinotic",
+      "parent": "morelull"
+    },
+    {
+      "id": "shiinotic_shadow",
+      "parent": "morelull"
+    },
+    {
+      "id": "shinx",
+      "parent": null,
+      "evolutions": [
+        "luxio"
+      ]
+    },
+    {
+      "id": "shinx_shadow",
+      "parent": null,
+      "evolutions": [
+        "luxio_shadow"
+      ]
+    },
+    {
+      "id": "shroodle",
+      "parent": null,
+      "evolutions": [
+        "grafaiai"
+      ]
+    },
+    {
+      "id": "shroomish",
+      "parent": null,
+      "evolutions": [
+        "breloom"
+      ]
+    },
+    {
+      "id": "shuppet",
+      "parent": null,
+      "evolutions": [
+        "banette"
+      ]
+    },
+    {
+      "id": "shuppet_shadow",
+      "parent": null,
+      "evolutions": [
+        "banette_shadow"
+      ]
+    },
+    {
+      "id": "silcoon",
+      "parent": "wurmple",
+      "evolutions": [
+        "beautifly"
+      ]
+    },
+    {
+      "id": "silicobra",
+      "parent": null,
+      "evolutions": [
+        "sandaconda"
+      ]
+    },
+    {
+      "id": "simipour",
+      "parent": "panpour"
+    },
+    {
+      "id": "simisage",
+      "parent": "pansage"
+    },
+    {
+      "id": "simisear",
+      "parent": "pansear"
+    },
+    {
+      "id": "sinistcha",
+      "parent": null,
+      "evolutions": [
+        "poltchageist"
+      ]
+    },
+    {
+      "id": "sinistea",
+      "parent": null,
+      "evolutions": [
+        "polteageist"
+      ]
+    },
+    {
+      "id": "sirfetchd",
+      "parent": "farfetchd_galarian"
+    },
+    {
+      "id": "sizzlipede",
+      "parent": null,
+      "evolutions": [
+        "centiskorch"
+      ]
+    },
+    {
+      "id": "skeledirge",
+      "parent": "crocalor"
+    },
+    {
+      "id": "skiddo",
+      "parent": null,
+      "evolutions": [
+        "gogoat"
+      ]
+    },
+    {
+      "id": "skiploom",
+      "parent": "hoppip",
+      "evolutions": [
+        "jumpluff"
+      ]
+    },
+    {
+      "id": "skiploom_shadow",
+      "parent": "hoppip_shadow",
+      "evolutions": [
+        "jumpluff_shadow"
+      ]
+    },
+    {
+      "id": "skitty",
+      "parent": null,
+      "evolutions": [
+        "delcatty"
+      ]
+    },
+    {
+      "id": "skorupi",
+      "parent": null,
+      "evolutions": [
+        "drapion"
+      ]
+    },
+    {
+      "id": "skorupi_shadow",
+      "parent": null,
+      "evolutions": [
+        "drapion_shadow"
+      ]
+    },
+    {
+      "id": "skrelp",
+      "parent": null,
+      "evolutions": [
+        "dragalge"
+      ]
+    },
+    {
+      "id": "skuntank",
+      "parent": "stunky"
+    },
+    {
+      "id": "skuntank_shadow",
+      "parent": "stunky_shadow"
+    },
+    {
+      "id": "skwovet",
+      "parent": null,
+      "evolutions": [
+        "greedent"
+      ]
+    },
+    {
+      "id": "slaking",
+      "parent": "vigoroth"
+    },
+    {
+      "id": "slaking_shadow",
+      "parent": "vigoroth_shadow"
+    },
+    {
+      "id": "slakoth",
+      "parent": null,
+      "evolutions": [
+        "vigoroth"
+      ]
+    },
+    {
+      "id": "slakoth_shadow",
+      "parent": null,
+      "evolutions": [
+        "vigoroth_shadow"
+      ]
+    },
+    {
+      "id": "sliggoo",
+      "parent": "goomy",
+      "evolutions": [
+        "goodra"
+      ]
+    },
+    {
+      "id": "sliggoo_hisuian",
+      "parent": "goomy",
+      "evolutions": [
+        "goodra"
+      ]
+    },
+    {
+      "id": "slowbro",
+      "parent": "slowpoke"
+    },
+    {
+      "id": "slowbro_galarian",
+      "parent": "slowpoke_galarian"
+    },
+    {
+      "id": "slowbro_shadow",
+      "parent": "slowpoke_shadow"
+    },
+    {
+      "id": "slowking",
+      "parent": "slowpoke"
+    },
+    {
+      "id": "slowking_galarian",
+      "parent": "slowpoke_galarian"
+    },
+    {
+      "id": "slowking_shadow",
+      "parent": "slowpoke_shadow"
+    },
+    {
+      "id": "slowpoke",
+      "parent": null,
+      "evolutions": [
+        "slowbro",
+        "slowking"
+      ]
+    },
+    {
+      "id": "slowpoke_galarian",
+      "parent": null,
+      "evolutions": [
+        "slowbro_galarian",
+        "slowking_galarian"
+      ]
+    },
+    {
+      "id": "slowpoke_shadow",
+      "parent": null,
+      "evolutions": [
+        "slowbro_shadow",
+        "slowking_shadow"
+      ]
+    },
+    {
+      "id": "slugma",
+      "parent": null,
+      "evolutions": [
+        "magcargo"
+      ]
+    },
+    {
+      "id": "slurpuff",
+      "parent": "swirlix"
+    },
+    {
+      "id": "smoliv",
+      "parent": null,
+      "evolutions": [
+        "dolliv"
+      ]
+    },
+    {
+      "id": "smoochum",
+      "parent": null,
+      "evolutions": [
+        "jynx"
+      ]
+    },
+    {
+      "id": "sneasel",
+      "parent": null,
+      "evolutions": [
+        "weavile"
+      ]
+    },
+    {
+      "id": "sneasel_hisuian",
+      "parent": null,
+      "evolutions": [
+        "sneasler"
+      ]
+    },
+    {
+      "id": "sneasel_hisuian_shadow",
+      "parent": null,
+      "evolutions": [
+        "sneasler_shadow"
+      ]
+    },
+    {
+      "id": "sneasel_shadow",
+      "parent": null,
+      "evolutions": [
+        "weavile_shadow"
+      ]
+    },
+    {
+      "id": "sneasler",
+      "parent": "sneasel_hisuian"
+    },
+    {
+      "id": "sneasler_shadow",
+      "parent": "sneasel_hisuian_shadow"
+    },
+    {
+      "id": "snivy",
+      "parent": null,
+      "evolutions": [
+        "servine"
+      ]
+    },
+    {
+      "id": "snivy_shadow",
+      "parent": null,
+      "evolutions": [
+        "servine_shadow"
+      ]
+    },
+    {
+      "id": "snom",
+      "parent": null,
+      "evolutions": [
+        "frosmoth"
+      ]
+    },
+    {
+      "id": "snorlax",
+      "parent": "munchlax"
+    },
+    {
+      "id": "snorlax_shadow",
+      "parent": "munchlax"
+    },
+    {
+      "id": "snorunt",
+      "parent": null,
+      "evolutions": [
+        "froslass",
+        "glalie"
+      ]
+    },
+    {
+      "id": "snorunt_shadow",
+      "parent": null,
+      "evolutions": [
+        "froslass_shadow",
+        "glalie_shadow"
+      ]
+    },
+    {
+      "id": "snover",
+      "parent": null,
+      "evolutions": [
+        "abomasnow"
+      ]
+    },
+    {
+      "id": "snover_shadow",
+      "parent": null,
+      "evolutions": [
+        "abomasnow_shadow"
+      ]
+    },
+    {
+      "id": "snubbull",
+      "parent": null,
+      "evolutions": [
+        "granbull"
+      ]
+    },
+    {
+      "id": "snubbull_shadow",
+      "parent": null,
+      "evolutions": [
+        "granbull_shadow"
+      ]
+    },
+    {
+      "id": "sobble",
+      "parent": null,
+      "evolutions": [
+        "drizzile"
+      ]
+    },
+    {
+      "id": "solgaleo",
+      "parent": "cosmoem"
+    },
+    {
+      "id": "solosis",
+      "parent": null,
+      "evolutions": [
+        "duosion"
+      ]
+    },
+    {
+      "id": "solosis_shadow",
+      "parent": null,
+      "evolutions": [
+        "duosion_shadow"
+      ]
+    },
+    {
+      "id": "spearow",
+      "parent": null,
+      "evolutions": [
+        "fearow"
+      ]
+    },
+    {
+      "id": "spewpa",
+      "parent": "scatterbug",
+      "evolutions": [
+        "vivillon"
+      ]
+    },
+    {
+      "id": "spheal",
+      "parent": null,
+      "evolutions": [
+        "sealeo"
+      ]
+    },
+    {
+      "id": "spheal_shadow",
+      "parent": null,
+      "evolutions": [
+        "sealeo_shadow"
+      ]
+    },
+    {
+      "id": "spidops",
+      "parent": "tarountula"
+    },
+    {
+      "id": "spinarak",
+      "parent": null,
+      "evolutions": [
+        "ariados"
+      ]
+    },
+    {
+      "id": "spoink",
+      "parent": null,
+      "evolutions": [
+        "grumpig"
+      ]
+    },
+    {
+      "id": "spoink_shadow",
+      "parent": null,
+      "evolutions": [
+        "grumpig_shadow"
+      ]
+    },
+    {
+      "id": "sprigatito",
+      "parent": null,
+      "evolutions": [
+        "floragato"
+      ]
+    },
+    {
+      "id": "spritzee",
+      "parent": null,
+      "evolutions": [
+        "aromatisse"
+      ]
+    },
+    {
+      "id": "squirtle",
+      "parent": null,
+      "evolutions": [
+        "wartortle"
+      ]
+    },
+    {
+      "id": "squirtle_shadow",
+      "parent": null,
+      "evolutions": [
+        "wartortle_shadow"
+      ]
+    },
+    {
+      "id": "stantler",
+      "parent": null,
+      "evolutions": [
+        "wyrdeer"
+      ]
+    },
+    {
+      "id": "staraptor",
+      "parent": "staravia"
+    },
+    {
+      "id": "staraptor_shadow",
+      "parent": "staravia_shadow"
+    },
+    {
+      "id": "staravia",
+      "parent": "starly",
+      "evolutions": [
+        "staraptor"
+      ]
+    },
+    {
+      "id": "staravia_shadow",
+      "parent": "starly_shadow",
+      "evolutions": [
+        "staraptor_shadow"
+      ]
+    },
+    {
+      "id": "starly",
+      "parent": null,
+      "evolutions": [
+        "staravia"
+      ]
+    },
+    {
+      "id": "starly_shadow",
+      "parent": null,
+      "evolutions": [
+        "staravia_shadow"
+      ]
+    },
+    {
+      "id": "starmie",
+      "parent": "staryu"
+    },
+    {
+      "id": "starmie_shadow",
+      "parent": "staryu_shadow"
+    },
+    {
+      "id": "staryu",
+      "parent": null,
+      "evolutions": [
+        "starmie"
+      ]
+    },
+    {
+      "id": "staryu_shadow",
+      "parent": null,
+      "evolutions": [
+        "starmie_shadow"
+      ]
+    },
+    {
+      "id": "steelix",
+      "parent": "onix"
+    },
+    {
+      "id": "steelix_shadow",
+      "parent": "onix_shadow"
+    },
+    {
+      "id": "steenee",
+      "parent": "bounsweet",
+      "evolutions": [
+        "tsareena"
+      ]
+    },
+    {
+      "id": "stoutland",
+      "parent": "herdier"
+    },
+    {
+      "id": "stufful",
+      "parent": null,
+      "evolutions": [
+        "bewear"
+      ]
+    },
+    {
+      "id": "stufful_shadow",
+      "parent": null,
+      "evolutions": [
+        "bewear_shadow"
+      ]
+    },
+    {
+      "id": "stunky",
+      "parent": null,
+      "evolutions": [
+        "skuntank"
+      ]
+    },
+    {
+      "id": "stunky_shadow",
+      "parent": null,
+      "evolutions": [
+        "skuntank_shadow"
+      ]
+    },
+    {
+      "id": "sudowoodo",
+      "parent": "bonsly"
+    },
+    {
+      "id": "sudowoodo_shadow",
+      "parent": "bonsly"
+    },
+    {
+      "id": "sunflora",
+      "parent": "sunkern"
+    },
+    {
+      "id": "sunkern",
+      "parent": null,
+      "evolutions": [
+        "sunflora"
+      ]
+    },
+    {
+      "id": "surskit",
+      "parent": null,
+      "evolutions": [
+        "masquerain"
+      ]
+    },
+    {
+      "id": "swablu",
+      "parent": null,
+      "evolutions": [
+        "altaria"
+      ]
+    },
+    {
+      "id": "swablu_shadow",
+      "parent": null,
+      "evolutions": [
+        "altaria_shadow"
+      ]
+    },
+    {
+      "id": "swadloon",
+      "parent": "sewaddle",
+      "evolutions": [
+        "leavanny"
+      ]
+    },
+    {
+      "id": "swalot",
+      "parent": "gulpin"
+    },
+    {
+      "id": "swampert",
+      "parent": "marshtomp"
+    },
+    {
+      "id": "swampert_shadow",
+      "parent": "marshtomp_shadow"
+    },
+    {
+      "id": "swanna",
+      "parent": "ducklett"
+    },
+    {
+      "id": "swanna_shadow",
+      "parent": "ducklett_shadow"
+    },
+    {
+      "id": "swellow",
+      "parent": "taillow"
+    },
+    {
+      "id": "swellow_shadow",
+      "parent": "taillow_shadow"
+    },
+    {
+      "id": "swinub",
+      "parent": null,
+      "evolutions": [
+        "piloswine"
+      ]
+    },
+    {
+      "id": "swinub_shadow",
+      "parent": null,
+      "evolutions": [
+        "piloswine_shadow"
+      ]
+    },
+    {
+      "id": "swirlix",
+      "parent": null,
+      "evolutions": [
+        "slurpuff"
+      ]
+    },
+    {
+      "id": "swoobat",
+      "parent": "woobat"
+    },
+    {
+      "id": "sylveon",
+      "parent": "eevee"
+    },
+    {
+      "id": "tadbulb",
+      "parent": null,
+      "evolutions": [
+        "bellibolt"
+      ]
+    },
+    {
+      "id": "taillow",
+      "parent": null,
+      "evolutions": [
+        "swellow"
+      ]
+    },
+    {
+      "id": "taillow_shadow",
+      "parent": null,
+      "evolutions": [
+        "swellow_shadow"
+      ]
+    },
+    {
+      "id": "talonflame",
+      "parent": "fletchinder"
+    },
+    {
+      "id": "talonflame_shadow",
+      "parent": "fletchinder_shadow"
+    },
+    {
+      "id": "tandemaus",
+      "parent": null,
+      "evolutions": [
+        "maushold",
+        "maushold"
+      ]
+    },
+    {
+      "id": "tangela",
+      "parent": null,
+      "evolutions": [
+        "tangrowth"
+      ]
+    },
+    {
+      "id": "tangela_shadow",
+      "parent": null,
+      "evolutions": [
+        "tangrowth_shadow"
+      ]
+    },
+    {
+      "id": "tangrowth",
+      "parent": "tangela"
+    },
+    {
+      "id": "tangrowth_shadow",
+      "parent": "tangela_shadow"
+    },
+    {
+      "id": "tarountula",
+      "parent": null,
+      "evolutions": [
+        "spidops"
+      ]
+    },
+    {
+      "id": "teddiursa",
+      "parent": null,
+      "evolutions": [
+        "ursaring"
+      ]
+    },
+    {
+      "id": "teddiursa_shadow",
+      "parent": null,
+      "evolutions": [
+        "ursaring_shadow"
+      ]
+    },
+    {
+      "id": "tentacool",
+      "parent": null,
+      "evolutions": [
+        "tentacruel"
+      ]
+    },
+    {
+      "id": "tentacool_shadow",
+      "parent": null,
+      "evolutions": [
+        "tentacruel_shadow"
+      ]
+    },
+    {
+      "id": "tentacruel",
+      "parent": "tentacool"
+    },
+    {
+      "id": "tentacruel_shadow",
+      "parent": "tentacool_shadow"
+    },
+    {
+      "id": "tepig",
+      "parent": null,
+      "evolutions": [
+        "pignite"
+      ]
+    },
+    {
+      "id": "tepig_shadow",
+      "parent": null,
+      "evolutions": [
+        "pignite_shadow"
+      ]
+    },
+    {
+      "id": "thievul",
+      "parent": "nickit"
+    },
+    {
+      "id": "thwackey",
+      "parent": "grookey",
+      "evolutions": [
+        "rillaboom"
+      ]
+    },
+    {
+      "id": "timburr",
+      "parent": null,
+      "evolutions": [
+        "gurdurr"
+      ]
+    },
+    {
+      "id": "timburr_shadow",
+      "parent": null,
+      "evolutions": [
+        "gurdurr_shadow"
+      ]
+    },
+    {
+      "id": "tinkatink",
+      "parent": null,
+      "evolutions": [
+        "tinkatuff"
+      ]
+    },
+    {
+      "id": "tinkaton",
+      "parent": "tinkatuff"
+    },
+    {
+      "id": "tinkatuff",
+      "parent": "tinkatink",
+      "evolutions": [
+        "tinkaton"
+      ]
+    },
+    {
+      "id": "tirtouga",
+      "parent": null,
+      "evolutions": [
+        "carracosta"
+      ]
+    },
+    {
+      "id": "tirtouga_shadow",
+      "parent": null,
+      "evolutions": [
+        "carracosta_shadow"
+      ]
+    },
+    {
+      "id": "toedscool",
+      "parent": null,
+      "evolutions": [
+        "toedscruel"
+      ]
+    },
+    {
+      "id": "toedscruel",
+      "parent": "toedscool"
+    },
+    {
+      "id": "togekiss",
+      "parent": "togetic"
+    },
+    {
+      "id": "togepi",
+      "parent": null,
+      "evolutions": [
+        "togetic"
+      ]
+    },
+    {
+      "id": "togetic",
+      "parent": "togepi",
+      "evolutions": [
+        "togekiss"
+      ]
+    },
+    {
+      "id": "torchic",
+      "parent": null,
+      "evolutions": [
+        "combusken"
+      ]
+    },
+    {
+      "id": "torchic_shadow",
+      "parent": null,
+      "evolutions": [
+        "combusken_shadow"
+      ]
+    },
+    {
+      "id": "torracat",
+      "parent": "litten",
+      "evolutions": [
+        "incineroar"
+      ]
+    },
+    {
+      "id": "torterra",
+      "parent": "grotle"
+    },
+    {
+      "id": "torterra_shadow",
+      "parent": "grotle_shadow"
+    },
+    {
+      "id": "totodile",
+      "parent": null,
+      "evolutions": [
+        "croconaw"
+      ]
+    },
+    {
+      "id": "totodile_shadow",
+      "parent": null,
+      "evolutions": [
+        "croconaw_shadow"
+      ]
+    },
+    {
+      "id": "toucannon",
+      "parent": "trumbeak"
+    },
+    {
+      "id": "toucannon_shadow",
+      "parent": "trumbeak_shadow"
+    },
+    {
+      "id": "toxapex",
+      "parent": "mareanie"
+    },
+    {
+      "id": "toxel",
+      "parent": null,
+      "evolutions": [
+        "toxtricity_amped",
+        "toxtricity_low_key"
+      ]
+    },
+    {
+      "id": "toxicroak",
+      "parent": "croagunk"
+    },
+    {
+      "id": "toxicroak_shadow",
+      "parent": "croagunk_shadow"
+    },
+    {
+      "id": "toxtricity",
+      "parent": "toxel"
+    },
+    {
+      "id": "toxtricity_amped",
+      "parent": "toxel"
+    },
+    {
+      "id": "toxtricity_low_key",
+      "parent": "toxel"
+    },
+    {
+      "id": "tranquill",
+      "parent": "pidove",
+      "evolutions": [
+        "unfezant"
+      ]
+    },
+    {
+      "id": "tranquill_shadow",
+      "parent": "pidove_shadow",
+      "evolutions": [
+        "unfezant_shadow"
+      ]
+    },
+    {
+      "id": "trapinch",
+      "parent": null,
+      "evolutions": [
+        "vibrava"
+      ]
+    },
+    {
+      "id": "trapinch_shadow",
+      "parent": null,
+      "evolutions": [
+        "vibrava_shadow"
+      ]
+    },
+    {
+      "id": "treecko",
+      "parent": null,
+      "evolutions": [
+        "grovyle"
+      ]
+    },
+    {
+      "id": "treecko_shadow",
+      "parent": null,
+      "evolutions": [
+        "grovyle_shadow"
+      ]
+    },
+    {
+      "id": "trevenant",
+      "parent": "phantump"
+    },
+    {
+      "id": "trevenant_shadow",
+      "parent": "phantump_shadow"
+    },
+    {
+      "id": "trubbish",
+      "parent": null,
+      "evolutions": [
+        "garbodor"
+      ]
+    },
+    {
+      "id": "trubbish_shadow",
+      "parent": null,
+      "evolutions": [
+        "garbodor_shadow"
+      ]
+    },
+    {
+      "id": "trumbeak",
+      "parent": "pikipek",
+      "evolutions": [
+        "toucannon"
+      ]
+    },
+    {
+      "id": "trumbeak_shadow",
+      "parent": "pikipek_shadow",
+      "evolutions": [
+        "toucannon_shadow"
+      ]
+    },
+    {
+      "id": "tsareena",
+      "parent": "steenee"
+    },
+    {
+      "id": "turtwig",
+      "parent": null,
+      "evolutions": [
+        "grotle"
+      ]
+    },
+    {
+      "id": "turtwig_shadow",
+      "parent": null,
+      "evolutions": [
+        "grotle_shadow"
+      ]
+    },
+    {
+      "id": "tympole",
+      "parent": null,
+      "evolutions": [
+        "palpitoad"
+      ]
+    },
+    {
+      "id": "tynamo",
+      "parent": null,
+      "evolutions": [
+        "eelektrik"
+      ]
+    },
+    {
+      "id": "type_null",
+      "parent": null,
+      "evolutions": [
+        "silvally"
+      ]
+    },
+    {
+      "id": "typhlosion",
+      "parent": "quilava"
+    },
+    {
+      "id": "typhlosion_hisuian",
+      "parent": "quilava"
+    },
+    {
+      "id": "typhlosion_shadow",
+      "parent": "quilava_shadow"
+    },
+    {
+      "id": "tyranitar",
+      "parent": "pupitar"
+    },
+    {
+      "id": "tyranitar_shadow",
+      "parent": "pupitar_shadow"
+    },
+    {
+      "id": "tyrantrum",
+      "parent": "tyrunt"
+    },
+    {
+      "id": "tyrantrum_shadow",
+      "parent": "tyrunt_shadow"
+    },
+    {
+      "id": "tyrogue",
+      "parent": null,
+      "evolutions": [
+        "hitmonlee",
+        "hitmonchan",
+        "hitmontop"
+      ]
+    },
+    {
+      "id": "tyrunt",
+      "parent": null,
+      "evolutions": [
+        "tyrantrum"
+      ]
+    },
+    {
+      "id": "tyrunt_shadow",
+      "parent": null,
+      "evolutions": [
+        "tyrantrum_shadow"
+      ]
+    },
+    {
+      "id": "umbreon",
+      "parent": "eevee"
+    },
+    {
+      "id": "unfezant",
+      "parent": "tranquill"
+    },
+    {
+      "id": "unfezant_shadow",
+      "parent": "tranquill_shadow"
+    },
+    {
+      "id": "ursaluna",
+      "parent": "ursaring"
+    },
+    {
+      "id": "ursaluna_shadow",
+      "parent": "ursaring_shadow"
+    },
+    {
+      "id": "ursaring",
+      "parent": "teddiursa",
+      "evolutions": [
+        "ursaluna"
+      ]
+    },
+    {
+      "id": "ursaring_shadow",
+      "parent": "teddiursa_shadow",
+      "evolutions": [
+        "ursaluna_shadow"
+      ]
+    },
+    {
+      "id": "urshifu_rapid_strike",
+      "parent": "kubfu"
+    },
+    {
+      "id": "urshifu_single_strike",
+      "parent": "kubfu"
+    },
+    {
+      "id": "vanillish",
+      "parent": "vanillite",
+      "evolutions": [
+        "vanilluxe"
+      ]
+    },
+    {
+      "id": "vanillite",
+      "parent": null,
+      "evolutions": [
+        "vanillish"
+      ]
+    },
+    {
+      "id": "vanilluxe",
+      "parent": "vanillish"
+    },
+    {
+      "id": "vaporeon",
+      "parent": "eevee"
+    },
+    {
+      "id": "varoom",
+      "parent": null,
+      "evolutions": [
+        "revavroom"
+      ]
+    },
+    {
+      "id": "venipede",
+      "parent": null,
+      "evolutions": [
+        "whirlipede"
+      ]
+    },
+    {
+      "id": "venipede_shadow",
+      "parent": null,
+      "evolutions": [
+        "whirlipede_shadow"
+      ]
+    },
+    {
+      "id": "venomoth",
+      "parent": "venonat"
+    },
+    {
+      "id": "venomoth_shadow",
+      "parent": "venonat_shadow"
+    },
+    {
+      "id": "venonat",
+      "parent": null,
+      "evolutions": [
+        "venomoth"
+      ]
+    },
+    {
+      "id": "venonat_shadow",
+      "parent": null,
+      "evolutions": [
+        "venomoth_shadow"
+      ]
+    },
+    {
+      "id": "venusaur",
+      "parent": "ivysaur"
+    },
+    {
+      "id": "venusaur_shadow",
+      "parent": "ivysaur_shadow"
+    },
+    {
+      "id": "vespiquen",
+      "parent": "combee"
+    },
+    {
+      "id": "vibrava",
+      "parent": "trapinch",
+      "evolutions": [
+        "flygon"
+      ]
+    },
+    {
+      "id": "vibrava_shadow",
+      "parent": "trapinch_shadow",
+      "evolutions": [
+        "flygon_shadow"
+      ]
+    },
+    {
+      "id": "victreebel",
+      "parent": "weepinbell"
+    },
+    {
+      "id": "victreebel_shadow",
+      "parent": "weepinbell_shadow"
+    },
+    {
+      "id": "vigoroth",
+      "parent": "slakoth",
+      "evolutions": [
+        "slaking"
+      ]
+    },
+    {
+      "id": "vigoroth_shadow",
+      "parent": "slakoth_shadow",
+      "evolutions": [
+        "slaking_shadow"
+      ]
+    },
+    {
+      "id": "vikavolt",
+      "parent": "charjabug"
+    },
+    {
+      "id": "vikavolt_shadow",
+      "parent": "charjabug_shadow"
+    },
+    {
+      "id": "vileplume",
+      "parent": "gloom"
+    },
+    {
+      "id": "vileplume_shadow",
+      "parent": "gloom_shadow"
+    },
+    {
+      "id": "vivillon",
+      "parent": "spewpa"
+    },
+    {
+      "id": "volcarona",
+      "parent": "larvesta"
+    },
+    {
+      "id": "voltorb",
+      "parent": null,
+      "evolutions": [
+        "electrode"
+      ]
+    },
+    {
+      "id": "voltorb_hisuian",
+      "parent": null,
+      "evolutions": [
+        "electrode_hisuian"
+      ]
+    },
+    {
+      "id": "voltorb_shadow",
+      "parent": null,
+      "evolutions": [
+        "electrode_shadow"
+      ]
+    },
+    {
+      "id": "vullaby",
+      "parent": null,
+      "evolutions": [
+        "mandibuzz"
+      ]
+    },
+    {
+      "id": "vulpix",
+      "parent": null,
+      "evolutions": [
+        "ninetales"
+      ]
+    },
+    {
+      "id": "vulpix_alolan",
+      "parent": null,
+      "evolutions": [
+        "ninetales_alolan"
+      ]
+    },
+    {
+      "id": "vulpix_alolan_shadow",
+      "parent": null,
+      "evolutions": [
+        "ninetales_alolan_shadow"
+      ]
+    },
+    {
+      "id": "vulpix_shadow",
+      "parent": null,
+      "evolutions": [
+        "ninetales_shadow"
+      ]
+    },
+    {
+      "id": "wailmer",
+      "parent": null,
+      "evolutions": [
+        "wailord"
+      ]
+    },
+    {
+      "id": "wailmer_shadow",
+      "parent": null,
+      "evolutions": [
+        "wailord_shadow"
+      ]
+    },
+    {
+      "id": "wailord",
+      "parent": "wailmer"
+    },
+    {
+      "id": "wailord_shadow",
+      "parent": "wailmer_shadow"
+    },
+    {
+      "id": "walrein",
+      "parent": "sealeo"
+    },
+    {
+      "id": "walrein_shadow",
+      "parent": "sealeo_shadow"
+    },
+    {
+      "id": "wartortle",
+      "parent": "squirtle",
+      "evolutions": [
+        "blastoise"
+      ]
+    },
+    {
+      "id": "wartortle_shadow",
+      "parent": "squirtle_shadow",
+      "evolutions": [
+        "blastoise_shadow"
+      ]
+    },
+    {
+      "id": "watchog",
+      "parent": "patrat"
+    },
+    {
+      "id": "watchog_shadow",
+      "parent": "patrat_shadow"
+    },
+    {
+      "id": "wattrel",
+      "parent": null,
+      "evolutions": [
+        "kilowattrel"
+      ]
+    },
+    {
+      "id": "weavile",
+      "parent": "sneasel"
+    },
+    {
+      "id": "weavile_shadow",
+      "parent": "sneasel_shadow"
+    },
+    {
+      "id": "weedle",
+      "parent": null,
+      "evolutions": [
+        "kakuna"
+      ]
+    },
+    {
+      "id": "weedle_shadow",
+      "parent": null,
+      "evolutions": [
+        "kakuna_shadow"
+      ]
+    },
+    {
+      "id": "weepinbell",
+      "parent": "bellsprout",
+      "evolutions": [
+        "victreebel"
+      ]
+    },
+    {
+      "id": "weepinbell_shadow",
+      "parent": "bellsprout_shadow",
+      "evolutions": [
+        "victreebel_shadow"
+      ]
+    },
+    {
+      "id": "weezing",
+      "parent": "koffing"
+    },
+    {
+      "id": "weezing_galarian",
+      "parent": "koffing"
+    },
+    {
+      "id": "weezing_galarian_shadow",
+      "parent": "koffing_shadow"
+    },
+    {
+      "id": "weezing_shadow",
+      "parent": "koffing_shadow"
+    },
+    {
+      "id": "whimsicott",
+      "parent": "cottonee"
+    },
+    {
+      "id": "whirlipede",
+      "parent": "venipede",
+      "evolutions": [
+        "scolipede"
+      ]
+    },
+    {
+      "id": "whirlipede_shadow",
+      "parent": "venipede_shadow",
+      "evolutions": [
+        "scolipede_shadow"
+      ]
+    },
+    {
+      "id": "whiscash",
+      "parent": "barboach"
+    },
+    {
+      "id": "whiscash_shadow",
+      "parent": "barboach_shadow"
+    },
+    {
+      "id": "whismur",
+      "parent": null,
+      "evolutions": [
+        "loudred"
+      ]
+    },
+    {
+      "id": "whismur_shadow",
+      "parent": null,
+      "evolutions": [
+        "loudred_shadow"
+      ]
+    },
+    {
+      "id": "wigglytuff",
+      "parent": "jigglypuff"
+    },
+    {
+      "id": "wiglett",
+      "parent": null,
+      "evolutions": [
+        "wugtrio"
+      ]
+    },
+    {
+      "id": "wimpod",
+      "parent": null,
+      "evolutions": [
+        "golisopod"
+      ]
+    },
+    {
+      "id": "wimpod_shadow",
+      "parent": null,
+      "evolutions": [
+        "golisopod_shadow"
+      ]
+    },
+    {
+      "id": "wingull",
+      "parent": null,
+      "evolutions": [
+        "pelipper"
+      ]
+    },
+    {
+      "id": "wobbuffet",
+      "parent": "wynaut"
+    },
+    {
+      "id": "wobbuffet_shadow",
+      "parent": "wynaut"
+    },
+    {
+      "id": "woobat",
+      "parent": null,
+      "evolutions": [
+        "swoobat"
+      ]
+    },
+    {
+      "id": "wooloo",
+      "parent": null,
+      "evolutions": [
+        "dubwool"
+      ]
+    },
+    {
+      "id": "wooper",
+      "parent": null,
+      "evolutions": [
+        "quagsire"
+      ]
+    },
+    {
+      "id": "wooper_paldean",
+      "parent": null,
+      "evolutions": [
+        "clodsire"
+      ]
+    },
+    {
+      "id": "wooper_shadow",
+      "parent": null,
+      "evolutions": [
+        "quagsire_shadow"
+      ]
+    },
+    {
+      "id": "wormadam_plant",
+      "parent": "burmy_plant"
+    },
+    {
+      "id": "wormadam_sandy",
+      "parent": "burmy_sandy"
+    },
+    {
+      "id": "wormadam_trash",
+      "parent": "burmy_trash"
+    },
+    {
+      "id": "wugtrio",
+      "parent": "wiglett"
+    },
+    {
+      "id": "wurmple",
+      "parent": null,
+      "evolutions": [
+        "silcoon",
+        "cascoon"
+      ]
+    },
+    {
+      "id": "wynaut",
+      "parent": null,
+      "evolutions": [
+        "wobbuffet"
+      ]
+    },
+    {
+      "id": "wyrdeer",
+      "parent": "stantler"
+    },
+    {
+      "id": "xatu",
+      "parent": "natu"
+    },
+    {
+      "id": "xatu_shadow",
+      "parent": "natu_shadow"
+    },
+    {
+      "id": "yamask",
+      "parent": null,
+      "evolutions": [
+        "cofagrigus"
+      ]
+    },
+    {
+      "id": "yamask_galarian",
+      "parent": null,
+      "evolutions": [
+        "runerigus"
+      ]
+    },
+    {
+      "id": "yamask_shadow",
+      "parent": null,
+      "evolutions": [
+        "cofagrigus_shadow"
+      ]
+    },
+    {
+      "id": "yamper",
+      "parent": null,
+      "evolutions": [
+        "boltund"
+      ]
+    },
+    {
+      "id": "yanma",
+      "parent": null,
+      "evolutions": [
+        "yanmega"
+      ]
+    },
+    {
+      "id": "yanmega",
+      "parent": "yanma"
+    },
+    {
+      "id": "yungoos",
+      "parent": null,
+      "evolutions": [
+        "gumshoos"
+      ]
+    },
+    {
+      "id": "zebstrika",
+      "parent": "blitzle"
+    },
+    {
+      "id": "zebstrika_shadow",
+      "parent": "blitzle_shadow"
+    },
+    {
+      "id": "zigzagoon",
+      "parent": null,
+      "evolutions": [
+        "linoone"
+      ]
+    },
+    {
+      "id": "zigzagoon_galarian",
+      "parent": null,
+      "evolutions": [
+        "linoone_galarian"
+      ]
+    },
+    {
+      "id": "zigzagoon_galarian_shadow",
+      "parent": null,
+      "evolutions": [
+        "linoone_galarian_shadow"
+      ]
+    },
+    {
+      "id": "zoroark",
+      "parent": "zorua"
+    },
+    {
+      "id": "zoroark_hisuian",
+      "parent": "zorua"
+    },
+    {
+      "id": "zorua",
+      "parent": null,
+      "evolutions": [
+        "zoroark"
+      ]
+    },
+    {
+      "id": "zorua_hisuian",
+      "parent": null,
+      "evolutions": [
+        "zoroark_hisuian"
+      ]
+    },
+    {
+      "id": "zubat",
+      "parent": null,
+      "evolutions": [
+        "golbat"
+      ]
+    },
+    {
+      "id": "zubat_shadow",
+      "parent": null,
+      "evolutions": [
+        "golbat_shadow"
+      ]
+    },
+    {
+      "id": "zweilous",
+      "parent": "deino",
+      "evolutions": [
+        "hydreigon"
+      ]
+    },
+    {
+      "id": "zweilous_shadow",
+      "parent": "deino_shadow",
+      "evolutions": [
+        "hydreigon_shadow"
+      ]
+    }
+  ]
+}
