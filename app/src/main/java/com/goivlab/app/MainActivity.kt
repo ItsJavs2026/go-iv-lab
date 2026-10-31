@@ -1,6 +1,7 @@
 package com.goivlab.app
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.provider.Settings
 import android.content.ClipData
@@ -29,6 +30,7 @@ import android.widget.ScrollView
 import android.widget.SeekBar
 import android.widget.Spinner
 import android.widget.TextView
+import com.goivlab.iv.EvolutionFamilies
 import com.goivlab.iv.IvSpread
 import com.goivlab.iv.PokemonStatsCatalog
 import com.goivlab.iv.PvpIvLookup
@@ -75,6 +77,7 @@ class MainActivity : Activity() {
     private lateinit var calculateButton: Button
     private lateinit var copyButton: Button
     private lateinit var showPopupButton: Button
+    private lateinit var compareButton: Button
     private lateinit var autoPopupCheck: CheckBox
     private lateinit var presetSpinner: Spinner
     private lateinit var presetStore: NicknamePresets
@@ -84,6 +87,7 @@ class MainActivity : Activity() {
     private lateinit var nicknamePreview: TextView
 
     private var catalog: PokemonStatsCatalog? = null
+    private var evolutionFamilies: EvolutionFamilies? = null
     private var lookup: PvpIvLookup? = null
     private var selectedId: String? = null
     private var labelToId = emptyMap<String, String>()
@@ -117,7 +121,7 @@ class MainActivity : Activity() {
         setContentView(scroll)
 
         column.addView(text("GO IV LAB", 28f, true, ink))
-        column.addView(text("Offline PvP IV checker · v0.4 floating overlay experiment", 13f, false, muted))
+        column.addView(text("Offline PvP IV checker · v0.5 evolution comparison experiment", 13f, false, muted))
         spacer(column, 9)
 
         val searchCard = card(column)
@@ -208,6 +212,16 @@ class MainActivity : Activity() {
             setOnClickListener { showRankPopup() }
         }
         resultCard.addView(showPopupButton, fullRow())
+        compareButton = Button(this).apply {
+            text = "COMPARE EVOLUTIONS · MY IVs"
+            contentDescription = "Compare current IV spread across known evolution stages"
+            isEnabled = false
+            setOnClickListener {
+                val calculation = lastCalculation ?: return@setOnClickListener
+                compareEvolutionStages(calculation)
+            }
+        }
+        resultCard.addView(compareButton, fullRow())
         val overlayQuickActions = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
         Button(this).apply {
             text = "FLOAT RANK"
@@ -339,10 +353,15 @@ class MainActivity : Activity() {
             try {
                 val json = assets.open("pokemon-stats.json").bufferedReader(Charsets.UTF_8).use { it.readText() }
                 val parsed = PokemonStatsCatalog.parse(json)
+                val families = runCatching {
+                    EvolutionFamilies.parse(assets.open("evolution-families.json")
+                        .bufferedReader(Charsets.UTF_8).use { it.readText() })
+                }.getOrNull()
                 val entries = parsedSpeciesOptions(parsed, json)
                 runOnUiThread {
                     if (isDestroyed) return@runOnUiThread
                     catalog = parsed
+                    evolutionFamilies = families
                     lookup = PvpIvLookup(parsed)
                     labelToId = entries.associate { it.first to it.second }
                     pokemonInput.setAdapter(ArrayAdapter(
@@ -403,6 +422,7 @@ class MainActivity : Activity() {
         pendingOverlayNickname = null
         stopService(Intent(this, ManualOverlayService::class.java))
         showPopupButton.isEnabled = false
+        compareButton.isEnabled = false
         renderNickname()
         worker.execute {
             try {
@@ -411,6 +431,8 @@ class MainActivity : Activity() {
                     if (isDestroyed || generation.get() != request) return@runOnUiThread
                     lastCalculation = Calculation(result, league, ivs, maxLevel)
                     showPopupButton.isEnabled = true
+                    compareButton.isEnabled = evolutionFamilies?.stagesFor(id, catalog ?: return@runOnUiThread)
+                        ?.size?.let { it > 1 } == true
                     calculateButton.isEnabled = true
                     statusText.text = "Calculated locally · no network requests"
                     resultText.text = buildString {
@@ -537,6 +559,7 @@ class MainActivity : Activity() {
         RankPopup.show(
             this, current.result, current.league.label, current.maxLevel, nickname,
             onFloat = { startFloatingOverlay(current, nickname) },
+            onCompare = { compareEvolutionStages(current) },
             onCopy = {
                 // Copy the exact value displayed, not a later calculation.
                 if (nickname != null) {
@@ -546,6 +569,76 @@ class MainActivity : Activity() {
                 }
             }
         )
+    }
+
+    private fun compareEvolutionStages(calculation: Calculation) {
+        if (lastCalculation !== calculation) return
+        val families = evolutionFamilies
+        val dataset = catalog
+        val engine = lookup
+        if (families == null || dataset == null || engine == null) {
+            statusText.text = "Evolution data unavailable. Standard IV calculation still works."
+            return
+        }
+        val stages = families.stagesFor(calculation.result.species.speciesId, dataset)
+        if (stages.size < 2) {
+            statusText.text = "No verified evolution stages for this exact form."
+            return
+        }
+        val request = generation.get()
+        compareButton.isEnabled = false
+        statusText.text = "Comparing ${stages.size} evolution stages offline…"
+        worker.execute {
+            val completed = mutableListOf<Triple<com.goivlab.iv.EvolutionStage, PvpIvLookupResult?, String?>>()
+            for ((index, stage) in stages.withIndex()) {
+                if (generation.get() != request) return@execute
+                val rank = runCatching {
+                    engine.check(stage.species.speciesId, calculation.ivs,
+                        calculation.league.cpCap, calculation.maxLevel)
+                }
+                completed.add(Triple(stage, rank.getOrNull(),
+                    rank.exceptionOrNull()?.javaClass?.simpleName))
+                runOnUiThread {
+                    if (!isDestroyed && generation.get() == request && lastCalculation === calculation) {
+                        statusText.text = "Comparing evolutions ${index + 1}/${stages.size} offline…"
+                    }
+                }
+            }
+            runOnUiThread {
+                if (isDestroyed || generation.get() != request || lastCalculation !== calculation) return@runOnUiThread
+                compareButton.isEnabled = true
+                statusText.text = "Evolution-stage comparison completed offline."
+                val successful = completed.filter { it.second != null }
+                val highest = successful.maxByOrNull { it.second!!.statProductPercent }
+                val report = buildString {
+                    append("Same IVs: ${calculation.ivs.attack}/${calculation.ivs.defense}/${calculation.ivs.stamina}")
+                    append(" · ${calculation.league.code}, level cap ${calculation.maxLevel.toInt()}\n\n")
+                    for ((stage, result, _) in completed) {
+                        append("${stage.stage.uppercase(Locale.US)} · ${stage.species.name}\n")
+                        if (result != null) {
+                            append("Rank #${result.rank}/${result.eligibleSpreads} · ")
+                            append(String.format(Locale.US, "%.2f", result.statProductPercent))
+                            append("% of this species' best · CP ${result.cp}, Lv ${result.level}\n\n")
+                        } else {
+                            append("No eligible ranking for these settings\n\n")
+                        }
+                    }
+                    if (highest != null) {
+                        append("Highest relative IV fit: ${highest.first.species.name} ")
+                        append("(${highest.first.stage.lowercase(Locale.US)} stage).\n\n")
+                    }
+                    append("IMPORTANT: This identifies IV fit relative to EACH species' own best spread. ")
+                    append("It does NOT establish which evolution is strongest in PvP. ")
+                    append("Moves, typing, team and current league meta must also be evaluated. ")
+                    append("Evolution preserves IVs in ordinary evolutions, but form changes or purification may differ.")
+                }
+                AlertDialog.Builder(this)
+                    .setTitle("Evolution comparison · ${calculation.league.code}")
+                    .setMessage(report)
+                    .setPositiveButton("DONE", null)
+                    .show()
+            }
+        }
     }
 
     private fun copyNickname() {
@@ -564,6 +657,7 @@ class MainActivity : Activity() {
         pendingOverlayNickname = null
         lastCalculation = null
         if (::showPopupButton.isInitialized) showPopupButton.isEnabled = false
+        if (::compareButton.isInitialized) compareButton.isEnabled = false
         if (::calculateButton.isInitialized) calculateButton.isEnabled = lookup != null
         if (::statusText.isInitialized) statusText.text = message
         if (::resultText.isInitialized) resultText.text = "Tap Calculate to refresh the rank."
