@@ -4,6 +4,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.contentOrNull
 import java.util.ArrayDeque
 
 /** Evolution stages are actual graph links from the pinned PvPoke gamemaster.
@@ -88,7 +89,7 @@ class EvolutionFamilies private constructor(private val graph: Map<String, Set<S
                 val id = obj.getValue("id").jsonPrimitive.content
                 require(id.isNotBlank() && seen.add(id)) { "Invalid/duplicate evolution species ID: $id" }
                 children.getOrPut(id) { linkedSetOf() }
-                val parent = obj["parent"]?.jsonPrimitive?.content
+                val parent = obj["parent"]?.jsonPrimitive?.contentOrNull
                 if (!parent.isNullOrBlank()) {
                     require(parent != id) { "Self-parenting evolution: $id" }
                     children.getOrPut(parent) { linkedSetOf() }.add(id)
