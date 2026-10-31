@@ -11,14 +11,17 @@ android {
         applicationId = "com.goivlab.app"
         minSdk = 30
         targetSdk = 35
-        versionCode = 3
-        versionName = "0.3.0-candidate"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        versionCode = 4
+        versionName = "0.4.0-overlay-experiment"
     }
 
     buildTypes {
         getByName("debug") {
             isMinifyEnabled = false
             isDebuggable = true
+            // Overlay Lab coexists with the tested v0.2 app, no uninstall needed.
+            applicationIdSuffix = ".overlaylab"
         }
         getByName("release") {
             isMinifyEnabled = false
@@ -47,4 +50,9 @@ repositories {
 dependencies {
     implementation(project(":iv-engine"))
     implementation(project(":nickname-core"))
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test:core:1.6.1")
+    androidTestImplementation("androidx.test:runner:1.6.2")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
 }

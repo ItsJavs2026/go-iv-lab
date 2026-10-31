@@ -6,6 +6,8 @@ on:
   workflow_dispatch:
 jobs:
   build:
+    # Do not package experimental overlay PR code as a stable candidate.
+    if: github.event_name != 'pull_request' || startsWith(github.head_ref, 'candidate/')
     runs-on: ubuntu-latest
     permissions:
       contents: read

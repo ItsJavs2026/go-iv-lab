@@ -1,6 +1,8 @@
 package com.goivlab.app
 
 import android.app.Activity
+import android.content.Intent
+import android.provider.Settings
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -40,7 +42,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * Manual-IV proof of concept. All calculation and catalog data stay on-device.
- * Screen recording, floating overlay and automatic Pokémon GO input are NOT implemented.
+ * This experimental branch adds manual floating results; screen recording and automatic Pokémon GO input are NOT implemented.
  */
 class MainActivity : Activity() {
     private data class League(val label: String, val code: String, val cpCap: Int)
@@ -87,6 +89,8 @@ class MainActivity : Activity() {
     private var labelToId = emptyMap<String, String>()
     private var lastCalculation: Calculation? = null
     private var lastNickname: NicknameResult? = null
+    private var pendingOverlayPermissionResult: Calculation? = null
+    private var pendingOverlayNickname: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,7 +117,7 @@ class MainActivity : Activity() {
         setContentView(scroll)
 
         column.addView(text("GO IV LAB", 28f, true, ink))
-        column.addView(text("Offline PvP IV checker · v0.3 candidate", 13f, false, muted))
+        column.addView(text("Offline PvP IV checker · v0.4 floating overlay experiment", 13f, false, muted))
         spacer(column, 9)
 
         val searchCard = card(column)
@@ -204,6 +208,55 @@ class MainActivity : Activity() {
             setOnClickListener { showRankPopup() }
         }
         resultCard.addView(showPopupButton, fullRow())
+        val overlayQuickActions = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        Button(this).apply {
+            text = "FLOAT RANK"
+            contentDescription = "Float this calculated IV rank above Pokémon GO"
+            setOnClickListener {
+                val current = lastCalculation
+                if (current == null) statusText.text = "Calculate an IV rank first."
+                else startFloatingOverlay(current)
+            }
+        }.also { overlayQuickActions.addView(it, LinearLayout.LayoutParams(0, 49.dp(), 1f)) }
+        Button(this).apply {
+            text = "OPEN POKÉMON GO"
+            contentDescription = "Open Pokémon GO after starting the floating result"
+            setOnClickListener {
+                val launch = packageManager.getLaunchIntentForPackage("com.nianticlabs.pokemongo")
+                if (launch == null) {
+                    statusText.text = "Pokémon GO is not available as a launchable installed app."
+                } else {
+                    try {
+                        startActivity(launch)
+                    } catch (exception: Exception) {
+                        statusText.text = "Could not open Pokémon GO: ${exception.javaClass.simpleName}"
+                    }
+                }
+            }
+        }.also { overlayQuickActions.addView(it, LinearLayout.LayoutParams(0, 49.dp(), 1f)) }
+        resultCard.addView(overlayQuickActions, fullRow())
+
+        val overlayMaintenance = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        Button(this).apply {
+            text = "STOP OVERLAY"
+            contentDescription = "Stop the current floating IV result"
+            setOnClickListener {
+                stopService(Intent(this@MainActivity, ManualOverlayService::class.java))
+                statusText.text = "Overlay stopped."
+            }
+        }.also { overlayMaintenance.addView(it, LinearLayout.LayoutParams(0, 49.dp(), 1f)) }
+        Button(this).apply {
+            text = "COPY DIAGNOSTICS"
+            contentDescription = "Copy local overlay permission and lifecycle report"
+            setOnClickListener {
+                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                clipboard.setPrimaryClip(
+                    ClipData.newPlainText("GO IV Lab overlay diagnostics", OverlayDiagnostics.report(this@MainActivity))
+                )
+                statusText.text = "Overlay diagnostics copied. No Pokémon GO account or location data included."
+            }
+        }.also { overlayMaintenance.addView(it, LinearLayout.LayoutParams(0, 49.dp(), 1f)) }
+        resultCard.addView(overlayMaintenance, fullRow())
         autoPopupCheck = CheckBox(this).apply {
             text = "Automatically show results popup after calculation"
             setTextColor(ink)
@@ -275,7 +328,7 @@ class MainActivity : Activity() {
 
         spacer(column, 9)
         column.addView(text(
-            "IV rank ≠ battle/meta ranking. Base stats: PvPoke snapshot 26 Oct 2026. Calculations are offline; screenshot scanning and overlay will come later.",
+            "IV spread rank ≠ battle/meta ranking. PvPoke stats snapshot 26 Oct 2026. Manual floating overlay is experimental; screenshot scanning is not implemented.",
             12f, false, muted
         ))
         loadOfflineCatalog()
@@ -346,6 +399,9 @@ class MainActivity : Activity() {
         calculateButton.isEnabled = false
         statusText.text = "Calculating 4,096 IV combinations offline…"
         lastCalculation = null
+        pendingOverlayPermissionResult = null
+        pendingOverlayNickname = null
+        stopService(Intent(this, ManualOverlayService::class.java))
         showPopupButton.isEnabled = false
         renderNickname()
         worker.execute {
@@ -415,19 +471,81 @@ class MainActivity : Activity() {
         )
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Continue exactly one user-initiated FLOAT request after returning
+        // from the Draw over other apps settings screen.
+        val pending = pendingOverlayPermissionResult ?: return
+        val nicknameSnapshot = pendingOverlayNickname
+        pendingOverlayPermissionResult = null
+        pendingOverlayNickname = null
+        if (!::statusText.isInitialized) return
+        if (lastCalculation !== pending) {
+            statusText.text = "Result changed while permission was open — calculate again."
+        } else if (Settings.canDrawOverlays(this)) {
+            startFloatingOverlay(pending, nicknameSnapshot)
+        } else {
+            statusText.text = "Overlay not allowed. Select GO IV Lab Overlay Lab in Draw over other apps; in-app popup still works."
+        }
+    }
+
+    private fun startFloatingOverlay(
+        calculation: Calculation,
+        nicknameSnapshot: String? = lastNickname?.takeIf { it.fits && it.value.isNotBlank() }?.value
+    ) {
+        // If an older dialog is still open, never float an obsolete calculation.
+        if (lastCalculation !== calculation) {
+            statusText.text = "Result changed — calculate again before floating."
+            return
+        }
+        if (!Settings.canDrawOverlays(this)) {
+            pendingOverlayPermissionResult = calculation
+            pendingOverlayNickname = nicknameSnapshot
+            OverlayDiagnostics.record(this, "Overlay permission requested in Android Settings")
+            statusText.text = "In Draw over other apps, select GO IV Lab Overlay Lab and allow it; return here."
+            try {
+                // Android 11+ ignores package data and always shows the full app list.
+                startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION))
+            } catch (exception: Exception) {
+                pendingOverlayPermissionResult = null
+                pendingOverlayNickname = null
+                statusText.text = "Open Settings > Apps > Special access > Appear on top and allow GO IV Lab Overlay Lab."
+            }
+            return
+        }
+        val result = calculation.result
+        val summary = OverlayResultFormatter.format(result, calculation.league.code)
+        try {
+            OverlayDiagnostics.record(this, "Overlay start requested from GO IV Lab")
+            startForegroundService(Intent(this, ManualOverlayService::class.java).apply {
+                action = ManualOverlayService.ACTION_SHOW
+                putExtra(ManualOverlayService.EXTRA_RESULT, summary)
+                nicknameSnapshot?.let {
+                    putExtra(ManualOverlayService.EXTRA_NICKNAME, it)
+                }
+            })
+            statusText.text = "Overlay start requested. You can minimize, drag or stop it."
+        } catch (exception: Exception) {
+            OverlayDiagnostics.record(this, "Overlay start request failed", exception.javaClass.simpleName)
+            statusText.text = "Overlay could not start: ${exception.javaClass.simpleName}"
+        }
+    }
+
     private fun showRankPopup() {
         val current = lastCalculation ?: return
         val nickname = lastNickname?.takeIf { it.fits && it.value.isNotBlank() }?.value
         RankPopup.show(
-            this, current.result, current.league.label, current.maxLevel, nickname
-        ) {
-            // Copy the value shown in this dialog, never a later recalculation's value.
-            if (nickname != null) {
-                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                clipboard.setPrimaryClip(ClipData.newPlainText("GO IV Lab nickname", nickname))
-                statusText.text = "Popup nickname copied. Paste it manually into Pokémon GO."
+            this, current.result, current.league.label, current.maxLevel, nickname,
+            onFloat = { startFloatingOverlay(current, nickname) },
+            onCopy = {
+                // Copy the exact value displayed, not a later calculation.
+                if (nickname != null) {
+                    val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    clipboard.setPrimaryClip(ClipData.newPlainText("GO IV Lab nickname", nickname))
+                    statusText.text = "Popup nickname copied. Paste it manually into Pokémon GO."
+                }
             }
-        }
+        )
     }
 
     private fun copyNickname() {
@@ -440,6 +558,10 @@ class MainActivity : Activity() {
 
     private fun invalidateResult(message: String) {
         generation.incrementAndGet()
+        // Never leave a now-stale species/IV result floating over the game.
+        if (lastCalculation != null) stopService(Intent(this, ManualOverlayService::class.java))
+        pendingOverlayPermissionResult = null
+        pendingOverlayNickname = null
         lastCalculation = null
         if (::showPopupButton.isInitialized) showPopupButton.isEnabled = false
         if (::calculateButton.isInitialized) calculateButton.isEnabled = lookup != null
