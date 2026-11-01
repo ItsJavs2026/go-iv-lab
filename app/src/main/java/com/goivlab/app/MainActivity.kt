@@ -626,12 +626,12 @@ class MainActivity : Activity() {
                     }
                 val compactReport = buildString {
                     append("IVs ${calculation.ivs.attack}/${calculation.ivs.defense}/${calculation.ivs.stamina}")
-                    append("  ·  ${calculation.league.code}  ·  Level cap ${calculation.maxLevel.toInt()}\\n\\n")
+                    append("  ·  ${calculation.league.code}  ·  Level cap ${calculation.maxLevel.toInt()}\n\n")
                     for ((stage, result, _) in completed) {
                         val rating = leagueRating?.get(calculation.league.code, stage.species.speciesId)
                         append("${stage.stage.uppercase(Locale.US)}  ${stage.species.name}")
                         if (stage.species.speciesId == battlePick?.first?.species?.speciesId) append("  ★")
-                        append("\\n")
+                        append("\n")
                         if (result == null) append("No eligible IV ranking")
                         else {
                             append("IV #${result.rank}  ·  ")
@@ -639,34 +639,34 @@ class MainActivity : Activity() {
                             append(" fit")
                             if (rating != null) append("  ·  PvP ${String.format(Locale.US, "%.1f", rating.score)}/100")
                         }
-                        append("\\n\\n")
+                        append("\n\n")
                     }
                     if (battlePick != null) {
                         append("★ OPEN LEAGUE PICK: ${battlePick.first.species.name} ")
-                        append("(${battlePick.first.stage.lowercase(Locale.US)})\\n")
-                    } else append("No verified Open League recommendation\\n")
+                        append("(${battlePick.first.stage.lowercase(Locale.US)})\n")
+                    } else append("No verified Open League recommendation\n")
                     if (highest != null) {
-                        append("Best relative IV fit: ${highest.first.species.name}\\n")
+                        append("Best relative IV fit: ${highest.first.species.name}\n")
                     }
-                    append("\\nPvP score = simulated battle strength; IV fit = spread quality. ")
+                    append("\nPvP score = simulated battle strength; IV fit = spread quality. ")
                     append("Special cups and your moveset may change the recommendation.")
                 }
                 val detailedReport = buildString {
                     append("Same IVs: ${calculation.ivs.attack}/${calculation.ivs.defense}/${calculation.ivs.stamina}")
-                    append(" · ${calculation.league.code}, level cap ${calculation.maxLevel.toInt()}\\n\\n")
+                    append(" · ${calculation.league.code}, level cap ${calculation.maxLevel.toInt()}\n\n")
                     for ((stage, result, _) in completed) {
                         val rating = leagueRating?.get(calculation.league.code, stage.species.speciesId)
-                        append("${stage.stage.uppercase(Locale.US)} · ${stage.species.name}\\n")
+                        append("${stage.stage.uppercase(Locale.US)} · ${stage.species.name}\n")
                         if (result != null) {
                             append("IV rank #${result.rank}/${result.eligibleSpreads} · ")
                             append(String.format(Locale.US, "%.2f", result.statProductPercent))
-                            append("% relative fit · CP ${result.cp}, Lv ${result.level}\\n")
-                            if (rating != null) append("Open ${calculation.league.code} PvPoke: ${rating.score}/100 · meta rank #${rating.rank}\\n\\n")
-                            else append("No verified Open League meta rating\\n\\n")
-                        } else append("No eligible ranking for these settings\\n\\n")
+                            append("% relative fit · CP ${result.cp}, Lv ${result.level}\n")
+                            if (rating != null) append("Open ${calculation.league.code} PvPoke: ${rating.score}/100 · meta rank #${rating.rank}\n\n")
+                            else append("No verified Open League meta rating\n\n")
+                        } else append("No eligible ranking for these settings\n\n")
                     }
-                    append("Recommended Open League stage: ${battlePick?.first?.species?.name ?: "Not available"}.\\n")
-                    append("Best relative IV fit: ${highest?.first?.species?.name ?: "Not available"}.\\n\\n")
+                    append("Recommended Open League stage: ${battlePick?.first?.species?.name ?: "Not available"}.\n")
+                    append("Best relative IV fit: ${highest?.first?.species?.name ?: "Not available"}.\n\n")
                     append("Source: pinned PvPoke Open League overall simulation, Oct 26, 2026. ")
                     append("Not a current special-cup ranking or a guarantee of matchups. ")
                     append("Your moveset, team, resources, and availability may change the best choice. ")
