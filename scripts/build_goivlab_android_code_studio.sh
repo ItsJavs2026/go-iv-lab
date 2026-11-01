@@ -6,7 +6,7 @@ set -euo pipefail
 SOURCE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 WORKSPACE="/storage/emulated/0/AndroidIDEProjects"
 AAPT2="$HOME/.androidide/aapt2"
-EXPECTED_BRANCH="experiment/evolution-family-v0.6"
+EXPECTED_BRANCH="experiment/compact-evolution-v0.6"
 EXPECTED_APPLICATION_ID="com.goivlab.app.overlaylab"
 EXPECTED_VERSION_CODE=6
 EXPECTED_VERSION_NAME="0.6.0-compact-evolution-experiment"
