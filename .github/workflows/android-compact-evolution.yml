@@ -2,7 +2,7 @@ name: GO IV Lab v0.6 evolution candidate
 
 on:
   push:
-    branches: ['experiment/evolution-family-v0.6']
+    branches: ['experiment/compact-evolution-v0.6']
   pull_request:
   workflow_dispatch:
 
@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   evolution-test-build:
-    if: github.event_name != 'pull_request' || github.head_ref == 'experiment/evolution-family-v0.6'
+    if: github.event_name != 'pull_request' || github.head_ref == 'experiment/compact-evolution-v0.6'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -21,7 +21,7 @@ jobs:
       - name: Syntax-check phone-only Android Code Studio build script
         run: |
           bash -n scripts/build_goivlab_android_code_studio.sh
-          grep -F 'EXPECTED_BRANCH="experiment/evolution-family-v0.6"' scripts/build_goivlab_android_code_studio.sh
+          grep -F 'EXPECTED_BRANCH="experiment/compact-evolution-v0.6"' scripts/build_goivlab_android_code_studio.sh
           test -f docs/PHONE_BUILD_ANDROID_CODE_STUDIO.md
       - uses: actions/setup-java@v4
         with:
