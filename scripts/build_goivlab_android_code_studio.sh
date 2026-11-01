@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
-# GO IV Lab v0.6 phone-only debug APK build, compatible with Android Code Studio.
+# GO IV Lab v0.7 phone-only debug APK build, compatible with Android Code Studio.
 # Builds locally on the Samsung: no GitHub Actions APK download, no root.
 set -euo pipefail
 
 SOURCE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 WORKSPACE="/storage/emulated/0/AndroidIDEProjects"
 AAPT2="$HOME/.androidide/aapt2"
-EXPECTED_BRANCH="experiment/compact-evolution-v0.6"
+EXPECTED_BRANCH="experiment/overlay-evolution-v0.7"
 EXPECTED_APPLICATION_ID="com.goivlab.app.overlaylab"
-EXPECTED_VERSION_CODE=6
-EXPECTED_VERSION_NAME="0.6.0-compact-evolution-experiment"
+EXPECTED_VERSION_CODE=7
+EXPECTED_VERSION_NAME="0.7.0-overlay-evolution-experiment"
 
 fail() { echo "ERROR: $*" >&2; exit 1; }
 
-echo "=== GO IV Lab 0.6 | Samsung phone-only APK build ==="
+echo "=== GO IV Lab 0.7 | Samsung phone-only APK build ==="
 [ -d "$SOURCE/.git" ] || fail "Use the Git-cloned repository (not a ZIP)."
 [ "$(git -C "$SOURCE" branch --show-current)" = "$EXPECTED_BRANCH" ] ||
   fail "Expected $EXPECTED_BRANCH; run git status and switch to that branch first."
@@ -27,7 +27,7 @@ java -version 2>&1 | grep -Eq 'version "17|openjdk 17' ||
   fail "Java must be version 17; check java -version."
 
 SHORT="$(git -C "$SOURCE" rev-parse --short=8 HEAD)"
-PROJECT="$WORKSPACE/GOIVLabV06_$SHORT"
+PROJECT="$WORKSPACE/GOIVLabV07_$SHORT"
 echo "Source commit: $SHORT"
 echo "Output workspace: $PROJECT"
 mkdir -p "$WORKSPACE"
@@ -92,6 +92,6 @@ echo "Version: $EXPECTED_VERSION_NAME"
 echo "APK: $PROJECT/$APK"
 if command -v sha256sum >/dev/null; then sha256sum "$APK"; fi
 echo
-echo "Use Samsung My Files > Internal storage > AndroidIDEProjects > GOIVLabV06_$SHORT"
+echo "Use Samsung My Files > Internal storage > AndroidIDEProjects > GOIVLabV07_$SHORT"
 echo "Then open app/build/outputs/apk/debug/app-debug.apk to install."
 echo "No existing GO IV Lab or Orivra installations were changed."
