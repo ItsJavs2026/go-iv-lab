@@ -655,14 +655,14 @@ class MainActivity : Activity() {
                     append("Special cups and your moveset may change the recommendation.")
                 }
                 overlayEvolutionSummary = buildString {
-                    append("EVOLUTIONS · ${calculation.league.code}\\n")
+                    append("EVOLUTIONS · ${calculation.league.code}\n")
                     for ((stage, result, _) in completed) {
                         if (result == null) continue
                         val rating = leagueRating?.get(calculation.league.code, stage.species.speciesId)
                         if (stage.species.speciesId == battlePick?.first?.species?.speciesId) append("★ ")
                         append("${stage.species.name}: IV #${result.rank}")
                         if (rating != null) append(" · PvP ${String.format(Locale.US, "%.1f", rating.score)}")
-                        append("\\n")
+                        append("\n")
                     }
                     append("★ = Open League simulation pick, not special-cup advice")
                 }
