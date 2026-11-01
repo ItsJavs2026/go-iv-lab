@@ -38,6 +38,7 @@ class ManualOverlayService : Service() {
         const val ACTION_STOP = "com.goivlab.app.overlay.STOP"
         const val EXTRA_RESULT = "result"
         const val EXTRA_NICKNAME = "nickname"
+        const val EXTRA_EVOLUTIONS = "evolutions"
         private const val CHANNEL_ID = "go_iv_lab_overlay_v04"
         private const val NOTIFICATION_ID = 1404
         private const val PREF_NAME = "go_iv_lab_overlay_state"
@@ -48,6 +49,10 @@ class ManualOverlayService : Service() {
     private var layout: WindowManager.LayoutParams? = null
     private var details: TextView? = null
     private var copyControl: TextView? = null
+    private var evolutionControl: TextView? = null
+    private var evolutionDetails: TextView? = null
+    private var evolutionSummary: String? = null
+    private var evolutionExpanded = false
     private var currentNickname: String? = null
     private var collapsed = false
 
@@ -73,6 +78,7 @@ class ManualOverlayService : Service() {
             it.isNotBlank() && it.codePointCount(0, it.length) <= 12
         }
         currentNickname = nickname
+        evolutionSummary = intent.getStringExtra(EXTRA_EVOLUTIONS)?.trim()?.take(700)?.takeIf { it.isNotEmpty() }
         try {
             // startForegroundService() requires prompt promotion to a visible foreground
             // service. Do this BEFORE inflating/attaching WindowManager views, because
@@ -83,6 +89,7 @@ class ManualOverlayService : Service() {
             if (overlay == null) createOverlay(content) else {
                 details?.text = content
                 refreshCopyControl()
+                refreshEvolutionControl()
             }
         } catch (exception: Exception) {
             OverlayDiagnostics.record(this, "Overlay start failed", exception.javaClass.simpleName)
@@ -168,6 +175,29 @@ class ManualOverlayService : Service() {
         }
         root.addView(copy)
         copyControl = copy
+        val evolutionToggle = TextView(this).apply {
+            textSize = 13f
+            setTextColor(Color.rgb(155, 213, 255))
+            minHeight = dp(44)
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(dp(6), dp(6), dp(6), dp(6))
+            setOnClickListener {
+                evolutionExpanded = !evolutionExpanded
+                refreshEvolutionControl()
+                updatePosition()
+            }
+        }
+        root.addView(evolutionToggle)
+        evolutionControl = evolutionToggle
+        val evolutionBody = TextView(this).apply {
+            textSize = 12f
+            setTextColor(Color.WHITE)
+            setPadding(dp(6), dp(2), dp(5), dp(8))
+            setLineSpacing(dp(1).toFloat(), 1f)
+        }
+        root.addView(evolutionBody)
+        evolutionDetails = evolutionBody
+        refreshEvolutionControl()
         refreshCopyControl()
 
         val params = WindowManager.LayoutParams(
@@ -191,6 +221,7 @@ class ManualOverlayService : Service() {
             dragHandle.text = if (collapsed) "GO IV" else "GO IV  •  drag"
             body.visibility = if (collapsed) View.GONE else View.VISIBLE
             refreshCopyControl()
+            refreshEvolutionControl()
             collapseControl.text = if (collapsed) "+" else "−"
             collapseControl.contentDescription = if (collapsed) "Expand floating result" else "Minimize floating result"
             params.width = preferredWidth(wm)
@@ -234,6 +265,17 @@ class ManualOverlayService : Service() {
         val value = currentNickname
         copy.visibility = if (!collapsed && value != null) View.VISIBLE else View.GONE
         if (value != null) copy.text = "COPY NICKNAME  ·  $value"
+    }
+
+    private fun refreshEvolutionControl() {
+        val toggle = evolutionControl ?: return
+        val detail = evolutionDetails ?: return
+        val summary = evolutionSummary
+        toggle.visibility = if (!collapsed && summary != null) View.VISIBLE else View.GONE
+        toggle.text = if (evolutionExpanded) "EVOLUTIONS  ▲" else "EVOLUTIONS  ▼"
+        toggle.contentDescription = if (evolutionExpanded) "Hide evolution recommendations" else "Show evolution recommendations"
+        detail.visibility = if (!collapsed && evolutionExpanded && summary != null) View.VISIBLE else View.GONE
+        detail.text = summary.orEmpty()
     }
 
     private fun preferredWidth(wm: WindowManager): Int =
@@ -302,6 +344,10 @@ class ManualOverlayService : Service() {
         overlay = null
         details = null
         copyControl = null
+        evolutionControl = null
+        evolutionDetails = null
+        evolutionSummary = null
+        evolutionExpanded = false
         currentNickname = null
         layout = null
         if (view != null) {

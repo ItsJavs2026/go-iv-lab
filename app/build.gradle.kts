@@ -12,8 +12,8 @@ android {
         minSdk = 30
         targetSdk = 35
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        versionCode = 6
-        versionName = "0.6.0-compact-evolution-experiment"
+        versionCode = 7
+        versionName = "0.7.0-overlay-evolution-experiment"
     }
 
     buildTypes {
