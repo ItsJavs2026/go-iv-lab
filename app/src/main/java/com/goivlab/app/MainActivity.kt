@@ -94,6 +94,7 @@ class MainActivity : Activity() {
     private var selectedId: String? = null
     private var labelToId = emptyMap<String, String>()
     private var lastCalculation: Calculation? = null
+    private var overlayEvolutionSummary: String? = null
     private var lastNickname: NicknameResult? = null
     private var pendingOverlayPermissionResult: Calculation? = null
     private var pendingOverlayNickname: String? = null
@@ -437,6 +438,7 @@ class MainActivity : Activity() {
                 runOnUiThread {
                     if (isDestroyed || generation.get() != request) return@runOnUiThread
                     lastCalculation = Calculation(result, league, ivs, maxLevel)
+                    overlayEvolutionSummary = null
                     showPopupButton.isEnabled = true
                     compareButton.isEnabled = evolutionFamilies?.stagesFor(id, catalog ?: return@runOnUiThread)
                         ?.size?.let { it > 1 } == true
@@ -549,6 +551,7 @@ class MainActivity : Activity() {
             startForegroundService(Intent(this, ManualOverlayService::class.java).apply {
                 action = ManualOverlayService.ACTION_SHOW
                 putExtra(ManualOverlayService.EXTRA_RESULT, summary)
+                overlayEvolutionSummary?.let { putExtra(ManualOverlayService.EXTRA_EVOLUTIONS, it) }
                 nicknameSnapshot?.let {
                     putExtra(ManualOverlayService.EXTRA_NICKNAME, it)
                 }
@@ -651,6 +654,18 @@ class MainActivity : Activity() {
                     append("\nPvP score = simulated battle strength; IV fit = spread quality. ")
                     append("Special cups and your moveset may change the recommendation.")
                 }
+                overlayEvolutionSummary = buildString {
+                    append("EVOLUTIONS · ${calculation.league.code}\\n")
+                    for ((stage, result, _) in completed) {
+                        if (result == null) continue
+                        val rating = leagueRating?.get(calculation.league.code, stage.species.speciesId)
+                        if (stage.species.speciesId == battlePick?.first?.species?.speciesId) append("★ ")
+                        append("${stage.species.name}: IV #${result.rank}")
+                        if (rating != null) append(" · PvP ${String.format(Locale.US, "%.1f", rating.score)}")
+                        append("\\n")
+                    }
+                    append("★ = Open League simulation pick, not special-cup advice")
+                }
                 val detailedReport = buildString {
                     append("Same IVs: ${calculation.ivs.attack}/${calculation.ivs.defense}/${calculation.ivs.stamina}")
                     append(" · ${calculation.league.code}, level cap ${calculation.maxLevel.toInt()}\n\n")
@@ -704,6 +719,7 @@ class MainActivity : Activity() {
         pendingOverlayPermissionResult = null
         pendingOverlayNickname = null
         lastCalculation = null
+        overlayEvolutionSummary = null
         if (::showPopupButton.isInitialized) showPopupButton.isEnabled = false
         if (::compareButton.isInitialized) compareButton.isEnabled = false
         if (::calculateButton.isInitialized) calculateButton.isEnabled = lookup != null
